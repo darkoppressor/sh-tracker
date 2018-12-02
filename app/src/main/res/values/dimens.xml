@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <dimen name="toolbar_elevation">4dp</dimen>
+    <dimen name="base_text">16sp</dimen>
+    <dimen name="base_padding">2dp</dimen>
+
+    <!-- Main -->
+    <dimen name="main_date_text">14sp</dimen>
+    <dimen name="main_date_text_small">12sp</dimen>
+    <dimen name="main_padding">8dp</dimen>
+    <dimen name="main_add">64dp</dimen>
+
+    <!-- Add Event -->
+    <dimen name="add_event_padding">6dp</dimen>
+    <dimen name="add_event_row_padding">10dp</dimen>
+
+</resources>

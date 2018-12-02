@@ -1,0 +1,17 @@
+/build
+/captures
+/local.properties
+/gradle.properties
+
+/.idea/caches/build_file_checksums.ser
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+.gradle
+.externalNativeBuild
+
+/app/build
+
+*Thumbs.db
+*.DS_Store
+*.iml

@@ -1,0 +1,21 @@
+# All files not covered below should be handled as text with Unix/Linux line endings
+* text eol=lf
+
+# These files should be handled as binaries
+*.aar binary
+*.jar binary
+*.png binary
+*.bmp binary
+*.ico binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ogg binary
+*.wav binary
+*.mp3 binary
+*.xcf binary
+*.mmpz binary
+*.sfs binary
+*.exe binary
+*.dll binary
+*.ttf binary

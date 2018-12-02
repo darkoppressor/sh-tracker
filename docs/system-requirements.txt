@@ -1,0 +1,2 @@
+Android
+OS: 6.0 Marshmallow (API level 23) or newer

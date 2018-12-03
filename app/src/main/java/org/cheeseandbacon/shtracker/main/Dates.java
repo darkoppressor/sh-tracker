@@ -9,12 +9,12 @@ package org.cheeseandbacon.shtracker.main;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Dates {
+class Dates {
     private Date before;
     private Date current;
     private Date after;
 
-    public Dates (Calendar current) {
+    Dates (Calendar current) {
         Calendar before = Calendar.getInstance();
         before.setTime(current.getTime());
         before.add(Calendar.DATE, -1);
@@ -28,15 +28,15 @@ public class Dates {
         this.after = after.getTime();
     }
 
-    public Date getBefore () {
+    Date getBefore () {
         return before;
     }
 
-    public Date getCurrent () {
+    Date getCurrent () {
         return current;
     }
 
-    public Date getAfter () {
+    Date getAfter () {
         return after;
     }
 }

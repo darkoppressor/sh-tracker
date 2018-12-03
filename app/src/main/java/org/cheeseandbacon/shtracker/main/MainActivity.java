@@ -6,9 +6,12 @@
 
 package org.cheeseandbacon.shtracker.main;
 
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Observer;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -24,8 +27,12 @@ import org.cheeseandbacon.shtracker.util.Vibration;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class MainActivity extends BaseActivity {
+    public static final String EXTRA_INITIAL_DATE = "org.cheeseandbacon.shtracker.main.initialDate";
+    public static final int REQUEST_CODE_EVENT_ADDITION = 0;
+
     private TextView textDateBefore;
     private TextView textDayOfWeekBefore;
     private TextView textDateCurrent;
@@ -35,6 +42,7 @@ public class MainActivity extends BaseActivity {
     private ListView listView;
 
     private Dates dates;
+    private LiveData<List<Event>> liveData;
     private ArrayList<Event> events;
     private MainAdapter adapter;
 
@@ -51,13 +59,27 @@ public class MainActivity extends BaseActivity {
         textDayOfWeekAfter = findViewById(R.id.mainDayOfWeekAfter);
         listView = findViewById(android.R.id.list);
 
-        dates = new Dates(Calendar.getInstance());
+        String initialDate = getIntent().getStringExtra(EXTRA_INITIAL_DATE);
+
+        Calendar calendar = Calendar.getInstance();
+
+        if (initialDate != null) {
+            Date date = DateAndTime.dateStringToDate(initialDate);
+
+            if (date != null) {
+                calendar.setTime(date);
+            }
+        }
+
+        dates = new Dates(calendar);
 
         setDateTexts();
 
+        liveData = null;
+        events = null;
         adapter = null;
 
-        loadUi(dates.getCurrent());
+        loadUi();
     }
 
     @Override
@@ -69,14 +91,47 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    private void loadUi (@NonNull final Date date) {
-        EventLoader.load(this, eventDao -> eventDao.getByDate(DateAndTime.formatDateMdy(date)).observe(this, events -> {
-            if (events != null) {
-                this.events = (ArrayList<Event>) events;
+    @Override
+    protected void onActivityResult (int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-                buildUi();
-            }
-        }));
+        switch (requestCode) {
+            case REQUEST_CODE_EVENT_ADDITION:
+                if (resultCode == RESULT_OK) {
+                    if (data != null) {
+                        String date = data.getStringExtra(EXTRA_INITIAL_DATE);
+
+                        getIntent().removeExtra(EXTRA_INITIAL_DATE);
+                        getIntent().putExtra(EXTRA_INITIAL_DATE, date);
+                    }
+
+                    recreate();
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void loadUi () {
+        EventLoader.load(this, eventDao -> {
+            liveData = eventDao.getByDate(DateAndTime.dateToDateString(dates.getCurrent()));
+
+            liveData.observe(this, new Observer<List<Event>>() {
+                @Override
+                public void onChanged (@Nullable List<Event> events) {
+                    if (events != null) {
+                        liveData.removeObserver(this);
+
+                        liveData = null;
+
+                        MainActivity.this.events = (ArrayList<Event>) events;
+
+                        buildUi();
+                    }
+                }
+            });
+        });
     }
 
     private void buildUi () {
@@ -101,10 +156,46 @@ public class MainActivity extends BaseActivity {
         } else if (DateAndTime.isTomorrow(date)) {
             textDate.setText(getString(R.string.main_date_tomorrow));
         } else {
-            textDate.setText(DateAndTime.formatDateMdy(date));
+            textDate.setText(DateAndTime.dateToDateString(date));
         }
 
-        textDayOfWeek.setText(DateAndTime.formatDateDayOfWeek(date));
+        textDayOfWeek.setText(DateAndTime.dateToDayOfWeekString(date));
+    }
+
+    public void scrollBack (View view) {
+        Vibration.buttonPress(this);
+
+        Calendar newCurrent = Calendar.getInstance();
+        newCurrent.setTime(dates.getBefore());
+
+        dates = new Dates(newCurrent);
+
+        setDateTexts();
+
+        events = null;
+        adapter = null;
+
+        listView.setAdapter(null);
+
+        loadUi();
+    }
+
+    public void scrollForward (View view) {
+        Vibration.buttonPress(this);
+
+        Calendar newCurrent = Calendar.getInstance();
+        newCurrent.setTime(dates.getAfter());
+
+        dates = new Dates(newCurrent);
+
+        setDateTexts();
+
+        events = null;
+        adapter = null;
+
+        listView.setAdapter(null);
+
+        loadUi();
     }
 
     public void addEvent (View view) {
@@ -112,15 +203,15 @@ public class MainActivity extends BaseActivity {
 
         Calendar calendar = Calendar.getInstance();
 
-        String time = DateAndTime.formatTimeHms(calendar.getTime());
+        String time = DateAndTime.dateToTimeString(calendar.getTime());
 
         if (DateAndTime.dayIsBefore(dates.getCurrent(), calendar.getTime())) {
-            time = "23:59:59";
+            time = DateAndTime.LAST_MINUTE_OF_DAY;
         }
 
-        startActivity(new Intent(this, AddEventActivity.class)
-                .putExtra(AddEventActivity.EXTRA_DATE, DateAndTime.formatDateMdy(dates.getCurrent()))
-                .putExtra(AddEventActivity.EXTRA_TIME, time)
+        startActivityForResult(new Intent(this, AddEventActivity.class)
+                .putExtra(AddEventActivity.EXTRA_DATE, DateAndTime.dateToDateString(dates.getCurrent()))
+                .putExtra(AddEventActivity.EXTRA_TIME, time), REQUEST_CODE_EVENT_ADDITION
         );
     }
 }

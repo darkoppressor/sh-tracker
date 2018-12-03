@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2018 Cheese and Bacon Games, LLC
+ * This file is licensed under the MIT License.
+ * See the file docs/LICENSE.txt for the full license text.
+ */
+
 // Shared file between builds so that they can all use the same dependencies and repositories
 
 ext.deps = [:]
@@ -13,8 +19,6 @@ ext.build_versions = build_versions
 def versions = [:]
 versions.support = '28.0.0'
 versions.support_test = '1.0.2'
-versions.support_constraint = '1.1.3'
-versions.google_play_services = '16.0.0'
 versions.espresso = '3.0.2'
 versions.junit = '4.12'
 versions.mockito = '2.21.0'
@@ -22,7 +26,6 @@ versions.core = '1.1.1'
 versions.lifecycle = '1.1.1'
 versions.room = '1.1.1'
 versions.paging = '1.0.1'
-versions.wearable = '2.3.0'
 versions.android_gradle_plugin = '3.0.1'
 versions.gson = '2.8.5'
 versions.times_square = '1.7.10'
@@ -33,21 +36,13 @@ support.compat = "com.android.support:support-compat:$versions.support"
 support.annotations = "com.android.support:support-annotations:$versions.support"
 support.fragment = "com.android.support:support-fragment:$versions.support"
 support.design = "com.android.support:design:$versions.support"
-support.wear = "com.android.support:wear:$versions.support"
-support.google_wearable = "com.google.android.support:wearable:$versions.wearable"
 support.app_compat = "com.android.support:appcompat-v7:$versions.support"
-support.cardview = "com.android.support:cardview-v7:$versions.support"
-support.constraint_layout = "com.android.support.constraint:constraint-layout:$versions.support_constraint"
 deps.support = support
 
 def support_test = [:]
 support_test.runner = "com.android.support.test:runner:$versions.support_test"
 support_test.rules = "com.android.support.test:rules:$versions.support_test"
 deps.support_test = support_test
-
-def google_play_services = [:]
-google_play_services.location = "com.google.android.gms:play-services-location:$versions.google_play_services"
-deps.google_play_services = google_play_services
 
 def espresso = [:]
 espresso.core = "com.android.support.test.espresso:espresso-core:$versions.espresso"
@@ -77,10 +72,6 @@ def paging = [:]
 paging.runtime = "android.arch.paging:runtime:$versions.paging"
 deps.paging = paging
 
-def wearable = [:]
-wearable.wearable = "com.google.android.wearable:wearable:$versions.wearable"
-deps.wearable = wearable
-
 deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"
 deps.junit = "junit:junit:$versions.junit"
 deps.gson = "com.google.code.gson:gson:$versions.gson"
@@ -88,9 +79,6 @@ deps.times_square = "com.squareup:android-times-square:$versions.times_square@aa
 
 deps.test_exclude_group = 'com.android.support'
 deps.test_exclude_module = 'support-annotations'
-
-deps.google_play_services_exclude_group = 'com.android.support'
-deps.google_play_services_exclude_module = 'support-v4'
 
 deps.version_code = 1
 deps.version_name = '0.0.1'

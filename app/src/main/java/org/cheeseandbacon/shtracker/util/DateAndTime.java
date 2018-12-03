@@ -6,17 +6,21 @@
 
 package org.cheeseandbacon.shtracker.util;
 
+import android.support.annotation.Nullable;
 import android.text.format.DateUtils;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
 public class DateAndTime {
-    private static final SimpleDateFormat dateFormatInputMdy = new SimpleDateFormat("MM-dd-yyyy", Locale.US);
+    private static final SimpleDateFormat dateFormatInputMdy = new SimpleDateFormat("M/d/yy", Locale.US);
     private static final SimpleDateFormat dateFormatInputDayOfWeek = new SimpleDateFormat("EEEE", Locale.US);
-    private static final SimpleDateFormat timeFormatInputHms = new SimpleDateFormat("HH:mm:ss", Locale.US);
+    private static final SimpleDateFormat timeFormatInputHm = new SimpleDateFormat("HH:mm", Locale.US);
+
+    public static final String LAST_MINUTE_OF_DAY = "23:59";
 
     public static boolean isToday (Date date) {
         return DateUtils.isToday(date.getTime());
@@ -48,15 +52,41 @@ public class DateAndTime {
         return calendar1.before(calendar2);
     }
 
-    public static String formatDateMdy (Date date) {
+    public static String dateToDateString (Date date) {
         return dateFormatInputMdy.format(date);
     }
 
-    public static String formatDateDayOfWeek (Date date) {
+    @Nullable
+    public static Date dateStringToDate (String dateString) {
+        try {
+            return dateFormatInputMdy.parse(dateString);
+        } catch (ParseException e) {
+            return null;
+        }
+    }
+
+    public static String dateToDayOfWeekString (Date date) {
         return dateFormatInputDayOfWeek.format(date);
     }
 
-    public static String formatTimeHms (Date date) {
-        return timeFormatInputHms.format(date);
+    public static String dateToTimeString (Date date) {
+        return timeFormatInputHm.format(date);
+    }
+
+    @Nullable
+    public static Date timeStringToDate (String timeString) {
+        try {
+            return timeFormatInputHm.parse(timeString);
+        } catch (ParseException e) {
+            return null;
+        }
+    }
+
+    public static String getTimeString (int hourOfDay, int minute) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+        calendar.set(Calendar.MINUTE, minute);
+
+        return dateToTimeString(calendar.getTime());
     }
 }

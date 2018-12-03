@@ -1,9 +1,13 @@
 Make Add Event button animated like a button
 Give Add Event button a long press tooltip
 
-Move Add Event screen buttons to the toolbar, hide the nav menu, no title
+Make time line in Add Event an animated button thing
+
+Make back and forward buttons on Main animated things
 
 Come up with default colors
 
 Add GitHub description and website
 Add README.md description
+
+Add 24 hour vs AM/PM time support

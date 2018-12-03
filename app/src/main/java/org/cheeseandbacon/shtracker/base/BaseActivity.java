@@ -28,6 +28,7 @@ import org.cheeseandbacon.shtracker.R;
 import org.cheeseandbacon.shtracker.util.Vibration;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public abstract class BaseActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
@@ -37,7 +38,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Nullable
     private org.cheeseandbacon.shtracker.base.Menu menu;
 
-    public void onCreate (int contentId, @NonNull final String toolbarTitle,
+    public void onCreate (int contentId, @Nullable final String toolbarTitle,
                           @Nullable org.cheeseandbacon.shtracker.base.Menu menu) {
         this.menu = menu;
 
@@ -52,9 +53,15 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         if (toolbar != null) {
-            toolbar.setTitle(toolbarTitle);
+            if (toolbarTitle != null) {
+                toolbar.setTitle(toolbarTitle);
+            }
 
             setSupportActionBar(toolbar);
+
+            if (toolbarTitle == null) {
+                Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
+            }
         }
 
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, 0, 0);
@@ -129,6 +136,11 @@ public abstract class BaseActivity extends AppCompatActivity {
         });
     }
 
+    public void hideNavigationMenu () {
+        actionBarDrawerToggle.setDrawerIndicatorEnabled(false);
+        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+    }
+
     @Override
     protected void onPostCreate (@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -187,5 +199,11 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
 
         return super.onKeyDown(keyCode, event);
+    }
+
+    public void setMenu (@Nullable org.cheeseandbacon.shtracker.base.Menu menu) {
+        this.menu = menu;
+
+        supportInvalidateOptionsMenu();
     }
 }

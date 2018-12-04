@@ -24,7 +24,7 @@ import org.cheeseandbacon.shtracker.data.reasonTemplate.ReasonTemplateDao;
         Event.class,
         ActionTemplate.class,
         ReasonTemplate.class
-        }, version = 3)
+        }, version = 1)
 @TypeConverters({
         org.cheeseandbacon.shtracker.data.event.Converters.class
 })

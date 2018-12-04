@@ -6,38 +6,32 @@
 
 package org.cheeseandbacon.shtracker.data.event;
 
+import android.support.annotation.NonNull;
+
 public class Reason {
+    @NonNull
     private String templateId;
+    @NonNull
     private String comment;
     private int severity;
 
-    public Reason (String templateId, String comment, int severity) {
+    public Reason (@NonNull String templateId, @NonNull String comment, int severity) {
         this.templateId = templateId;
         this.comment = comment;
         this.severity = severity;
     }
 
+    @NonNull
     public String getTemplateId () {
         return templateId;
     }
 
-    public void setTemplateId (String templateId) {
-        this.templateId = templateId;
-    }
-
+    @NonNull
     public String getComment () {
         return comment;
     }
 
-    public void setComment (String comment) {
-        this.comment = comment;
-    }
-
     public int getSeverity () {
         return severity;
-    }
-
-    public void setSeverity (int severity) {
-        this.severity = severity;
     }
 }

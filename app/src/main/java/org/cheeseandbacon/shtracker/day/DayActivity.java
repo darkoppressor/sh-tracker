@@ -49,7 +49,7 @@ public class DayActivity extends BaseActivity {
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        onCreate(R.layout.activity_day, getString(R.string.main_title), null);
+        onCreate(R.layout.activity_day, getString(R.string.day_title), null);
 
         textDateBefore = findViewById(R.id.mainDateBefore);
         textDayOfWeekBefore = findViewById(R.id.mainDayOfWeekBefore);
@@ -150,11 +150,11 @@ public class DayActivity extends BaseActivity {
     private void setDateText (@NonNull final Date date, @NonNull final TextView textDate,
                               @NonNull final TextView textDayOfWeek) {
         if (DateAndTime.isYesterday(date)) {
-            textDate.setText(getString(R.string.main_date_yesterday));
+            textDate.setText(getString(R.string.day_date_yesterday));
         } else if (DateAndTime.isToday(date)) {
-            textDate.setText(getString(R.string.main_date_today));
+            textDate.setText(getString(R.string.day_date_today));
         } else if (DateAndTime.isTomorrow(date)) {
-            textDate.setText(getString(R.string.main_date_tomorrow));
+            textDate.setText(getString(R.string.day_date_tomorrow));
         } else {
             textDate.setText(DateAndTime.dateToDateString(date));
         }

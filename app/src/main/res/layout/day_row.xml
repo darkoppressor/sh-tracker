@@ -15,8 +15,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:padding="@dimen/main_padding"
-        android:textSize="@dimen/main_date_text_small"
+        android:padding="@dimen/day_padding"
+        android:textSize="@dimen/day_date_text_small"
         android:textColor="@android:color/darker_gray" />
 
 </RelativeLayout>

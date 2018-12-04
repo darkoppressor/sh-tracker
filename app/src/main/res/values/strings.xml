@@ -10,11 +10,11 @@
     <string name="app_cancel">Cancel</string>
     <string name="app_done">Done</string>
 
-    <!-- Main -->
-    <string name="main_title">SH Tracker</string>
-    <string name="main_date_yesterday">Yesterday</string>
-    <string name="main_date_today">Today</string>
-    <string name="main_date_tomorrow">Tomorrow</string>
+    <!-- Day -->
+    <string name="day_title">SH Tracker</string>
+    <string name="day_date_yesterday">Yesterday</string>
+    <string name="day_date_today">Today</string>
+    <string name="day_date_tomorrow">Tomorrow</string>
 
     <!-- Add Event -->
     <string name="add_event_title">Add Event</string>

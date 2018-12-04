@@ -25,8 +25,8 @@
 
         <ImageView
             tools:ignore="ContentDescription"
-            android:layout_width="@dimen/main_nav_arrow"
-            android:layout_height="@dimen/main_nav_arrow"
+            android:layout_width="@dimen/day_nav_arrow"
+            android:layout_height="@dimen/day_nav_arrow"
             android:layout_gravity="center_vertical"
             android:src="@drawable/ic_baseline_arrow_back_24px" />
 
@@ -41,13 +41,13 @@
                 android:id="@+id/mainDateBefore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/main_date_text" />
+                android:textSize="@dimen/day_date_text" />
 
             <TextView
                 android:id="@+id/mainDayOfWeekBefore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/main_date_text" />
+                android:textSize="@dimen/day_date_text" />
 
         </LinearLayout>
 
@@ -66,13 +66,13 @@
             android:id="@+id/mainDateCurrent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/main_date_text" />
+            android:textSize="@dimen/day_date_text" />
 
         <TextView
             android:id="@+id/mainDayOfWeekCurrent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/main_date_text" />
+            android:textSize="@dimen/day_date_text" />
 
     </LinearLayout>
 
@@ -96,20 +96,20 @@
                 android:id="@+id/mainDateAfter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/main_date_text" />
+                android:textSize="@dimen/day_date_text" />
 
             <TextView
                 android:id="@+id/mainDayOfWeekAfter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/main_date_text" />
+                android:textSize="@dimen/day_date_text" />
 
         </LinearLayout>
 
         <ImageView
             tools:ignore="ContentDescription"
-            android:layout_width="@dimen/main_nav_arrow"
-            android:layout_height="@dimen/main_nav_arrow"
+            android:layout_width="@dimen/day_nav_arrow"
+            android:layout_height="@dimen/day_nav_arrow"
             android:layout_gravity="center_vertical"
             android:src="@drawable/ic_baseline_arrow_forward_24px" />
 
@@ -135,7 +135,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_margin="@dimen/main_padding_add_button"
+        android:layout_margin="@dimen/day_padding_add_button"
         android:src="@drawable/ic_baseline_add_24px"
         android:tint="@android:color/white"
         android:onClick="addEvent"

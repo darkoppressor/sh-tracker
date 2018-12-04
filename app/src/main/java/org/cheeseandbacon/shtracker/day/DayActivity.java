@@ -4,7 +4,7 @@
  * See the file docs/LICENSE.txt for the full license text.
  */
 
-package org.cheeseandbacon.shtracker.main;
+package org.cheeseandbacon.shtracker.day;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
@@ -31,7 +31,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class MainActivity extends BaseActivity {
+public class DayActivity extends BaseActivity {
     public static final String EXTRA_INITIAL_DATE = "org.cheeseandbacon.shtracker.main.initialDate";
     public static final int REQUEST_CODE_EVENT_ADDITION = 0;
 
@@ -47,7 +47,7 @@ public class MainActivity extends BaseActivity {
     private Dates dates;
     private LiveData<List<Event>> liveData;
     private ArrayList<Event> events;
-    private MainAdapter adapter;
+    private DayAdapter adapter;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -135,7 +135,7 @@ public class MainActivity extends BaseActivity {
 
                         liveData = null;
 
-                        MainActivity.this.events = (ArrayList<Event>) events;
+                        DayActivity.this.events = (ArrayList<Event>) events;
 
                         buildUi();
                     }
@@ -146,7 +146,7 @@ public class MainActivity extends BaseActivity {
 
     private void buildUi () {
         if (events != null) {
-            adapter = new MainAdapter(this, events);
+            adapter = new DayAdapter(this, events);
             listView.setAdapter(adapter);
         }
     }

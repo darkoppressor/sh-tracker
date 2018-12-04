@@ -4,7 +4,7 @@
  * See the file docs/LICENSE.txt for the full license text.
  */
 
-package org.cheeseandbacon.shtracker.main;
+package org.cheeseandbacon.shtracker.day;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -19,13 +19,13 @@ import org.cheeseandbacon.shtracker.data.event.Event;
 
 import java.util.ArrayList;
 
-public class MainAdapter extends BaseAdapter {
+public class DayAdapter extends BaseAdapter {
     @NonNull
     private final Context context;
     @NonNull
     private final ArrayList<Event> items;
 
-    public MainAdapter (@NonNull Context context, @NonNull ArrayList<Event> items) {
+    public DayAdapter (@NonNull Context context, @NonNull ArrayList<Event> items) {
         this.context = context;
         this.items = items;
     }

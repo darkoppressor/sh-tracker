@@ -31,7 +31,7 @@
         android:appCategory="productivity">
 
         <activity
-            android:name=".main.MainActivity"
+            android:name=".day.DayActivity"
             android:screenOrientation="portrait"
             android:supportsPictureInPicture="true">
 

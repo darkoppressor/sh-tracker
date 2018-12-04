@@ -4,7 +4,7 @@
  * See the file docs/LICENSE.txt for the full license text.
  */
 
-package org.cheeseandbacon.shtracker.main;
+package org.cheeseandbacon.shtracker.day;
 
 import java.util.Calendar;
 import java.util.Date;

@@ -18,7 +18,7 @@ import org.cheeseandbacon.shtracker.base.BaseActivity;
 import org.cheeseandbacon.shtracker.base.Menu;
 import org.cheeseandbacon.shtracker.data.event.Event;
 import org.cheeseandbacon.shtracker.data.event.EventLoader;
-import org.cheeseandbacon.shtracker.main.MainActivity;
+import org.cheeseandbacon.shtracker.day.DayActivity;
 import org.cheeseandbacon.shtracker.util.DateAndTime;
 import org.cheeseandbacon.shtracker.util.TimePickerFragment;
 import org.cheeseandbacon.shtracker.util.Vibration;
@@ -65,7 +65,7 @@ public class AddEventActivity extends BaseActivity implements TimePickerDialog.O
 
                             EventLoader.load(this, eventDao -> eventDao.insert(Event.class, data, () -> {
                                 Intent intent = new Intent();
-                                intent.putExtra(MainActivity.EXTRA_INITIAL_DATE, date);
+                                intent.putExtra(DayActivity.EXTRA_INITIAL_DATE, date);
 
                                 setResult(RESULT_OK, intent);
 

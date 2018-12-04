@@ -16,8 +16,8 @@
     <dimen name="main_date_text">14sp</dimen>
     <dimen name="main_date_text_small">12sp</dimen>
     <dimen name="main_padding">8dp</dimen>
+    <dimen name="main_padding_add_button">16dp</dimen>
     <dimen name="main_nav_arrow">32dp</dimen>
-    <dimen name="main_add_button">64dp</dimen>
 
     <!-- Add Event -->
     <dimen name="add_event_padding">6dp</dimen>

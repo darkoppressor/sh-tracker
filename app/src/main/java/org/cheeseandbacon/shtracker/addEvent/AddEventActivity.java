@@ -57,7 +57,10 @@ public class AddEventActivity extends BaseActivity implements TimePickerDialog.O
                             data.add(new Event(
                                     UUID.randomUUID().toString(),
                                     date,
-                                    time
+                                    time,
+                                    ///QQQ
+                                    null,
+                                    null
                             ));
 
                             EventLoader.load(this, eventDao -> eventDao.insert(Event.class, data, () -> {

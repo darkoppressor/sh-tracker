@@ -12,9 +12,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.cheeseandbacon.shtracker.R;
 import org.cheeseandbacon.shtracker.addEvent.AddEventActivity;
@@ -40,6 +42,7 @@ public class MainActivity extends BaseActivity {
     private TextView textDateAfter;
     private TextView textDayOfWeekAfter;
     private ListView listView;
+    private FloatingActionButton floatingActionButton;
 
     private Dates dates;
     private LiveData<List<Event>> liveData;
@@ -58,6 +61,13 @@ public class MainActivity extends BaseActivity {
         textDateAfter = findViewById(R.id.mainDateAfter);
         textDayOfWeekAfter = findViewById(R.id.mainDayOfWeekAfter);
         listView = findViewById(android.R.id.list);
+        floatingActionButton = findViewById(R.id.floatingActionButton);
+
+        floatingActionButton.setOnLongClickListener(v -> {
+            Toast.makeText(this, getString(R.string.add_event_title), Toast.LENGTH_SHORT).show();
+
+            return true;
+        });
 
         String initialDate = getIntent().getStringExtra(EXTRA_INITIAL_DATE);
 

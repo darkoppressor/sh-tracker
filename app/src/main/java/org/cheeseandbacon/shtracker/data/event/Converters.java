@@ -8,16 +8,27 @@ package org.cheeseandbacon.shtracker.data.event;
 
 import android.arch.persistence.room.TypeConverter;
 
-import java.util.Date;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 public class Converters {
     @TypeConverter
-    public static Date dateFromTimestamp (Long timestamp) {
-        return timestamp == null ? null : new Date(timestamp);
+    public static Action actionFromString (String value) {
+        return new Gson().fromJson(value, new TypeToken<Action>(){}.getType());
     }
 
     @TypeConverter
-    public static Long timestampFromDate (Date date) {
-        return date == null ? null : date.getTime();
+    public static String stringFromAction (Action action) {
+        return new Gson().toJson(action);
+    }
+
+    @TypeConverter
+    public static Reason reasonFromString (String value) {
+        return new Gson().fromJson(value, new TypeToken<Reason>(){}.getType());
+    }
+
+    @TypeConverter
+    public static String stringFromReason (Reason reason) {
+        return new Gson().toJson(reason);
     }
 }

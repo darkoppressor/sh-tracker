@@ -8,7 +8,7 @@ Action types have name, description
 
 Menu for editing, adding, removing reason templates
 
-Menu for adding, removing, editing actions
+Menu for adding, removing, editing action templates
 
 Add an event with a button
 Event allows for setting datetime, but that defaults to current datetime

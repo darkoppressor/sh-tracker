@@ -4,7 +4,7 @@
  * See the file docs/LICENSE.txt for the full license text.
  */
 
-package org.cheeseandbacon.shtracker.data.event;
+package org.cheeseandbacon.shtracker.data.actionTemplate;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -13,18 +13,18 @@ import org.cheeseandbacon.shtracker.data.AppDatabase;
 
 import java.util.ArrayList;
 
-public class EventLoader {
+public class ActionTemplateLoader {
     public interface OnLoaded {
-        void execute(@NonNull final EventDao dao);
+        void execute(@NonNull final ActionTemplateDao dao);
     }
 
     public static void load (@NonNull final Context context, @NonNull final OnLoaded onLoaded) {
         AppDatabase database = AppDatabase.getInstance(context);
 
-        if (database.eventDao().isInitialized()) {
-            onLoaded.execute(database.eventDao());
+        if (database.actionTemplateDao().isInitialized()) {
+            onLoaded.execute(database.actionTemplateDao());
         } else {
-            database.eventDao().insert(Event.class, new ArrayList<>(), () -> load(context, onLoaded));
+            database.actionTemplateDao().insert(ActionTemplate.class, new ArrayList<>(), () -> load(context, onLoaded));
         }
     }
 }

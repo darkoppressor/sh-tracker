@@ -10,6 +10,7 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 @Entity(indices = {@Index(value = "id", unique = true)})
 public class Event {
@@ -20,11 +21,17 @@ public class Event {
     private String date;
     @NonNull
     private String time;
+    @Nullable
+    private Reason reason;
+    @Nullable
+    private Action action;
 
-    public Event (@NonNull String id, @NonNull String date, @NonNull String time) {
+    public Event (@NonNull String id, @NonNull String date, @NonNull String time, @Nullable Reason reason, @Nullable Action action) {
         this.id = id;
         this.date = date;
         this.time = time;
+        this.reason = reason;
+        this.action = action;
     }
 
     @NonNull
@@ -52,5 +59,23 @@ public class Event {
 
     public void setTime (@NonNull String time) {
         this.time = time;
+    }
+
+    @Nullable
+    public Reason getReason () {
+        return reason;
+    }
+
+    public void setReason (@Nullable Reason reason) {
+        this.reason = reason;
+    }
+
+    @Nullable
+    public Action getAction () {
+        return action;
+    }
+
+    public void setAction (@Nullable Action action) {
+        this.action = action;
     }
 }

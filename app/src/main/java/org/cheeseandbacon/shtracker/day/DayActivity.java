@@ -42,7 +42,6 @@ public class DayActivity extends BaseActivity {
     private TextView textDateAfter;
     private TextView textDayOfWeekAfter;
     private ListView listView;
-    private FloatingActionButton floatingActionButton;
 
     private Dates dates;
     private LiveData<List<Event>> liveData;
@@ -61,7 +60,7 @@ public class DayActivity extends BaseActivity {
         textDateAfter = findViewById(R.id.mainDateAfter);
         textDayOfWeekAfter = findViewById(R.id.mainDayOfWeekAfter);
         listView = findViewById(android.R.id.list);
-        floatingActionButton = findViewById(R.id.floatingActionButton);
+        FloatingActionButton floatingActionButton = findViewById(R.id.floatingActionButton);
 
         floatingActionButton.setOnLongClickListener(v -> {
             Toast.makeText(this, getString(R.string.add_event_title), Toast.LENGTH_SHORT).show();

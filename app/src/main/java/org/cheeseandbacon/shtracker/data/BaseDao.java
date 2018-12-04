@@ -13,8 +13,6 @@ import java.util.ArrayList;
 
 @Dao
 public abstract class BaseDao<T> {
-    private boolean initialized = false;
-
     @SuppressWarnings("unchecked")
     protected abstract void insertTs(T... ts);
 
@@ -42,16 +40,6 @@ public abstract class BaseDao<T> {
     }
 
     public void clear () {
-        initialized = false;
-
         new ClearTask().execute(this);
-    }
-
-    public boolean isInitialized() {
-        return initialized;
-    }
-
-    void setInitialized(boolean initialized) {
-        this.initialized = initialized;
     }
 }

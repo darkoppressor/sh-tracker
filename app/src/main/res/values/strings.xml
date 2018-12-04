@@ -19,5 +19,13 @@
     <!-- Add Event -->
     <string name="add_event_title">Add Event</string>
     <string name="add_event_time">Time</string>
+    <string name="add_event_reason">Add Reason</string>
+
+    <!-- Select Reason -->
+    <string name="select_reason_title">Select Reason</string>
+
+    <!-- Customize Reason -->
+    <string name="customize_reason_title">Elaborate</string>
+    <string name="customize_reason_comment">Comment</string>
 
 </resources>

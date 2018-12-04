@@ -16,6 +16,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/add_event_row_padding"
+        android:onClick="reason">
+
+        <TextView
+            android:id="@+id/reason"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:textColor="@android:color/darker_gray"
+            android:text="@string/add_event_reason" />
+
+        <ImageButton
+            tools:ignore="ContentDescription"
+            android:id="@+id/reasonImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_baseline_add_24px"
+            android:tint="@android:color/white"
+            android:onClick="reason" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/add_event_row_padding"
         android:onClick="time">
 
         <TextView
@@ -35,7 +63,7 @@
             android:layout_marginEnd="@dimen/add_event_padding"
             android:textColor="@android:color/darker_gray" />
 
-        <ImageView
+        <ImageButton
             tools:ignore="ContentDescription"
             android:id="@+id/timeImage"
             android:layout_width="wrap_content"
@@ -43,7 +71,8 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:src="@drawable/ic_baseline_access_time_24px"
-            android:tint="@android:color/darker_gray" />
+            android:tint="@android:color/white"
+            android:onClick="time" />
 
     </RelativeLayout>
 

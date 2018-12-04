@@ -12,11 +12,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.cheeseandbacon.shtracker.R;
 import org.cheeseandbacon.shtracker.addEvent.AddEventActivity;
@@ -32,7 +30,7 @@ import java.util.Date;
 import java.util.List;
 
 public class DayActivity extends BaseActivity {
-    public static final String EXTRA_INITIAL_DATE = "org.cheeseandbacon.shtracker.main.initialDate";
+    public static final String EXTRA_INITIAL_DATE = "org.cheeseandbacon.shtracker.day.initialDate";
     public static final int REQUEST_CODE_EVENT_ADDITION = 0;
 
     private TextView textDateBefore;
@@ -51,7 +49,7 @@ public class DayActivity extends BaseActivity {
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        onCreate(R.layout.activity_main, getString(R.string.main_title), null);
+        onCreate(R.layout.activity_day, getString(R.string.main_title), null);
 
         textDateBefore = findViewById(R.id.mainDateBefore);
         textDayOfWeekBefore = findViewById(R.id.mainDayOfWeekBefore);
@@ -60,13 +58,6 @@ public class DayActivity extends BaseActivity {
         textDateAfter = findViewById(R.id.mainDateAfter);
         textDayOfWeekAfter = findViewById(R.id.mainDayOfWeekAfter);
         listView = findViewById(android.R.id.list);
-        FloatingActionButton floatingActionButton = findViewById(R.id.floatingActionButton);
-
-        floatingActionButton.setOnLongClickListener(v -> {
-            Toast.makeText(this, getString(R.string.add_event_title), Toast.LENGTH_SHORT).show();
-
-            return true;
-        });
 
         String initialDate = getIntent().getStringExtra(EXTRA_INITIAL_DATE);
 

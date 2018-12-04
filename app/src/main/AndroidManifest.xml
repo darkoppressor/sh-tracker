@@ -47,6 +47,14 @@
             android:screenOrientation="portrait"
             android:supportsPictureInPicture="true" />
 
+        <activity android:name=".addEvent.SelectReasonActivity"
+            android:screenOrientation="portrait"
+            android:supportsPictureInPicture="true" />
+
+        <activity android:name=".addEvent.CustomizeReasonActivity"
+            android:screenOrientation="portrait"
+            android:supportsPictureInPicture="true" />
+
     </application>
 
 </manifest>

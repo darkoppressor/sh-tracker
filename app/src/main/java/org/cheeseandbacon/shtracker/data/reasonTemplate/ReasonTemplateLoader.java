@@ -11,8 +11,6 @@ import android.support.annotation.NonNull;
 
 import org.cheeseandbacon.shtracker.data.AppDatabase;
 
-import java.util.ArrayList;
-
 public class ReasonTemplateLoader {
     public interface OnLoaded {
         void execute(@NonNull final ReasonTemplateDao dao);
@@ -21,10 +19,6 @@ public class ReasonTemplateLoader {
     public static void load (@NonNull final Context context, @NonNull final OnLoaded onLoaded) {
         AppDatabase database = AppDatabase.getInstance(context);
 
-        if (database.reasonTemplateDao().isInitialized()) {
-            onLoaded.execute(database.reasonTemplateDao());
-        } else {
-            database.reasonTemplateDao().insert(ReasonTemplate.class, new ArrayList<>(), () -> load(context, onLoaded));
-        }
+        onLoaded.execute(database.reasonTemplateDao());
     }
 }

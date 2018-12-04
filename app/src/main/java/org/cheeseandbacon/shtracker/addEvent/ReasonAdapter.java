@@ -4,7 +4,7 @@
  * See the file docs/LICENSE.txt for the full license text.
  */
 
-package org.cheeseandbacon.shtracker.day;
+package org.cheeseandbacon.shtracker.addEvent;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -15,17 +15,17 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import org.cheeseandbacon.shtracker.R;
-import org.cheeseandbacon.shtracker.data.event.Event;
+import org.cheeseandbacon.shtracker.data.reasonTemplate.ReasonTemplate;
 
 import java.util.ArrayList;
 
-public class DayAdapter extends BaseAdapter {
+public class ReasonAdapter extends BaseAdapter {
     @NonNull
     private final Context context;
     @NonNull
-    private final ArrayList<Event> items;
+    private final ArrayList<ReasonTemplate> items;
 
-    public DayAdapter (@NonNull Context context, @NonNull ArrayList<Event> items) {
+    public ReasonAdapter (@NonNull Context context, @NonNull ArrayList<ReasonTemplate> items) {
         this.context = context;
         this.items = items;
     }
@@ -34,7 +34,7 @@ public class DayAdapter extends BaseAdapter {
         return items.size();
     }
 
-    public Event getItem (int position) {
+    public ReasonTemplate getItem (int position) {
         return items.get(position);
     }
 
@@ -49,14 +49,14 @@ public class DayAdapter extends BaseAdapter {
 
         if (inflater != null) {
             if (convertView == null) {
-                convertView = inflater.inflate(R.layout.day_row, null);
+                convertView = inflater.inflate(R.layout.reason_row, null);
             }
 
-            final Event item = getItem(position);
+            final ReasonTemplate item = getItem(position);
 
-            TextView textTime = convertView.findViewById(R.id.time);
+            TextView textReason = convertView.findViewById(R.id.reason);
 
-            textTime.setText(item.getTime());
+            textReason.setText(item.getName());
         }
 
         return convertView;

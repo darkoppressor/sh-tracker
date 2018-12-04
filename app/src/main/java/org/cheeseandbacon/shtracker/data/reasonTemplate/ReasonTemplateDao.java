@@ -16,10 +16,15 @@ import android.arch.persistence.room.Update;
 
 import org.cheeseandbacon.shtracker.data.BaseDao;
 
+import java.util.List;
+
 @Dao
 public abstract class ReasonTemplateDao extends BaseDao<ReasonTemplate> {
     @Query("SELECT * FROM reasontemplate WHERE id IS :id")
     public abstract LiveData<ReasonTemplate> getById(String id);
+
+    @Query("SELECT * FROM reasontemplate ORDER BY creationTimestamp DESC")
+    public abstract LiveData<List<ReasonTemplate>> getAll();
 
     @Override
     @Insert(onConflict = OnConflictStrategy.REPLACE)

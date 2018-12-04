@@ -36,10 +36,6 @@ public class InsertTask<T> extends AsyncTask<BaseAction<T>, Void, ArrayList<Base
 
     @Override
     protected void onPostExecute(ArrayList<BaseAction<T>> baseActions) {
-        for (BaseAction<T> baseAction : baseActions) {
-            baseAction.getBaseDao().setInitialized(true);
-        }
-
         if (onTaskCompleteListener != null) {
             onTaskCompleteListener.onTaskComplete();
         }

@@ -11,8 +11,6 @@ import android.support.annotation.NonNull;
 
 import org.cheeseandbacon.shtracker.data.AppDatabase;
 
-import java.util.ArrayList;
-
 public class ActionTemplateLoader {
     public interface OnLoaded {
         void execute(@NonNull final ActionTemplateDao dao);
@@ -21,10 +19,6 @@ public class ActionTemplateLoader {
     public static void load (@NonNull final Context context, @NonNull final OnLoaded onLoaded) {
         AppDatabase database = AppDatabase.getInstance(context);
 
-        if (database.actionTemplateDao().isInitialized()) {
-            onLoaded.execute(database.actionTemplateDao());
-        } else {
-            database.actionTemplateDao().insert(ActionTemplate.class, new ArrayList<>(), () -> load(context, onLoaded));
-        }
+        onLoaded.execute(database.actionTemplateDao());
     }
 }

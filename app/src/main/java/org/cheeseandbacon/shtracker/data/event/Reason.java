@@ -11,6 +11,12 @@ public class Reason {
     private String comment;
     private int severity;
 
+    public Reason (String templateId, String comment, int severity) {
+        this.templateId = templateId;
+        this.comment = comment;
+        this.severity = severity;
+    }
+
     public String getTemplateId () {
         return templateId;
     }

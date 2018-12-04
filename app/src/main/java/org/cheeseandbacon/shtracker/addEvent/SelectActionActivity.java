@@ -14,29 +14,29 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import org.cheeseandbacon.shtracker.R;
+import org.cheeseandbacon.shtracker.actionTemplates.AddActionTemplateActivity;
 import org.cheeseandbacon.shtracker.base.BaseActivity;
 import org.cheeseandbacon.shtracker.base.Menu;
-import org.cheeseandbacon.shtracker.data.reasonTemplate.ReasonTemplate;
-import org.cheeseandbacon.shtracker.data.reasonTemplate.ReasonTemplateLoader;
-import org.cheeseandbacon.shtracker.reasonTemplates.AddReasonTemplateActivity;
+import org.cheeseandbacon.shtracker.data.actionTemplate.ActionTemplate;
+import org.cheeseandbacon.shtracker.data.actionTemplate.ActionTemplateLoader;
 import org.cheeseandbacon.shtracker.util.Vibration;
 
 import java.util.ArrayList;
 
-public class SelectReasonActivity extends BaseActivity {
+public class SelectActionActivity extends BaseActivity {
     public static final int REQUEST_CODE_CUSTOMIZE_SELECTION = 0;
-    public static final int REQUEST_CODE_ADD_REASON_TEMPLATE = 1;
+    public static final int REQUEST_CODE_ADD_ACTION_TEMPLATE = 1;
 
     private ListView listView;
 
-    private ArrayList<ReasonTemplate> reasonTemplates;
-    private ReasonAdapter adapter;
+    private ArrayList<ActionTemplate> actionTemplates;
+    private ActionAdapter adapter;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        onCreate(R.layout.activity_select_reason, getString(R.string.select_reason_title),
-                new Menu(() -> R.menu.select_reason, (item) -> {
+        onCreate(R.layout.activity_select_action, getString(R.string.select_action_title),
+                new Menu(() -> R.menu.select_action, (item) -> {
                     switch (item.getItemId()) {
                         case R.id.actionCancel:
                             Vibration.buttonPress(this);
@@ -55,7 +55,7 @@ public class SelectReasonActivity extends BaseActivity {
 
         listView = findViewById(android.R.id.list);
 
-        reasonTemplates = null;
+        actionTemplates = null;
 
         loadUi();
     }
@@ -91,7 +91,7 @@ public class SelectReasonActivity extends BaseActivity {
                 }
                 break;
 
-            case REQUEST_CODE_ADD_REASON_TEMPLATE:
+            case REQUEST_CODE_ADD_ACTION_TEMPLATE:
                 if (resultCode == RESULT_OK) {
                     if (data != null) {
                         setResult(RESULT_OK, data);
@@ -106,10 +106,10 @@ public class SelectReasonActivity extends BaseActivity {
     }
 
     private void loadUi () {
-        ReasonTemplateLoader.load(this, dao -> dao.getAll()
-                .observe(this, reasonTemplates -> {
-                    if (reasonTemplates != null) {
-                        this.reasonTemplates = (ArrayList<ReasonTemplate>) reasonTemplates;
+        ActionTemplateLoader.load(this, dao -> dao.getAll()
+                .observe(this, actionTemplates -> {
+                    if (actionTemplates != null) {
+                        this.actionTemplates = (ArrayList<ActionTemplate>) actionTemplates;
 
                         buildUi();
                     }
@@ -117,26 +117,26 @@ public class SelectReasonActivity extends BaseActivity {
     }
 
     private void buildUi () {
-        if (reasonTemplates != null) {
-            adapter = new ReasonAdapter(this, reasonTemplates);
+        if (actionTemplates != null) {
+            adapter = new ActionAdapter(this, actionTemplates);
             listView.setAdapter(adapter);
             listView.setOnItemClickListener((parent, view, position, id) -> {
                 if (position == adapter.getCount()) {
-                    startActivityForResult(new Intent(this, AddReasonTemplateActivity.class),
-                            REQUEST_CODE_ADD_REASON_TEMPLATE);
+                    startActivityForResult(new Intent(this, AddActionTemplateActivity.class),
+                            REQUEST_CODE_ADD_ACTION_TEMPLATE);
                 } else {
-                    final ReasonTemplate item = adapter.getItem(position);
+                    final ActionTemplate item = adapter.getItem(position);
 
-                    startActivityForResult(new Intent(this, CustomizeReasonActivity.class)
-                                    .putExtra(CustomizeReasonActivity.EXTRA_TEMPLATE_ID, item.getId()),
+                    startActivityForResult(new Intent(this, CustomizeActionActivity.class)
+                                    .putExtra(CustomizeActionActivity.EXTRA_TEMPLATE_ID, item.getId()),
                             REQUEST_CODE_CUSTOMIZE_SELECTION
                     );
                 }
             });
 
-            View view = getLayoutInflater().inflate(R.layout.reason_row, null);
-            TextView textReason = view.findViewById(R.id.reason);
-            textReason.setText(getString(R.string.select_reason_new_reason));
+            View view = getLayoutInflater().inflate(R.layout.action_row, null);
+            TextView textAction = view.findViewById(R.id.action);
+            textAction.setText(getString(R.string.select_action_new_action));
             listView.addFooterView(view);
         }
     }

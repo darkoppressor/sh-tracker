@@ -18,6 +18,7 @@ import android.widget.TimePicker;
 import org.cheeseandbacon.shtracker.R;
 import org.cheeseandbacon.shtracker.base.BaseActivity;
 import org.cheeseandbacon.shtracker.base.Menu;
+import org.cheeseandbacon.shtracker.data.actionTemplate.ActionTemplateLoader;
 import org.cheeseandbacon.shtracker.data.event.Action;
 import org.cheeseandbacon.shtracker.data.event.Event;
 import org.cheeseandbacon.shtracker.data.event.EventLoader;
@@ -37,11 +38,17 @@ public class AddEventActivity extends BaseActivity implements TimePickerDialog.O
     public static final String EXTRA_REASON_TEMPLATE_ID = "org.cheeseandbacon.shtracker.addEvent.reasonTemplateId";
     public static final String EXTRA_REASON_COMMENT = "org.cheeseandbacon.shtracker.addEvent.reasonComment";
     public static final String EXTRA_REASON_SEVERITY = "org.cheeseandbacon.shtracker.addEvent.reasonSeverity";
+    public static final String EXTRA_ACTION_TEMPLATE_ID = "org.cheeseandbacon.shtracker.addEvent.actionTemplateId";
+    public static final String EXTRA_ACTION_COMMENT = "org.cheeseandbacon.shtracker.addEvent.actionComment";
+    public static final String EXTRA_ACTION_SEVERITY = "org.cheeseandbacon.shtracker.addEvent.actionSeverity";
     public static final int REQUEST_CODE_REASON_SELECTION = 0;
+    public static final int REQUEST_CODE_ACTION_SELECTION = 1;
 
     private TextView textTime;
     private TextView textReason;
     private ImageView imageReason;
+    private TextView textAction;
+    private ImageView imageAction;
 
     private String date;
     private String time;
@@ -95,6 +102,8 @@ public class AddEventActivity extends BaseActivity implements TimePickerDialog.O
         textTime = findViewById(R.id.time);
         textReason = findViewById(R.id.reason);
         imageReason = findViewById(R.id.reasonImage);
+        textAction = findViewById(R.id.action);
+        imageAction = findViewById(R.id.actionImage);
 
         date = getIntent().getStringExtra(EXTRA_DATE);
         time = getIntent().getStringExtra(EXTRA_TIME);
@@ -127,18 +136,38 @@ public class AddEventActivity extends BaseActivity implements TimePickerDialog.O
             case REQUEST_CODE_REASON_SELECTION:
                 if (resultCode == RESULT_OK) {
                     if (data != null) {
-                        String reasonTemplateId = data.getStringExtra(EXTRA_REASON_TEMPLATE_ID);
-                        String reasonComment = data.getStringExtra(EXTRA_REASON_COMMENT);
-                        int reasonSeverity = data.getIntExtra(EXTRA_REASON_SEVERITY,
-                                CustomizeReasonActivity.DEFAULT_REASON_SEVERITY);
+                        String templateId = data.getStringExtra(EXTRA_REASON_TEMPLATE_ID);
+                        String comment = data.getStringExtra(EXTRA_REASON_COMMENT);
+                        int severity = data.getIntExtra(EXTRA_REASON_SEVERITY,
+                                CustomizeReasonActivity.DEFAULT_SEVERITY);
 
-                        reason = new Reason(reasonTemplateId, reasonComment, reasonSeverity);
+                        reason = new Reason(templateId, comment, severity);
 
-                        ReasonTemplateLoader.load(this, dao -> dao.getById(reasonTemplateId)
+                        ReasonTemplateLoader.load(this, dao -> dao.getById(templateId)
                                 .observe(this, reasonTemplate -> {
                                     if (reasonTemplate != null) {
                                         textReason.setText(reasonTemplate.getName());
                                         imageReason.setImageResource(R.drawable.ic_baseline_close_24px);
+                                    }
+                                }));
+                    }
+                }
+                break;
+            case REQUEST_CODE_ACTION_SELECTION:
+                if (resultCode == RESULT_OK) {
+                    if (data != null) {
+                        String templateId = data.getStringExtra(EXTRA_ACTION_TEMPLATE_ID);
+                        String comment = data.getStringExtra(EXTRA_ACTION_COMMENT);
+                        int severity = data.getIntExtra(EXTRA_ACTION_SEVERITY,
+                                CustomizeActionActivity.DEFAULT_SEVERITY);
+
+                        action = new Action(templateId, comment, severity);
+
+                        ActionTemplateLoader.load(this, dao -> dao.getById(templateId)
+                                .observe(this, actionTemplate -> {
+                                    if (actionTemplate != null) {
+                                        textAction.setText(actionTemplate.getName());
+                                        imageAction.setImageResource(R.drawable.ic_baseline_close_24px);
                                     }
                                 }));
                     }
@@ -165,6 +194,19 @@ public class AddEventActivity extends BaseActivity implements TimePickerDialog.O
 
             textReason.setText(R.string.add_event_reason);
             imageReason.setImageResource(R.drawable.ic_baseline_add_24px);
+        }
+    }
+
+    public void action (View view) {
+        Vibration.buttonPress(this);
+
+        if (action == null) {
+            startActivityForResult(new Intent(this, SelectActionActivity.class), REQUEST_CODE_ACTION_SELECTION);
+        } else {
+            action = null;
+
+            textAction.setText(R.string.add_event_action);
+            imageAction.setImageResource(R.drawable.ic_baseline_add_24px);
         }
     }
 }

@@ -59,6 +59,18 @@
             android:screenOrientation="portrait"
             android:supportsPictureInPicture="true" />
 
+        <activity android:name=".addEvent.SelectActionActivity"
+            android:screenOrientation="portrait"
+            android:supportsPictureInPicture="true" />
+
+        <activity android:name=".addEvent.CustomizeActionActivity"
+            android:screenOrientation="portrait"
+            android:supportsPictureInPicture="true" />
+
+        <activity android:name=".actionTemplates.AddActionTemplateActivity"
+            android:screenOrientation="portrait"
+            android:supportsPictureInPicture="true" />
+
     </application>
 
 </manifest>

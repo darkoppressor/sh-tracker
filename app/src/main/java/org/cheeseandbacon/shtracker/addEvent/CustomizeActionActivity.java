@@ -15,30 +15,30 @@ import org.cheeseandbacon.shtracker.R;
 import org.cheeseandbacon.shtracker.base.BaseActivity;
 import org.cheeseandbacon.shtracker.base.BaseEditText;
 import org.cheeseandbacon.shtracker.base.Menu;
-import org.cheeseandbacon.shtracker.data.reasonTemplate.ReasonTemplate;
-import org.cheeseandbacon.shtracker.data.reasonTemplate.ReasonTemplateLoader;
+import org.cheeseandbacon.shtracker.data.actionTemplate.ActionTemplate;
+import org.cheeseandbacon.shtracker.data.actionTemplate.ActionTemplateLoader;
 import org.cheeseandbacon.shtracker.util.Vibration;
 
-public class CustomizeReasonActivity extends BaseActivity {
+public class CustomizeActionActivity extends BaseActivity {
     public static final String EXTRA_TEMPLATE_ID = "org.cheeseandbacon.shtracker.addEvent.templateId";
 
     public static final int SEVERITY_MINIMUM = 1;
     public static final int SEVERITY_MAXIMUM = 10;
     public static final int DEFAULT_SEVERITY = 1;
 
-    private TextView reason;
+    private TextView action;
     private NumberPicker severity;
     private BaseEditText comment;
 
     private String templateId;
 
-    private ReasonTemplate reasonTemplate;
+    private ActionTemplate actionTemplate;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        onCreate(R.layout.activity_customize_reason, getString(R.string.customize_reason_title),
-                new Menu(() -> R.menu.customize_reason, (item) -> {
+        onCreate(R.layout.activity_customize_action, getString(R.string.customize_action_title),
+                new Menu(() -> R.menu.customize_action, (item) -> {
                     switch (item.getItemId()) {
                         case R.id.actionCancel:
                             Vibration.buttonPress(this);
@@ -52,9 +52,9 @@ public class CustomizeReasonActivity extends BaseActivity {
                             Vibration.buttonPress(this);
 
                             Intent intent = new Intent();
-                            intent.putExtra(AddEventActivity.EXTRA_REASON_TEMPLATE_ID, templateId);
-                            intent.putExtra(AddEventActivity.EXTRA_REASON_COMMENT, comment.getString());
-                            intent.putExtra(AddEventActivity.EXTRA_REASON_SEVERITY, severity.getValue());
+                            intent.putExtra(AddEventActivity.EXTRA_ACTION_TEMPLATE_ID, templateId);
+                            intent.putExtra(AddEventActivity.EXTRA_ACTION_COMMENT, comment.getString());
+                            intent.putExtra(AddEventActivity.EXTRA_ACTION_SEVERITY, severity.getValue());
 
                             setResult(RESULT_OK, intent);
 
@@ -68,7 +68,7 @@ public class CustomizeReasonActivity extends BaseActivity {
 
         hideNavigationMenu();
 
-        reason = findViewById(R.id.reason);
+        action = findViewById(R.id.action);
         severity = findViewById(R.id.severity);
         comment = findViewById(R.id.comment);
 
@@ -79,7 +79,7 @@ public class CustomizeReasonActivity extends BaseActivity {
 
         templateId = getIntent().getStringExtra(EXTRA_TEMPLATE_ID);
 
-        reasonTemplate = null;
+        actionTemplate = null;
 
         loadUi();
     }
@@ -92,10 +92,10 @@ public class CustomizeReasonActivity extends BaseActivity {
     }
 
     private void loadUi () {
-        ReasonTemplateLoader.load(this, dao -> dao.getById(templateId)
-                .observe(this, reasonTemplate -> {
-                    if (reasonTemplate != null) {
-                        this.reasonTemplate = reasonTemplate;
+        ActionTemplateLoader.load(this, dao -> dao.getById(templateId)
+                .observe(this, actionTemplate -> {
+                    if (actionTemplate != null) {
+                        this.actionTemplate = actionTemplate;
 
                         buildUi();
                     }
@@ -103,8 +103,8 @@ public class CustomizeReasonActivity extends BaseActivity {
     }
 
     private void buildUi () {
-        if (reasonTemplate != null) {
-            reason.setText(reasonTemplate.getName());
+        if (actionTemplate != null) {
+            action.setText(actionTemplate.getName());
         }
     }
 }

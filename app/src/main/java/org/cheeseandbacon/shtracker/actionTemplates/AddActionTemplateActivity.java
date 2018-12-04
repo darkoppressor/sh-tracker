@@ -4,7 +4,7 @@
  * See the file docs/LICENSE.txt for the full license text.
  */
 
-package org.cheeseandbacon.shtracker.reasonTemplates;
+package org.cheeseandbacon.shtracker.actionTemplates;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,19 +12,19 @@ import android.support.annotation.Nullable;
 import android.widget.Toast;
 
 import org.cheeseandbacon.shtracker.R;
-import org.cheeseandbacon.shtracker.addEvent.CustomizeReasonActivity;
+import org.cheeseandbacon.shtracker.addEvent.CustomizeActionActivity;
 import org.cheeseandbacon.shtracker.base.BaseActivity;
 import org.cheeseandbacon.shtracker.base.BaseEditText;
 import org.cheeseandbacon.shtracker.base.Menu;
-import org.cheeseandbacon.shtracker.data.reasonTemplate.ReasonTemplate;
-import org.cheeseandbacon.shtracker.data.reasonTemplate.ReasonTemplateLoader;
+import org.cheeseandbacon.shtracker.data.actionTemplate.ActionTemplate;
+import org.cheeseandbacon.shtracker.data.actionTemplate.ActionTemplateLoader;
 import org.cheeseandbacon.shtracker.util.Vibration;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.UUID;
 
-public class AddReasonTemplateActivity extends BaseActivity {
+public class AddActionTemplateActivity extends BaseActivity {
     public static final int REQUEST_CODE_CUSTOMIZE_SELECTION = 0;
 
     private BaseEditText name;
@@ -33,9 +33,8 @@ public class AddReasonTemplateActivity extends BaseActivity {
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        onCreate(R.layout.activity_add_reason_template,
-                getString(R.string.add_reason_template_title),
-                new Menu(() -> R.menu.add_reason_template, (item) -> {
+        onCreate(R.layout.activity_add_action_template, getString(R.string.add_action_template_title),
+                new Menu(() -> R.menu.add_action_template, (item) -> {
                     switch (item.getItemId()) {
                         case R.id.actionCancel:
                             Vibration.buttonPress(this);
@@ -49,7 +48,7 @@ public class AddReasonTemplateActivity extends BaseActivity {
                             Vibration.buttonPress(this);
 
                             if (name.getString().length() == 0) {
-                                Toast.makeText(this, getString(R.string.add_reason_template_name_needed),
+                                Toast.makeText(this, getString(R.string.add_action_template_name_needed),
                                         Toast.LENGTH_LONG).show();
 
                                 return true;
@@ -57,17 +56,17 @@ public class AddReasonTemplateActivity extends BaseActivity {
 
                             String id = UUID.randomUUID().toString();
 
-                            ArrayList<ReasonTemplate> data = new ArrayList<>();
-                            data.add(new ReasonTemplate(
+                            ArrayList<ActionTemplate> data = new ArrayList<>();
+                            data.add(new ActionTemplate(
                                     id,
                                     Calendar.getInstance().getTime().getTime(),
                                     name.getString(),
                                     description.getString()
                             ));
 
-                            ReasonTemplateLoader.load(this, (dao) -> dao.insert(ReasonTemplate.class, data, () -> {
-                                startActivityForResult(new Intent(this, CustomizeReasonActivity.class)
-                                                .putExtra(CustomizeReasonActivity.EXTRA_TEMPLATE_ID, id),
+                            ActionTemplateLoader.load(this, (dao) -> dao.insert(ActionTemplate.class, data, () -> {
+                                startActivityForResult(new Intent(this, CustomizeActionActivity.class)
+                                                .putExtra(CustomizeActionActivity.EXTRA_TEMPLATE_ID, id),
                                         REQUEST_CODE_CUSTOMIZE_SELECTION
                                 );
                             }));

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2018 Cheese and Bacon Games, LLC
+  ~ This file is licensed under the MIT License.
+  ~ See the file docs/LICENSE.txt for the full license text.
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/base_padding"
+    tools:context=".addEvent.CustomizeActionActivity">
+
+    <TextView
+        android:id="@+id/action"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/customize_action_name_padding" />
+
+    <NumberPicker
+        android:id="@+id/severity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <org.cheeseandbacon.shtracker.base.BaseEditText
+            android:id="@+id/comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/customize_action_comment"
+            android:inputType="textMultiLine"
+            android:importantForAutofill="no" />
+
+    </android.support.design.widget.TextInputLayout>
+
+</LinearLayout>

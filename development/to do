@@ -1,4 +1,3 @@
-Implement reason template creation
 Implement action selection and action template creation
 
 Add Event, Reason line, if reason present, can the user view and/or edit the reason?

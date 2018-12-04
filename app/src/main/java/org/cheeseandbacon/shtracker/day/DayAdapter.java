@@ -6,9 +6,8 @@
 
 package org.cheeseandbacon.shtracker.day;
 
-import android.content.Context;
+import android.app.Activity;
 import android.support.annotation.NonNull;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -21,12 +20,12 @@ import java.util.ArrayList;
 
 public class DayAdapter extends BaseAdapter {
     @NonNull
-    private final Context context;
+    private final Activity activity;
     @NonNull
     private final ArrayList<Event> items;
 
-    public DayAdapter (@NonNull Context context, @NonNull ArrayList<Event> items) {
-        this.context = context;
+    public DayAdapter (@NonNull Activity activity, @NonNull ArrayList<Event> items) {
+        this.activity = activity;
         this.items = items;
     }
 
@@ -45,19 +44,15 @@ public class DayAdapter extends BaseAdapter {
 
     @Override
     public View getView (int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-        if (inflater != null) {
-            if (convertView == null) {
-                convertView = inflater.inflate(R.layout.day_row, null);
-            }
-
-            final Event item = getItem(position);
-
-            TextView textTime = convertView.findViewById(R.id.time);
-
-            textTime.setText(item.getTime());
+        if (convertView == null) {
+            convertView = activity.getLayoutInflater().inflate(R.layout.day_row, null);
         }
+
+        final Event item = getItem(position);
+
+        TextView textTime = convertView.findViewById(R.id.time);
+
+        textTime.setText(item.getTime());
 
         return convertView;
     }

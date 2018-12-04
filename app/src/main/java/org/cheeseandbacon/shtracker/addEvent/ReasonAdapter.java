@@ -6,9 +6,8 @@
 
 package org.cheeseandbacon.shtracker.addEvent;
 
-import android.content.Context;
+import android.app.Activity;
 import android.support.annotation.NonNull;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -21,12 +20,12 @@ import java.util.ArrayList;
 
 public class ReasonAdapter extends BaseAdapter {
     @NonNull
-    private final Context context;
+    private final Activity activity;
     @NonNull
     private final ArrayList<ReasonTemplate> items;
 
-    public ReasonAdapter (@NonNull Context context, @NonNull ArrayList<ReasonTemplate> items) {
-        this.context = context;
+    public ReasonAdapter (@NonNull Activity activity, @NonNull ArrayList<ReasonTemplate> items) {
+        this.activity = activity;
         this.items = items;
     }
 
@@ -45,19 +44,15 @@ public class ReasonAdapter extends BaseAdapter {
 
     @Override
     public View getView (int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-        if (inflater != null) {
-            if (convertView == null) {
-                convertView = inflater.inflate(R.layout.reason_row, null);
-            }
-
-            final ReasonTemplate item = getItem(position);
-
-            TextView textReason = convertView.findViewById(R.id.reason);
-
-            textReason.setText(item.getName());
+        if (convertView == null) {
+            convertView = activity.getLayoutInflater().inflate(R.layout.reason_row, null);
         }
+
+        final ReasonTemplate item = getItem(position);
+
+        TextView textReason = convertView.findViewById(R.id.reason);
+
+        textReason.setText(item.getName());
 
         return convertView;
     }

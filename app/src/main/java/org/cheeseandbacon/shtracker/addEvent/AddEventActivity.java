@@ -75,7 +75,7 @@ public class AddEventActivity extends BaseActivity implements TimePickerDialog.O
                                     action
                             ));
 
-                            EventLoader.load(this, eventDao -> eventDao.insert(Event.class, data, () -> {
+                            EventLoader.load(this, dao -> dao.insert(Event.class, data, () -> {
                                 Intent intent = new Intent();
                                 intent.putExtra(DayActivity.EXTRA_INITIAL_DATE, date);
 
@@ -134,7 +134,7 @@ public class AddEventActivity extends BaseActivity implements TimePickerDialog.O
 
                         reason = new Reason(reasonTemplateId, reasonComment, reasonSeverity);
 
-                        ReasonTemplateLoader.load(this, reasonTemplateDao -> reasonTemplateDao.getById(reasonTemplateId)
+                        ReasonTemplateLoader.load(this, dao -> dao.getById(reasonTemplateId)
                                 .observe(this, reasonTemplate -> {
                                     if (reasonTemplate != null) {
                                         textReason.setText(reasonTemplate.getName());

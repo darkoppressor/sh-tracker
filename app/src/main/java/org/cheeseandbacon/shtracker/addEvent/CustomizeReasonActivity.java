@@ -92,7 +92,7 @@ public class CustomizeReasonActivity extends BaseActivity {
     }
 
     private void loadUi () {
-        ReasonTemplateLoader.load(this, reasonTemplateDao -> reasonTemplateDao.getById(reasonTemplateId)
+        ReasonTemplateLoader.load(this, dao -> dao.getById(reasonTemplateId)
                 .observe(this, reasonTemplate -> {
                     if (reasonTemplate != null) {
                         this.reasonTemplate = reasonTemplate;

@@ -114,8 +114,8 @@ public class DayActivity extends BaseActivity {
     }
 
     private void loadUi () {
-        EventLoader.load(this, eventDao -> {
-            liveData = eventDao.getByDate(DateAndTime.dateToDateString(dates.getCurrent()));
+        EventLoader.load(this, dao -> {
+            liveData = dao.getByDate(DateAndTime.dateToDateString(dates.getCurrent()));
 
             liveData.observe(this, new Observer<List<Event>>() {
                 @Override

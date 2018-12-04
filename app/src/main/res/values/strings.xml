@@ -23,9 +23,17 @@
 
     <!-- Select Reason -->
     <string name="select_reason_title">Select Reason</string>
+    <string name="select_reason_new_reason">+ New reason</string>
 
     <!-- Customize Reason -->
     <string name="customize_reason_title">Elaborate</string>
     <string name="customize_reason_comment">Comment</string>
+
+    <!-- Add Reason Template -->
+    <string name="add_reason_template_title">Create Reason</string>
+    <string name="add_reason_template_name">Name</string>
+    <string name="add_reason_template_description">Description</string>
+    <string name="add_reason_template_name_needed">Please enter a name</string>
+
 
 </resources>

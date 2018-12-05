@@ -79,43 +79,7 @@ public class EventActivity extends BaseActivity implements TimePickerDialog.OnTi
                         case R.id.actionDone:
                             Vibration.buttonPress(this);
 
-                            if (eventId == null) {
-                                ArrayList<Event> data = new ArrayList<>();
-
-                                data.add(new Event(
-                                        UUID.randomUUID().toString(),
-                                        date,
-                                        time,
-                                        reason,
-                                        action
-                                ));
-
-                                EventLoader.load(this, dao -> dao.insert(Event.class, data, () -> {
-                                    Intent intent = new Intent();
-                                    intent.putExtra(DayActivity.EXTRA_INITIAL_DATE, date);
-
-                                    setResult(RESULT_OK, intent);
-
-                                    finish();
-                                }));
-                            } else {
-                                ArrayList<Event> data = new ArrayList<>();
-
-                                event.setTime(time);
-                                event.setReason(reason);
-                                event.setAction(action);
-
-                                data.add(event);
-
-                                EventLoader.load(this, dao -> dao.update(Event.class, data, () -> {
-                                    Intent intent = new Intent();
-                                    intent.putExtra(DayActivity.EXTRA_INITIAL_DATE, event.getDate());
-
-                                    setResult(RESULT_OK, intent);
-
-                                    finish();
-                                }));
-                            }
+                            done();
 
                             return true;
                         default:
@@ -154,43 +118,7 @@ public class EventActivity extends BaseActivity implements TimePickerDialog.OnTi
                     case R.id.actionDone:
                         Vibration.buttonPress(this);
 
-                        if (eventId == null) {
-                            ArrayList<Event> data = new ArrayList<>();
-
-                            data.add(new Event(
-                                    UUID.randomUUID().toString(),
-                                    date,
-                                    time,
-                                    reason,
-                                    action
-                            ));
-
-                            EventLoader.load(this, dao -> dao.insert(Event.class, data, () -> {
-                                Intent intent = new Intent();
-                                intent.putExtra(DayActivity.EXTRA_INITIAL_DATE, date);
-
-                                setResult(RESULT_OK, intent);
-
-                                finish();
-                            }));
-                        } else {
-                            ArrayList<Event> data = new ArrayList<>();
-
-                            event.setTime(time);
-                            event.setReason(reason);
-                            event.setAction(action);
-
-                            data.add(event);
-
-                            EventLoader.load(this, dao -> dao.update(Event.class, data, () -> {
-                                Intent intent = new Intent();
-                                intent.putExtra(DayActivity.EXTRA_INITIAL_DATE, event.getDate());
-
-                                setResult(RESULT_OK, intent);
-
-                                finish();
-                            }));
-                        }
+                        done();
 
                         return true;
                     case R.id.actionDelete:
@@ -320,6 +248,46 @@ public class EventActivity extends BaseActivity implements TimePickerDialog.OnTi
                 break;
             default:
                 break;
+        }
+    }
+
+    private void done() {
+        if (eventId == null) {
+            ArrayList<Event> data = new ArrayList<>();
+
+            data.add(new Event(
+                    UUID.randomUUID().toString(),
+                    date,
+                    time,
+                    reason,
+                    action
+            ));
+
+            EventLoader.load(this, dao -> dao.insert(Event.class, data, () -> {
+                Intent intent = new Intent();
+                intent.putExtra(DayActivity.EXTRA_INITIAL_DATE, date);
+
+                setResult(RESULT_OK, intent);
+
+                finish();
+            }));
+        } else {
+            ArrayList<Event> data = new ArrayList<>();
+
+            event.setTime(time);
+            event.setReason(reason);
+            event.setAction(action);
+
+            data.add(event);
+
+            EventLoader.load(this, dao -> dao.update(Event.class, data, () -> {
+                Intent intent = new Intent();
+                intent.putExtra(DayActivity.EXTRA_INITIAL_DATE, event.getDate());
+
+                setResult(RESULT_OK, intent);
+
+                finish();
+            }));
         }
     }
 

@@ -9,6 +9,12 @@
     <string name="app_name">SH Tracker</string>
     <string name="app_cancel">Cancel</string>
     <string name="app_done">Done</string>
+    <string name="app_delete">Delete</string>
+
+    <!-- Navigation Menu -->
+    <string name="navigation_menu_day">Browse Events by Day</string>
+    <string name="navigation_menu_reasons">Reasons</string>
+    <string name="navigation_menu_actions">Actions</string>
 
     <!-- Day -->
     <string name="day_title">SH Tracker</string>
@@ -22,7 +28,6 @@
     <string name="add_event_time">Time</string>
     <string name="add_event_reason">Add Reason</string>
     <string name="add_event_action">Add Action</string>
-    <string name="add_event_delete">Delete</string>
 
     <!-- Select Reason -->
     <string name="select_reason_title">Select Reason</string>
@@ -35,6 +40,7 @@
 
     <!-- Add Reason Template -->
     <string name="add_reason_template_title">Create Reason</string>
+    <string name="add_reason_template_edit_title">Edit Reason</string>
     <string name="add_reason_template_name">Name</string>
     <string name="add_reason_template_description">Description</string>
     <string name="add_reason_template_name_needed">Please enter a name</string>
@@ -50,9 +56,16 @@
 
     <!-- Add Action Template -->
     <string name="add_action_template_title">Create Action</string>
+    <string name="add_action_template_edit_title">Edit Action</string>
     <string name="add_action_template_name">Name</string>
     <string name="add_action_template_description">Description</string>
     <string name="add_action_template_name_needed">Please enter a name</string>
+
+    <!-- Reason Templates -->
+    <string name="reason_templates_title">Reasons</string>
+
+    <!-- Action Templates -->
+    <string name="action_templates_title">Actions</string>
 
 
 </resources>

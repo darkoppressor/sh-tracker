@@ -11,12 +11,12 @@
     <dimen name="toolbar_elevation">4dp</dimen>
     <dimen name="base_text">16sp</dimen>
     <dimen name="base_padding">2dp</dimen>
+    <dimen name="base_padding_floating_action_button">16dp</dimen>
 
     <!-- Day -->
     <dimen name="day_date_text">14sp</dimen>
     <dimen name="day_date_text_small">12sp</dimen>
     <dimen name="day_padding">8dp</dimen>
-    <dimen name="day_padding_add_button">16dp</dimen>
     <dimen name="day_nav_arrow">32dp</dimen>
 
     <!-- Add Event -->

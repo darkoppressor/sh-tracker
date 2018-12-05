@@ -6,6 +6,7 @@
 
 package org.cheeseandbacon.shtracker.base;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -25,6 +26,9 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import org.cheeseandbacon.shtracker.R;
+import org.cheeseandbacon.shtracker.actionTemplates.ActionTemplatesActivity;
+import org.cheeseandbacon.shtracker.day.DayActivity;
+import org.cheeseandbacon.shtracker.reasonTemplates.ReasonTemplatesActivity;
 import org.cheeseandbacon.shtracker.util.Vibration;
 
 import java.util.ArrayList;
@@ -98,9 +102,14 @@ public abstract class BaseActivity extends AppCompatActivity {
     private void buildNavigationMenu () {
         navigationItems = new ArrayList<>();
 
-        /*QQQ navigationItems.add(new NavigationItem("Example", R.drawable.example, () -> {
-            ///QQQ
-        }));*/
+        navigationItems.add(new NavigationItem(getString(R.string.navigation_menu_day), 0,
+                () -> startActivity(new Intent(this, DayActivity.class))));
+
+        navigationItems.add(new NavigationItem(getString(R.string.navigation_menu_reasons), 0,
+                () -> startActivity(new Intent(this, ReasonTemplatesActivity.class))));
+
+        navigationItems.add(new NavigationItem(getString(R.string.navigation_menu_actions), 0,
+                () -> startActivity(new Intent(this, ActionTemplatesActivity.class))));
 
         setupNavigationMenu();
 

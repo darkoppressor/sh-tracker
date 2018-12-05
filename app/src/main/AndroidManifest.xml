@@ -71,6 +71,14 @@
             android:screenOrientation="portrait"
             android:supportsPictureInPicture="true" />
 
+        <activity android:name=".reasonTemplates.ReasonTemplatesActivity"
+            android:screenOrientation="portrait"
+            android:supportsPictureInPicture="true" />
+
+        <activity android:name=".actionTemplates.ActionTemplatesActivity"
+            android:screenOrientation="portrait"
+            android:supportsPictureInPicture="true" />
+
     </application>
 
 </manifest>

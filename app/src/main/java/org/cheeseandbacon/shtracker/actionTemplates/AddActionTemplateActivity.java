@@ -25,10 +25,17 @@ import java.util.Calendar;
 import java.util.UUID;
 
 public class AddActionTemplateActivity extends BaseActivity {
+    public static final String EXTRA_TEMPLATE_ID = "org.cheeseandbacon.shtracker.actionTemplates.templateId";
+    public static final String EXTRA_CUSTOMIZE_AFTER = "org.cheeseandbacon.shtracker.actionTemplates.customizeAfter";
     public static final int REQUEST_CODE_CUSTOMIZE_SELECTION = 0;
 
     private BaseEditText name;
     private BaseEditText description;
+
+    private String templateId;
+    private boolean customizeAfter;
+
+    private ActionTemplate actionTemplate;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -47,29 +54,7 @@ public class AddActionTemplateActivity extends BaseActivity {
                         case R.id.actionDone:
                             Vibration.buttonPress(this);
 
-                            if (name.getString().length() == 0) {
-                                Toast.makeText(this, getString(R.string.add_action_template_name_needed),
-                                        Toast.LENGTH_LONG).show();
-
-                                return true;
-                            }
-
-                            String id = UUID.randomUUID().toString();
-
-                            ArrayList<ActionTemplate> data = new ArrayList<>();
-                            data.add(new ActionTemplate(
-                                    id,
-                                    Calendar.getInstance().getTime().getTime(),
-                                    name.getString(),
-                                    description.getString()
-                            ));
-
-                            ActionTemplateLoader.load(this, (dao) -> dao.insert(ActionTemplate.class, data, () -> {
-                                startActivityForResult(new Intent(this, CustomizeActionActivity.class)
-                                                .putExtra(CustomizeActionActivity.EXTRA_TEMPLATE_ID, id),
-                                        REQUEST_CODE_CUSTOMIZE_SELECTION
-                                );
-                            }));
+                            done();
 
                             return true;
                         default:
@@ -81,6 +66,63 @@ public class AddActionTemplateActivity extends BaseActivity {
 
         name = findViewById(R.id.name);
         description = findViewById(R.id.description);
+
+        templateId = getIntent().getStringExtra(EXTRA_TEMPLATE_ID);
+        customizeAfter = getIntent().getBooleanExtra(EXTRA_CUSTOMIZE_AFTER, false);
+
+        actionTemplate = null;
+
+        if (templateId != null) {
+            setToolbarTitle(getString(R.string.add_action_template_edit_title));
+
+            setMenu(new Menu(() -> R.menu.edit_action_template, (item) -> {
+                switch (item.getItemId()) {
+                    case R.id.actionCancel:
+                        Vibration.buttonPress(this);
+
+                        setResult(RESULT_CANCELED);
+
+                        finish();
+
+                        return true;
+                    case R.id.actionDone:
+                        Vibration.buttonPress(this);
+
+                        done();
+
+                        return true;
+                    case R.id.actionDelete:
+                        Vibration.buttonPress(this);
+
+                        ArrayList<ActionTemplate> data = new ArrayList<>();
+
+                        actionTemplate.setName(name.getString());
+                        actionTemplate.setDescription(description.getString());
+
+                        data.add(actionTemplate);
+
+                        ActionTemplateLoader.load(this, dao -> dao.delete(ActionTemplate.class, data, () -> {
+                            setResult(RESULT_OK);
+
+                            finish();
+                        }));
+
+                        return true;
+                    default:
+                        return false;
+                }
+            }));
+
+            ActionTemplateLoader.load(this, dao -> dao.getById(templateId)
+                    .observe(this, actionTemplate -> {
+                        if (actionTemplate != null) {
+                            this.actionTemplate = actionTemplate;
+
+                            name.setText(actionTemplate.getName());
+                            description.setText(actionTemplate.getDescription());
+                        }
+                    }));
+        }
     }
 
     @Override
@@ -106,6 +148,46 @@ public class AddActionTemplateActivity extends BaseActivity {
                 break;
             default:
                 break;
+        }
+    }
+
+    private void done () {
+        if (name.getString().length() == 0) {
+            Toast.makeText(this, getString(R.string.add_action_template_name_needed),
+                    Toast.LENGTH_LONG).show();
+
+            return;
+        }
+
+        if (templateId == null) {
+            String id = UUID.randomUUID().toString();
+
+            ArrayList<ActionTemplate> data = new ArrayList<>();
+            data.add(new ActionTemplate(
+                    id,
+                    Calendar.getInstance().getTime().getTime(),
+                    name.getString(),
+                    description.getString()
+            ));
+
+            if (customizeAfter) {
+                ActionTemplateLoader.load(this, (dao) -> dao.insert(ActionTemplate.class, data, () -> {
+                    startActivityForResult(new Intent(this, CustomizeActionActivity.class)
+                                    .putExtra(CustomizeActionActivity.EXTRA_TEMPLATE_ID, id),
+                            REQUEST_CODE_CUSTOMIZE_SELECTION
+                    );
+                }));
+            } else {
+                ActionTemplateLoader.load(this, (dao) -> dao.insert(ActionTemplate.class, data, () -> {
+                    setResult(RESULT_OK);
+
+                    finish();
+                }));
+            }
+        } else {
+            setResult(RESULT_OK);
+
+            finish();
         }
     }
 }

@@ -122,7 +122,8 @@ public class SelectReasonActivity extends BaseActivity {
             listView.setAdapter(adapter);
             listView.setOnItemClickListener((parent, view, position, id) -> {
                 if (position == adapter.getCount()) {
-                    startActivityForResult(new Intent(this, AddReasonTemplateActivity.class),
+                    startActivityForResult(new Intent(this, AddReasonTemplateActivity.class)
+                                    .putExtra(AddReasonTemplateActivity.EXTRA_CUSTOMIZE_AFTER, true),
                             REQUEST_CODE_ADD_REASON_TEMPLATE);
                 } else {
                     final ReasonTemplate item = adapter.getItem(position);

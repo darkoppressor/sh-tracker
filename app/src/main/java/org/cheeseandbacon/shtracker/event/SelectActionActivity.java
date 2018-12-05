@@ -122,7 +122,8 @@ public class SelectActionActivity extends BaseActivity {
             listView.setAdapter(adapter);
             listView.setOnItemClickListener((parent, view, position, id) -> {
                 if (position == adapter.getCount()) {
-                    startActivityForResult(new Intent(this, AddActionTemplateActivity.class),
+                    startActivityForResult(new Intent(this, AddActionTemplateActivity.class)
+                                    .putExtra(AddActionTemplateActivity.EXTRA_CUSTOMIZE_AFTER, true),
                             REQUEST_CODE_ADD_ACTION_TEMPLATE);
                 } else {
                     final ActionTemplate item = adapter.getItem(position);

@@ -103,13 +103,19 @@ public abstract class BaseActivity extends AppCompatActivity {
         navigationItems = new ArrayList<>();
 
         navigationItems.add(new NavigationItem(getString(R.string.navigation_menu_day), 0,
-                () -> startActivity(new Intent(this, DayActivity.class))));
+                () -> startActivity(new Intent(this, DayActivity.class)
+                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                )));
 
         navigationItems.add(new NavigationItem(getString(R.string.navigation_menu_reasons), 0,
-                () -> startActivity(new Intent(this, ReasonTemplatesActivity.class))));
+                () -> startActivity(new Intent(this, ReasonTemplatesActivity.class)
+                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                )));
 
         navigationItems.add(new NavigationItem(getString(R.string.navigation_menu_actions), 0,
-                () -> startActivity(new Intent(this, ActionTemplatesActivity.class))));
+                () -> startActivity(new Intent(this, ActionTemplatesActivity.class)
+                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                )));
 
         setupNavigationMenu();
 

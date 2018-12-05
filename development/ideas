@@ -9,7 +9,12 @@ Event severities should all be associated with a color spectrum
 A time period can show either a base color or the color of the event in it
 If a time period has multiple events in it, need to handle averaging the colors together
 
+Analysis:
+List of types of data views, e.g., 'Most events are on this day of the week', 'Most events are during this time of day'
+
 Sharing / export options
+
+Maybe note the location an event happened
 
 Have some information for users
 Have suicide hotline and prevention type info (websites, phone numbers)

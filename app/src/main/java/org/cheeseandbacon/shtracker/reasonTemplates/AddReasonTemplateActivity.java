@@ -186,9 +186,18 @@ public class AddReasonTemplateActivity extends BaseActivity {
                 }));
             }
         } else {
-            setResult(RESULT_OK);
+            ArrayList<ReasonTemplate> data = new ArrayList<>();
 
-            finish();
+            reasonTemplate.setName(name.getString());
+            reasonTemplate.setDescription(description.getString());
+
+            data.add(reasonTemplate);
+
+            ReasonTemplateLoader.load(this, (dao) -> dao.update(ReasonTemplate.class, data, () -> {
+                setResult(RESULT_OK);
+
+                finish();
+            }));
         }
     }
 }

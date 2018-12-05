@@ -185,9 +185,18 @@ public class AddActionTemplateActivity extends BaseActivity {
                 }));
             }
         } else {
-            setResult(RESULT_OK);
+            ArrayList<ActionTemplate> data = new ArrayList<>();
 
-            finish();
+            actionTemplate.setName(name.getString());
+            actionTemplate.setDescription(description.getString());
+
+            data.add(actionTemplate);
+
+            ActionTemplateLoader.load(this, (dao) -> dao.update(ActionTemplate.class, data, () -> {
+                setResult(RESULT_OK);
+
+                finish();
+            }));
         }
     }
 }

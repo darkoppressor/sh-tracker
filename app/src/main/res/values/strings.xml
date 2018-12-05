@@ -18,6 +18,7 @@
 
     <!-- Add Event -->
     <string name="add_event_title">Add Event</string>
+    <string name="add_event_edit_title">Edit Event</string>
     <string name="add_event_time">Time</string>
     <string name="add_event_reason">Add Reason</string>
     <string name="add_event_action">Add Action</string>
@@ -27,7 +28,7 @@
     <string name="select_reason_new_reason">+ New reason</string>
 
     <!-- Customize Reason -->
-    <string name="customize_reason_title">Elaborate</string>
+    <string name="customize_reason_title">Elaborate on the Reason</string>
     <string name="customize_reason_severity">Severity:</string>
     <string name="customize_reason_comment">Comment</string>
 
@@ -42,7 +43,7 @@
     <string name="select_action_new_action">+ New action</string>
 
     <!-- Customize Action -->
-    <string name="customize_action_title">Elaborate</string>
+    <string name="customize_action_title">Elaborate on the Action</string>
     <string name="customize_action_severity">Severity:</string>
     <string name="customize_action_comment">Comment</string>
 

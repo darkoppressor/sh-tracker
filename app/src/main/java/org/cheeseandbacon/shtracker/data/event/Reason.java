@@ -8,7 +8,9 @@ package org.cheeseandbacon.shtracker.data.event;
 
 import android.support.annotation.NonNull;
 
-public class Reason {
+import java.io.Serializable;
+
+public class Reason implements Serializable {
     @NonNull
     private String templateId;
     @NonNull

@@ -35,6 +35,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private NavigationView navigationView;
     private ArrayList<NavigationItem> navigationItems;
+    private Toolbar toolbar;
     @Nullable
     private org.cheeseandbacon.shtracker.base.Menu menu;
 
@@ -51,7 +52,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         navigationView = findViewById(R.id.drawerNavigation);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         if (toolbar != null) {
             if (toolbarTitle != null) {
                 toolbar.setTitle(toolbarTitle);
@@ -139,6 +140,12 @@ public abstract class BaseActivity extends AppCompatActivity {
     public void hideNavigationMenu () {
         actionBarDrawerToggle.setDrawerIndicatorEnabled(false);
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+    }
+
+    public void setToolbarTitle (String toolbarTitle) {
+        if (toolbar != null) {
+            toolbar.setTitle(toolbarTitle);
+        }
     }
 
     @Override

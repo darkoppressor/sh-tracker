@@ -32,6 +32,7 @@ import java.util.List;
 public class DayActivity extends BaseActivity {
     public static final String EXTRA_INITIAL_DATE = "org.cheeseandbacon.shtracker.day.initialDate";
     public static final int REQUEST_CODE_EVENT_ADDITION = 0;
+    public static final int REQUEST_CODE_EDIT_EVENT = 1;
 
     private TextView textDateBefore;
     private TextView textDayOfWeekBefore;
@@ -96,7 +97,7 @@ public class DayActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         switch (requestCode) {
-            case REQUEST_CODE_EVENT_ADDITION:
+            case REQUEST_CODE_EVENT_ADDITION: case REQUEST_CODE_EDIT_EVENT:
                 if (resultCode == RESULT_OK) {
                     if (data != null) {
                         String date = data.getStringExtra(EXTRA_INITIAL_DATE);
@@ -138,6 +139,14 @@ public class DayActivity extends BaseActivity {
         if (events != null) {
             adapter = new DayAdapter(this, events);
             listView.setAdapter(adapter);
+            listView.setOnItemClickListener((parent, view, position, id) -> {
+                final Event item = adapter.getItem(position);
+
+                startActivityForResult(new Intent(this, AddEventActivity.class)
+                        .putExtra(AddEventActivity.EXTRA_EVENT_ID, item.getId())
+                        , REQUEST_CODE_EDIT_EVENT
+                );
+            });
         }
     }
 

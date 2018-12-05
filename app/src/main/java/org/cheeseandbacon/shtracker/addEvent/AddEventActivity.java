@@ -35,6 +35,7 @@ import java.util.UUID;
 public class AddEventActivity extends BaseActivity implements TimePickerDialog.OnTimeSetListener {
     public static final String EXTRA_DATE = "org.cheeseandbacon.shtracker.addEvent.date";
     public static final String EXTRA_TIME = "org.cheeseandbacon.shtracker.addEvent.time";
+    public static final String EXTRA_EVENT_ID = "org.cheeseandbacon.shtracker.addEvent.eventId";
     public static final String EXTRA_REASON_TEMPLATE_ID = "org.cheeseandbacon.shtracker.addEvent.reasonTemplateId";
     public static final String EXTRA_REASON_COMMENT = "org.cheeseandbacon.shtracker.addEvent.reasonComment";
     public static final String EXTRA_REASON_SEVERITY = "org.cheeseandbacon.shtracker.addEvent.reasonSeverity";
@@ -54,6 +55,10 @@ public class AddEventActivity extends BaseActivity implements TimePickerDialog.O
 
     private String date;
     private String time;
+
+    private String eventId;
+    private Event event;
+
     private Reason reason;
     private Action action;
 
@@ -74,24 +79,43 @@ public class AddEventActivity extends BaseActivity implements TimePickerDialog.O
                         case R.id.actionDone:
                             Vibration.buttonPress(this);
 
-                            ArrayList<Event> data = new ArrayList<>();
+                            if (eventId == null) {
+                                ArrayList<Event> data = new ArrayList<>();
 
-                            data.add(new Event(
-                                    UUID.randomUUID().toString(),
-                                    date,
-                                    time,
-                                    reason,
-                                    action
-                            ));
+                                data.add(new Event(
+                                        UUID.randomUUID().toString(),
+                                        date,
+                                        time,
+                                        reason,
+                                        action
+                                ));
 
-                            EventLoader.load(this, dao -> dao.insert(Event.class, data, () -> {
-                                Intent intent = new Intent();
-                                intent.putExtra(DayActivity.EXTRA_INITIAL_DATE, date);
+                                EventLoader.load(this, dao -> dao.insert(Event.class, data, () -> {
+                                    Intent intent = new Intent();
+                                    intent.putExtra(DayActivity.EXTRA_INITIAL_DATE, date);
 
-                                setResult(RESULT_OK, intent);
+                                    setResult(RESULT_OK, intent);
 
-                                finish();
-                            }));
+                                    finish();
+                                }));
+                            } else {
+                                ArrayList<Event> data = new ArrayList<>();
+
+                                event.setTime(time);
+                                event.setReason(reason);
+                                event.setAction(action);
+
+                                data.add(event);
+
+                                EventLoader.load(this, dao -> dao.update(Event.class, data, () -> {
+                                    Intent intent = new Intent();
+                                    intent.putExtra(DayActivity.EXTRA_INITIAL_DATE, event.getDate());
+
+                                    setResult(RESULT_OK, intent);
+
+                                    finish();
+                                }));
+                            }
 
                             return true;
                         default:
@@ -107,11 +131,52 @@ public class AddEventActivity extends BaseActivity implements TimePickerDialog.O
         textAction = findViewById(R.id.action);
         imageAction = findViewById(R.id.actionImage);
 
-        date = getIntent().getStringExtra(EXTRA_DATE);
-        time = getIntent().getStringExtra(EXTRA_TIME);
-
         reason = null;
         action = null;
+
+        date = getIntent().getStringExtra(EXTRA_DATE);
+        time = getIntent().getStringExtra(EXTRA_TIME);
+        eventId = getIntent().getStringExtra(EXTRA_EVENT_ID);
+
+        if (eventId != null) {
+            setToolbarTitle(getString(R.string.add_event_edit_title));
+
+            EventLoader.load(this, dao -> dao.getById(eventId)
+                    .observe(this, event -> {
+                        if (event != null) {
+                            this.event = event;
+
+                            date = event.getDate();
+                            time = event.getTime();
+                            reason = event.getReason();
+                            action = event.getAction();
+
+                            textTime.setText(time);
+
+                            if (reason != null) {
+                                ReasonTemplateLoader.load(this, reasonTemplateDao ->
+                                        reasonTemplateDao.getById(reason.getTemplateId())
+                                                .observe(this, reasonTemplate -> {
+                                                    if (reasonTemplate != null) {
+                                                        textReason.setText(reasonTemplate.getName());
+                                                        imageReason.setImageResource(R.drawable.ic_baseline_close_24px);
+                                                    }
+                                                }));
+                            }
+
+                            if (action != null) {
+                                ActionTemplateLoader.load(this, actionTemplateDao -> actionTemplateDao
+                                        .getById(action.getTemplateId())
+                                        .observe(this, actionTemplate -> {
+                                            if (actionTemplate != null) {
+                                                textAction.setText(actionTemplate.getName());
+                                                imageAction.setImageResource(R.drawable.ic_baseline_close_24px);
+                                            }
+                                        }));
+                            }
+                        }
+                    }));
+        }
 
         textTime.setText(time);
     }

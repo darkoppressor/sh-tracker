@@ -1,0 +1,28 @@
+Track self-harm events and view data
+
+User can enter Events using a simple interface
+
+An Event has date, time, reason, action
+Event date is whatever day it is created from
+Event time is configurable but defaults to current time (or if on past date, 23:59)
+Event reason is optional
+Event action is optional
+
+A Reason has severity, comment, and is linked to a Reason Template
+Reason comment is optional
+
+An Action has severity, comment, and is linked to an Action Template
+Action comment is optional
+
+A Reason Template has name, description
+Reason Template description is optional
+
+An Action Template has name, description
+Action Template description is optional
+
+Severities are simple 1-10 numbers
+
+User can add an event with a button
+
+There is a menu for editing, adding, and removing Reason Templates
+There is a menu for editing, adding, and removing Action Templates

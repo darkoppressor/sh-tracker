@@ -43,6 +43,8 @@ public class AddEventActivity extends BaseActivity implements TimePickerDialog.O
     public static final String EXTRA_ACTION_SEVERITY = "org.cheeseandbacon.shtracker.addEvent.actionSeverity";
     public static final int REQUEST_CODE_REASON_SELECTION = 0;
     public static final int REQUEST_CODE_ACTION_SELECTION = 1;
+    public static final int REQUEST_CODE_EDIT_REASON = 2;
+    public static final int REQUEST_CODE_EDIT_ACTION = 3;
 
     private TextView textTime;
     private TextView textReason;
@@ -133,7 +135,7 @@ public class AddEventActivity extends BaseActivity implements TimePickerDialog.O
         super.onActivityResult(requestCode, resultCode, data);
 
         switch (requestCode) {
-            case REQUEST_CODE_REASON_SELECTION:
+            case REQUEST_CODE_REASON_SELECTION: case REQUEST_CODE_EDIT_REASON:
                 if (resultCode == RESULT_OK) {
                     if (data != null) {
                         String templateId = data.getStringExtra(EXTRA_REASON_TEMPLATE_ID);
@@ -153,7 +155,7 @@ public class AddEventActivity extends BaseActivity implements TimePickerDialog.O
                     }
                 }
                 break;
-            case REQUEST_CODE_ACTION_SELECTION:
+            case REQUEST_CODE_ACTION_SELECTION: case REQUEST_CODE_EDIT_ACTION:
                 if (resultCode == RESULT_OK) {
                     if (data != null) {
                         String templateId = data.getStringExtra(EXTRA_ACTION_TEMPLATE_ID);
@@ -190,6 +192,20 @@ public class AddEventActivity extends BaseActivity implements TimePickerDialog.O
         if (reason == null) {
             startActivityForResult(new Intent(this, SelectReasonActivity.class), REQUEST_CODE_REASON_SELECTION);
         } else {
+            startActivityForResult(new Intent(this, CustomizeReasonActivity.class)
+                            .putExtra(CustomizeReasonActivity.EXTRA_TEMPLATE_ID, reason.getTemplateId())
+                            .putExtra(CustomizeReasonActivity.EXTRA_SEVERITY, reason.getSeverity())
+                            .putExtra(CustomizeReasonActivity.EXTRA_COMMENT, reason.getComment())
+                    , REQUEST_CODE_EDIT_REASON);
+        }
+    }
+
+    public void reasonButton (View view) {
+        Vibration.buttonPress(this);
+
+        if (reason == null) {
+            startActivityForResult(new Intent(this, SelectReasonActivity.class), REQUEST_CODE_REASON_SELECTION);
+        } else {
             reason = null;
 
             textReason.setText(R.string.add_event_reason);
@@ -198,6 +214,20 @@ public class AddEventActivity extends BaseActivity implements TimePickerDialog.O
     }
 
     public void action (View view) {
+        Vibration.buttonPress(this);
+
+        if (action == null) {
+            startActivityForResult(new Intent(this, SelectActionActivity.class), REQUEST_CODE_ACTION_SELECTION);
+        } else {
+            startActivityForResult(new Intent(this, CustomizeActionActivity.class)
+                            .putExtra(CustomizeActionActivity.EXTRA_TEMPLATE_ID, action.getTemplateId())
+                            .putExtra(CustomizeActionActivity.EXTRA_SEVERITY, action.getSeverity())
+                            .putExtra(CustomizeActionActivity.EXTRA_COMMENT, action.getComment())
+                    , REQUEST_CODE_EDIT_ACTION);
+        }
+    }
+
+    public void actionButton (View view) {
         Vibration.buttonPress(this);
 
         if (action == null) {

@@ -22,6 +22,8 @@ import org.cheeseandbacon.shtracker.util.Vibration;
 
 public class CustomizeActionActivity extends BaseActivity {
     public static final String EXTRA_TEMPLATE_ID = "org.cheeseandbacon.shtracker.addEvent.templateId";
+    public static final String EXTRA_SEVERITY = "org.cheeseandbacon.shtracker.addEvent.severity";
+    public static final String EXTRA_COMMENT = "org.cheeseandbacon.shtracker.addEvent.comment";
 
     public static final int SEVERITY_MINIMUM = 1;
     public static final int SEVERITY_MAXIMUM = 10;
@@ -78,9 +80,15 @@ public class CustomizeActionActivity extends BaseActivity {
         severity.setMinValue(SEVERITY_MINIMUM);
         severity.setMaxValue(SEVERITY_MAXIMUM);
         severity.setWrapSelectorWheel(false);
-        severity.setValue(DEFAULT_SEVERITY);
 
         templateId = getIntent().getStringExtra(EXTRA_TEMPLATE_ID);
+        int initialSeverity = getIntent().getIntExtra(EXTRA_SEVERITY, DEFAULT_SEVERITY);
+        String initialComment = getIntent().getStringExtra(EXTRA_COMMENT);
+
+        severity.setValue(initialSeverity);
+        if (initialComment != null && initialComment.length() > 0) {
+            comment.setText(initialComment);
+        }
 
         actionTemplate = null;
 

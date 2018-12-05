@@ -1,5 +1,29 @@
-Add Event, Reason line, if reason present, can the user view and/or edit the reason?
-Ditto for action?
+Add edit reason and action screens
+Clicking on reason or action in add event screen goes to edit
+Should any more reason or action info be shown on add event screen?
+
+Add edit event screen
+Clicking on event in day list goes to edit screen
+
+Add edit reason and action template screens
+Add these screens to the nav menu
+
+Other nav menu items:
+Title / logo
+Settings
+About
+    Basic about info
+    Changelog item
+    Website item
+    Forum item
+    Privacy policy item
+    Leave feedback item
+Credits
+
+Day menu items:
+Jump to today
+Go back a week
+Go forward a week
 
 Make back and forward buttons on Main animated things?
 

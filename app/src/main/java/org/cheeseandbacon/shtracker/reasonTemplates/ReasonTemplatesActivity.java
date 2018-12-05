@@ -37,8 +37,6 @@ public class ReasonTemplatesActivity extends BaseActivity {
 
         hideNavigationMenu();
 
-        ///QQQ Add back button in place of nav menu
-
         listView = findViewById(android.R.id.list);
 
         reasonTemplates = null;

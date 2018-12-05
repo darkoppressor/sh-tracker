@@ -35,8 +35,6 @@ public class ReasonTemplatesActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         onCreate(R.layout.activity_reason_templates, getString(R.string.reason_templates_title), null);
 
-        hideNavigationMenu();
-
         listView = findViewById(android.R.id.list);
 
         reasonTemplates = null;

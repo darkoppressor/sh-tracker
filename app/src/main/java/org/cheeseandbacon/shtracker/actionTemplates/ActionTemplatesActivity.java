@@ -35,8 +35,6 @@ public class ActionTemplatesActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         onCreate(R.layout.activity_action_templates, getString(R.string.action_templates_title), null);
 
-        hideNavigationMenu();
-
         listView = findViewById(android.R.id.list);
 
         actionTemplates = null;

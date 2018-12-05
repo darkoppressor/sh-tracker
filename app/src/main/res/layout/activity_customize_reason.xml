@@ -25,7 +25,16 @@
         android:id="@+id/description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="@dimen/customize_reason_name_padding" />
+        android:padding="@dimen/customize_reason_name_padding"
+        android:textSize="@dimen/customize_reason_description_text" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/customize_reason_name_padding"
+        android:layout_marginTop="@dimen/customize_action_name_padding"
+        android:textStyle="bold"
+        android:text="@string/customize_reason_severity" />
 
     <NumberPicker
         android:id="@+id/severity"

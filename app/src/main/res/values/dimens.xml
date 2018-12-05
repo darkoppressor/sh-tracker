@@ -25,10 +25,12 @@
 
     <!-- Customize Reason -->
     <dimen name="customize_reason_name_padding">10dp</dimen>
-    <dimen name="customize_reason_name_text">18sp</dimen>
+    <dimen name="customize_reason_name_text">20sp</dimen>
+    <dimen name="customize_reason_description_text">14sp</dimen>
 
     <!-- Customize Action -->
     <dimen name="customize_action_name_padding">10dp</dimen>
-    <dimen name="customize_action_name_text">18sp</dimen>
+    <dimen name="customize_action_name_text">20sp</dimen>
+    <dimen name="customize_action_description_text">14sp</dimen>
 
 </resources>

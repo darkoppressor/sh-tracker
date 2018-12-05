@@ -28,6 +28,7 @@
 
     <!-- Customize Reason -->
     <string name="customize_reason_title">Elaborate</string>
+    <string name="customize_reason_severity">Severity:</string>
     <string name="customize_reason_comment">Comment</string>
 
     <!-- Add Reason Template -->
@@ -42,6 +43,7 @@
 
     <!-- Customize Action -->
     <string name="customize_action_title">Elaborate</string>
+    <string name="customize_action_severity">Severity:</string>
     <string name="customize_action_comment">Comment</string>
 
     <!-- Add Action Template -->

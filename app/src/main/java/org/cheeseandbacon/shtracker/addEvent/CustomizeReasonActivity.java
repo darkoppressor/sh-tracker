@@ -8,6 +8,7 @@ package org.cheeseandbacon.shtracker.addEvent;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 
@@ -27,6 +28,7 @@ public class CustomizeReasonActivity extends BaseActivity {
     public static final int DEFAULT_SEVERITY = 1;
 
     private TextView reason;
+    private TextView description;
     private NumberPicker severity;
     private BaseEditText comment;
 
@@ -69,6 +71,7 @@ public class CustomizeReasonActivity extends BaseActivity {
         hideNavigationMenu();
 
         reason = findViewById(R.id.reason);
+        description = findViewById(R.id.description);
         severity = findViewById(R.id.severity);
         comment = findViewById(R.id.comment);
 
@@ -105,6 +108,12 @@ public class CustomizeReasonActivity extends BaseActivity {
     private void buildUi () {
         if (reasonTemplate != null) {
             reason.setText(reasonTemplate.getName());
+
+            if (reasonTemplate.getDescription().length() > 0) {
+                description.setText(reasonTemplate.getDescription());
+            } else {
+                description.setVisibility(View.GONE);
+            }
         }
     }
 }

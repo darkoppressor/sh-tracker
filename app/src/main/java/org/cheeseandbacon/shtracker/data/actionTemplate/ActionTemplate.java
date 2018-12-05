@@ -10,7 +10,6 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 @Entity(indices = {@Index(value = "id", unique = true)})
 public class ActionTemplate {
@@ -21,10 +20,10 @@ public class ActionTemplate {
     private Long creationTimestamp;
     @NonNull
     private String name;
-    @Nullable
+    @NonNull
     private String description;
 
-    public ActionTemplate (@NonNull String id, @NonNull Long creationTimestamp, @NonNull String name, @Nullable String description) {
+    public ActionTemplate (@NonNull String id, @NonNull Long creationTimestamp, @NonNull String name, @NonNull String description) {
         this.id = id;
         this.creationTimestamp = creationTimestamp;
         this.name = name;
@@ -58,12 +57,12 @@ public class ActionTemplate {
         this.name = name;
     }
 
-    @Nullable
+    @NonNull
     public String getDescription () {
         return description;
     }
 
-    public void setDescription (@Nullable String description) {
+    public void setDescription (@NonNull String description) {
         this.description = description;
     }
 }

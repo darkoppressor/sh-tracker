@@ -43,15 +43,15 @@
 
         </activity>
 
-        <activity android:name=".addEvent.AddEventActivity"
+        <activity android:name=".event.EventActivity"
             android:screenOrientation="portrait"
             android:supportsPictureInPicture="true" />
 
-        <activity android:name=".addEvent.SelectReasonActivity"
+        <activity android:name=".event.SelectReasonActivity"
             android:screenOrientation="portrait"
             android:supportsPictureInPicture="true" />
 
-        <activity android:name=".addEvent.CustomizeReasonActivity"
+        <activity android:name=".event.CustomizeReasonActivity"
             android:screenOrientation="portrait"
             android:supportsPictureInPicture="true" />
 
@@ -59,11 +59,11 @@
             android:screenOrientation="portrait"
             android:supportsPictureInPicture="true" />
 
-        <activity android:name=".addEvent.SelectActionActivity"
+        <activity android:name=".event.SelectActionActivity"
             android:screenOrientation="portrait"
             android:supportsPictureInPicture="true" />
 
-        <activity android:name=".addEvent.CustomizeActionActivity"
+        <activity android:name=".event.CustomizeActionActivity"
             android:screenOrientation="portrait"
             android:supportsPictureInPicture="true" />
 

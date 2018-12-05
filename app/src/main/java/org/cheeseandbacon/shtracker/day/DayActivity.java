@@ -17,10 +17,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import org.cheeseandbacon.shtracker.R;
-import org.cheeseandbacon.shtracker.addEvent.AddEventActivity;
 import org.cheeseandbacon.shtracker.base.BaseActivity;
 import org.cheeseandbacon.shtracker.data.event.Event;
 import org.cheeseandbacon.shtracker.data.event.EventLoader;
+import org.cheeseandbacon.shtracker.event.EventActivity;
 import org.cheeseandbacon.shtracker.util.DateAndTime;
 import org.cheeseandbacon.shtracker.util.Vibration;
 
@@ -142,8 +142,8 @@ public class DayActivity extends BaseActivity {
             listView.setOnItemClickListener((parent, view, position, id) -> {
                 final Event item = adapter.getItem(position);
 
-                startActivityForResult(new Intent(this, AddEventActivity.class)
-                        .putExtra(AddEventActivity.EXTRA_EVENT_ID, item.getId())
+                startActivityForResult(new Intent(this, EventActivity.class)
+                        .putExtra(EventActivity.EXTRA_EVENT_ID, item.getId())
                         , REQUEST_CODE_EDIT_EVENT
                 );
             });
@@ -218,9 +218,9 @@ public class DayActivity extends BaseActivity {
             time = DateAndTime.LAST_MINUTE_OF_DAY;
         }
 
-        startActivityForResult(new Intent(this, AddEventActivity.class)
-                .putExtra(AddEventActivity.EXTRA_DATE, DateAndTime.dateToDateString(dates.getCurrent()))
-                .putExtra(AddEventActivity.EXTRA_TIME, time), REQUEST_CODE_EVENT_ADDITION
+        startActivityForResult(new Intent(this, EventActivity.class)
+                .putExtra(EventActivity.EXTRA_DATE, DateAndTime.dateToDateString(dates.getCurrent()))
+                .putExtra(EventActivity.EXTRA_TIME, time), REQUEST_CODE_EVENT_ADDITION
         );
     }
 }

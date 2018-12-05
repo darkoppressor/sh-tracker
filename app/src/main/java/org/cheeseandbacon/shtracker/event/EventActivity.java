@@ -4,7 +4,7 @@
  * See the file docs/LICENSE.txt for the full license text.
  */
 
-package org.cheeseandbacon.shtracker.addEvent;
+package org.cheeseandbacon.shtracker.event;
 
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -32,16 +32,16 @@ import org.cheeseandbacon.shtracker.util.Vibration;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class AddEventActivity extends BaseActivity implements TimePickerDialog.OnTimeSetListener {
-    public static final String EXTRA_DATE = "org.cheeseandbacon.shtracker.addEvent.date";
-    public static final String EXTRA_TIME = "org.cheeseandbacon.shtracker.addEvent.time";
-    public static final String EXTRA_EVENT_ID = "org.cheeseandbacon.shtracker.addEvent.eventId";
-    public static final String EXTRA_REASON_TEMPLATE_ID = "org.cheeseandbacon.shtracker.addEvent.reasonTemplateId";
-    public static final String EXTRA_REASON_COMMENT = "org.cheeseandbacon.shtracker.addEvent.reasonComment";
-    public static final String EXTRA_REASON_SEVERITY = "org.cheeseandbacon.shtracker.addEvent.reasonSeverity";
-    public static final String EXTRA_ACTION_TEMPLATE_ID = "org.cheeseandbacon.shtracker.addEvent.actionTemplateId";
-    public static final String EXTRA_ACTION_COMMENT = "org.cheeseandbacon.shtracker.addEvent.actionComment";
-    public static final String EXTRA_ACTION_SEVERITY = "org.cheeseandbacon.shtracker.addEvent.actionSeverity";
+public class EventActivity extends BaseActivity implements TimePickerDialog.OnTimeSetListener {
+    public static final String EXTRA_DATE = "org.cheeseandbacon.shtracker.event.date";
+    public static final String EXTRA_TIME = "org.cheeseandbacon.shtracker.event.time";
+    public static final String EXTRA_EVENT_ID = "org.cheeseandbacon.shtracker.event.eventId";
+    public static final String EXTRA_REASON_TEMPLATE_ID = "org.cheeseandbacon.shtracker.event.reasonTemplateId";
+    public static final String EXTRA_REASON_COMMENT = "org.cheeseandbacon.shtracker.event.reasonComment";
+    public static final String EXTRA_REASON_SEVERITY = "org.cheeseandbacon.shtracker.event.reasonSeverity";
+    public static final String EXTRA_ACTION_TEMPLATE_ID = "org.cheeseandbacon.shtracker.event.actionTemplateId";
+    public static final String EXTRA_ACTION_COMMENT = "org.cheeseandbacon.shtracker.event.actionComment";
+    public static final String EXTRA_ACTION_SEVERITY = "org.cheeseandbacon.shtracker.event.actionSeverity";
     public static final int REQUEST_CODE_REASON_SELECTION = 0;
     public static final int REQUEST_CODE_ACTION_SELECTION = 1;
     public static final int REQUEST_CODE_EDIT_REASON = 2;

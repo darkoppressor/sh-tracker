@@ -12,12 +12,12 @@ import android.support.annotation.Nullable;
 import android.widget.Toast;
 
 import org.cheeseandbacon.shtracker.R;
-import org.cheeseandbacon.shtracker.addEvent.CustomizeActionActivity;
 import org.cheeseandbacon.shtracker.base.BaseActivity;
 import org.cheeseandbacon.shtracker.base.BaseEditText;
 import org.cheeseandbacon.shtracker.base.Menu;
 import org.cheeseandbacon.shtracker.data.actionTemplate.ActionTemplate;
 import org.cheeseandbacon.shtracker.data.actionTemplate.ActionTemplateLoader;
+import org.cheeseandbacon.shtracker.event.CustomizeActionActivity;
 import org.cheeseandbacon.shtracker.util.Vibration;
 
 import java.util.ArrayList;

@@ -11,7 +11,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="@dimen/base_padding"
-    tools:context=".addEvent.CustomizeReasonActivity">
+    tools:context=".event.CustomizeReasonActivity">
 
     <TextView
         android:id="@+id/reason"

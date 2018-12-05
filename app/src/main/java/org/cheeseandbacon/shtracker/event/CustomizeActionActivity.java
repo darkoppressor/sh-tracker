@@ -4,7 +4,7 @@
  * See the file docs/LICENSE.txt for the full license text.
  */
 
-package org.cheeseandbacon.shtracker.addEvent;
+package org.cheeseandbacon.shtracker.event;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,9 +21,9 @@ import org.cheeseandbacon.shtracker.data.actionTemplate.ActionTemplateLoader;
 import org.cheeseandbacon.shtracker.util.Vibration;
 
 public class CustomizeActionActivity extends BaseActivity {
-    public static final String EXTRA_TEMPLATE_ID = "org.cheeseandbacon.shtracker.addEvent.templateId";
-    public static final String EXTRA_SEVERITY = "org.cheeseandbacon.shtracker.addEvent.severity";
-    public static final String EXTRA_COMMENT = "org.cheeseandbacon.shtracker.addEvent.comment";
+    public static final String EXTRA_TEMPLATE_ID = "org.cheeseandbacon.shtracker.event.templateId";
+    public static final String EXTRA_SEVERITY = "org.cheeseandbacon.shtracker.event.severity";
+    public static final String EXTRA_COMMENT = "org.cheeseandbacon.shtracker.event.comment";
 
     public static final int SEVERITY_MINIMUM = 1;
     public static final int SEVERITY_MAXIMUM = 10;
@@ -56,9 +56,9 @@ public class CustomizeActionActivity extends BaseActivity {
                             Vibration.buttonPress(this);
 
                             Intent intent = new Intent();
-                            intent.putExtra(AddEventActivity.EXTRA_ACTION_TEMPLATE_ID, templateId);
-                            intent.putExtra(AddEventActivity.EXTRA_ACTION_COMMENT, comment.getString());
-                            intent.putExtra(AddEventActivity.EXTRA_ACTION_SEVERITY, severity.getValue());
+                            intent.putExtra(EventActivity.EXTRA_ACTION_TEMPLATE_ID, templateId);
+                            intent.putExtra(EventActivity.EXTRA_ACTION_COMMENT, comment.getString());
+                            intent.putExtra(EventActivity.EXTRA_ACTION_SEVERITY, severity.getValue());
 
                             setResult(RESULT_OK, intent);
 

@@ -4,7 +4,7 @@
  * See the file docs/LICENSE.txt for the full license text.
  */
 
-package org.cheeseandbacon.shtracker.addEvent;
+package org.cheeseandbacon.shtracker.event;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;

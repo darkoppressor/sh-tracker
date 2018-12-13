@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2018 Cheese and Bacon Games, LLC
+  ~ This file is licensed under the MIT License.
+  ~ See the file docs/LICENSE.txt for the full license text.
+  -->
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/actionJumpToToday"
+        android:icon="@drawable/ic_baseline_calendar_today_24px"
+        android:title="@string/day_menu_today"
+        app:showAsAction="ifRoom" />
+
+</menu>

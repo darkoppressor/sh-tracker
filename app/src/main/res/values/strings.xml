@@ -19,6 +19,7 @@
 
     <!-- Day -->
     <string name="day_title">SH Tracker</string>
+    <string name="day_menu_today">Today</string>
     <string name="day_date_yesterday">Yesterday</string>
     <string name="day_date_today">Today</string>
     <string name="day_date_tomorrow">Tomorrow</string>

@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import org.cheeseandbacon.shtracker.R;
 import org.cheeseandbacon.shtracker.base.BaseActivity;
+import org.cheeseandbacon.shtracker.base.Menu;
 import org.cheeseandbacon.shtracker.data.event.Event;
 import org.cheeseandbacon.shtracker.data.event.EventLoader;
 import org.cheeseandbacon.shtracker.event.EventActivity;
@@ -50,7 +51,18 @@ public class DayActivity extends BaseActivity {
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        onCreate(R.layout.activity_day, getString(R.string.day_title), null);
+        onCreate(R.layout.activity_day, getString(R.string.day_title), new Menu(() -> R.menu.day, (item) -> {
+            switch (item.getItemId()) {
+                case R.id.actionJumpToToday:
+                    Vibration.buttonPress(this);
+
+                    loadDate(Calendar.getInstance());
+
+                    return true;
+                default:
+                    return false;
+            }
+        }));
 
         textDateBefore = findViewById(R.id.mainDateBefore);
         textDayOfWeekBefore = findViewById(R.id.mainDayOfWeekBefore);
@@ -72,15 +84,7 @@ public class DayActivity extends BaseActivity {
             }
         }
 
-        dates = new Dates(calendar);
-
-        setDateTexts();
-
-        liveData = null;
-        events = null;
-        adapter = null;
-
-        loadUi();
+        loadDate(calendar);
     }
 
     @Override
@@ -171,16 +175,12 @@ public class DayActivity extends BaseActivity {
         textDayOfWeek.setText(DateAndTime.dateToDayOfWeekString(date));
     }
 
-    public void scrollBack (View view) {
-        Vibration.buttonPress(this);
-
-        Calendar newCurrent = Calendar.getInstance();
-        newCurrent.setTime(dates.getBefore());
-
-        dates = new Dates(newCurrent);
+    private void loadDate (final Calendar calendar) {
+        dates = new Dates(calendar);
 
         setDateTexts();
 
+        liveData = null;
         events = null;
         adapter = null;
 
@@ -189,22 +189,22 @@ public class DayActivity extends BaseActivity {
         loadUi();
     }
 
+    public void scrollBack (View view) {
+        Vibration.buttonPress(this);
+
+        Calendar newCurrent = Calendar.getInstance();
+        newCurrent.setTime(dates.getBefore());
+
+        loadDate(newCurrent);
+    }
+
     public void scrollForward (View view) {
         Vibration.buttonPress(this);
 
         Calendar newCurrent = Calendar.getInstance();
         newCurrent.setTime(dates.getAfter());
 
-        dates = new Dates(newCurrent);
-
-        setDateTexts();
-
-        events = null;
-        adapter = null;
-
-        listView.setAdapter(null);
-
-        loadUi();
+        loadDate(newCurrent);
     }
 
     public void addEvent (View view) {

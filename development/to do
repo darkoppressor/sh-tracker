@@ -1,5 +1,4 @@
-Add '?' tooltip button thing for severity
-Colors for severity
+Bug: Select list for action and reason can have more than 1 "new <whatever>" item
 
 Add title to day list entries
 Action takes precedence when both reason and action are present in day list

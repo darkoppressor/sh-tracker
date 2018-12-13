@@ -141,10 +141,12 @@ public class SelectReasonActivity extends BaseActivity {
                 }
             });
 
-            View view = getLayoutInflater().inflate(R.layout.reason_row, null);
-            TextView textReason = view.findViewById(R.id.reason);
-            textReason.setText(getString(R.string.select_reason_new_reason));
-            listView.addFooterView(view);
+            if (listView.getFooterViewsCount() == 0) {
+                View view = getLayoutInflater().inflate(R.layout.reason_row, null);
+                TextView textReason = view.findViewById(R.id.reason);
+                textReason.setText(getString(R.string.select_reason_new_reason));
+                listView.addFooterView(view);
+            }
         }
     }
 }

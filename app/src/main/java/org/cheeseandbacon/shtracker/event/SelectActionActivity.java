@@ -141,10 +141,12 @@ public class SelectActionActivity extends BaseActivity {
                 }
             });
 
-            View view = getLayoutInflater().inflate(R.layout.action_row, null);
-            TextView textAction = view.findViewById(R.id.action);
-            textAction.setText(getString(R.string.select_action_new_action));
-            listView.addFooterView(view);
+            if (listView.getFooterViewsCount() == 0) {
+                View view = getLayoutInflater().inflate(R.layout.action_row, null);
+                TextView textAction = view.findViewById(R.id.action);
+                textAction.setText(getString(R.string.select_action_new_action));
+                listView.addFooterView(view);
+            }
         }
     }
 }

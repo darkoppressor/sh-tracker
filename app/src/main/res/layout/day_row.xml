@@ -9,6 +9,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:padding="@dimen/day_padding">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/day_date_text"
+            android:textColor="@color/gray" />
+
+        <TextView
+            android:id="@+id/severity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/day_date_text_small"
+            android:textColor="@color/gray" />
+
+    </LinearLayout>
+
     <TextView
         android:id="@+id/time"
         android:layout_width="wrap_content"
@@ -17,6 +41,6 @@
         android:layout_centerVertical="true"
         android:padding="@dimen/day_padding"
         android:textSize="@dimen/day_date_text_small"
-        android:textColor="@android:color/darker_gray" />
+        android:textColor="@color/gray" />
 
 </RelativeLayout>

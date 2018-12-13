@@ -22,6 +22,7 @@
     <string name="day_date_yesterday">Yesterday</string>
     <string name="day_date_today">Today</string>
     <string name="day_date_tomorrow">Tomorrow</string>
+    <string name="day_list_row_severity">Severity: %1$d</string>
 
     <!-- Add Event -->
     <string name="add_event_title">Add Event</string>

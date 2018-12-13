@@ -13,14 +13,14 @@
         tools:ignore="AlwaysShowAction"
         android:id="@+id/actionCancel"
         android:icon="@drawable/ic_baseline_close_24px"
-        android:title="@string/app_cancel"
+        android:title="@string/cancel"
         app:showAsAction="always|withText" />
 
     <item
         tools:ignore="AlwaysShowAction"
         android:id="@+id/actionDone"
         android:icon="@drawable/ic_baseline_check_24px"
-        android:title="@string/app_done"
+        android:title="@string/done"
         app:showAsAction="always|withText" />
 
 </menu>

@@ -13,7 +13,7 @@
         tools:ignore="AlwaysShowAction"
         android:id="@+id/actionCancel"
         android:icon="@drawable/ic_baseline_close_24px"
-        android:title="@string/app_cancel"
+        android:title="@string/cancel"
         app:showAsAction="always|withText" />
 
 </menu>

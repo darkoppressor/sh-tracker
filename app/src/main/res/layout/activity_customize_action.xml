@@ -28,13 +28,32 @@
         android:padding="@dimen/customize_action_name_padding"
         android:textSize="@dimen/customize_action_description_text" />
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_marginStart="@dimen/customize_action_name_padding"
-        android:layout_marginTop="@dimen/customize_action_name_padding"
-        android:textStyle="bold"
-        android:text="@string/customize_action_severity" />
+        android:layout_marginTop="@dimen/customize_action_name_padding">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/base_padding_help_button"
+            android:layout_gravity="center_vertical"
+            android:textStyle="bold"
+            android:text="@string/customize_action_severity" />
+
+        <ImageButton
+            tools:ignore="ContentDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_baseline_help_24px"
+            android:tint="@color/colorPrimary"
+            android:onClick="helpSeverity" />
+
+    </LinearLayout>
 
     <NumberPicker
         android:id="@+id/severity"

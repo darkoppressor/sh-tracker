@@ -7,9 +7,10 @@
 <resources>
 
     <string name="app_name">SH Tracker</string>
-    <string name="app_cancel">Cancel</string>
-    <string name="app_done">Done</string>
-    <string name="app_delete">Delete</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="done">Done</string>
+    <string name="delete">Delete</string>
 
     <!-- Navigation Menu -->
     <string name="navigation_menu_day">Browse Events by Day</string>
@@ -35,7 +36,9 @@
 
     <!-- Customize Reason -->
     <string name="customize_reason_title">Elaborate on the Reason</string>
-    <string name="customize_reason_severity">Severity:</string>
+    <string name="customize_reason_severity">Severity</string>
+    <string name="customize_reason_help_severity_title">Severity</string>
+    <string name="customize_reason_help_severity_message">Select a severity from 1 to 10 (1 being least severe and 10 being most severe). Much like assigning a number to a physical pain, this is subjective.</string>
     <string name="customize_reason_comment">Comment</string>
 
     <!-- Add Reason Template -->
@@ -51,7 +54,9 @@
 
     <!-- Customize Action -->
     <string name="customize_action_title">Elaborate on the Action</string>
-    <string name="customize_action_severity">Severity:</string>
+    <string name="customize_action_severity">Severity</string>
+    <string name="customize_action_help_severity_title">Severity</string>
+    <string name="customize_action_help_severity_message">Select a severity from 1 to 10 (1 being least severe and 10 being most severe). Much like assigning a number to a physical pain, this is subjective.</string>
     <string name="customize_action_comment">Comment</string>
 
     <!-- Add Action Template -->

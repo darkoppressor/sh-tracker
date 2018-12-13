@@ -6,6 +6,7 @@
 
 package org.cheeseandbacon.shtracker.event;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -123,5 +124,20 @@ public class CustomizeActionActivity extends BaseActivity {
                 description.setVisibility(View.GONE);
             }
         }
+    }
+
+    public void helpSeverity (View view) {
+        Vibration.buttonPress(this);
+
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.customize_action_help_severity_title)
+                .setMessage(R.string.customize_action_help_severity_message)
+                .setPositiveButton(R.string.ok, (dialog, which) -> {
+                    Vibration.buttonPress(this);
+
+                    dialog.dismiss();
+                })
+                .setCancelable(true)
+                .show();
     }
 }

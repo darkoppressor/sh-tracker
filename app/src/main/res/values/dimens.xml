@@ -12,6 +12,7 @@
     <dimen name="base_text">16sp</dimen>
     <dimen name="base_padding">2dp</dimen>
     <dimen name="base_padding_floating_action_button">16dp</dimen>
+    <dimen name="base_padding_help_button">4dp</dimen>
 
     <!-- Day -->
     <dimen name="day_date_text">14sp</dimen>

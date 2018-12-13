@@ -11,6 +11,7 @@ import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Space;
 import android.widget.TextView;
 
 import org.cheeseandbacon.shtracker.R;
@@ -29,10 +30,12 @@ public class ActionAdapter extends BaseAdapter {
         this.items = items;
     }
 
+    @Override
     public int getCount (){
         return items.size();
     }
 
+    @Override
     public ActionTemplate getItem (int position) {
         return items.get(position);
     }
@@ -44,16 +47,28 @@ public class ActionAdapter extends BaseAdapter {
 
     @Override
     public View getView (int position, View convertView, ViewGroup parent) {
-        if (convertView == null) {
-            convertView = activity.getLayoutInflater().inflate(R.layout.action_row, null);
+        if (!isItemVisible(position)) {
+            if (!(convertView instanceof Space)) {
+                convertView = new Space(activity);
+            }
+        } else {
+            if (convertView == null || convertView instanceof Space) {
+                convertView = activity.getLayoutInflater().inflate(R.layout.action_row, null);
+            }
+
+            final ActionTemplate item = getItem(position);
+
+            TextView textAction = convertView.findViewById(R.id.action);
+
+            textAction.setText(item.getName());
         }
 
+        return convertView;
+    }
+
+    public boolean isItemVisible (int position) {
         final ActionTemplate item = getItem(position);
 
-        TextView textAction = convertView.findViewById(R.id.action);
-
-        textAction.setText(item.getName());
-
-        return convertView;
+        return !item.isDeleted();
     }
 }

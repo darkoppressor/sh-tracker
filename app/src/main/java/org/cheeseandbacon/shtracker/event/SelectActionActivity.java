@@ -122,16 +122,22 @@ public class SelectActionActivity extends BaseActivity {
             listView.setAdapter(adapter);
             listView.setOnItemClickListener((parent, view, position, id) -> {
                 if (position == adapter.getCount()) {
+                    Vibration.buttonPress(this);
+
                     startActivityForResult(new Intent(this, AddActionTemplateActivity.class)
                                     .putExtra(AddActionTemplateActivity.EXTRA_CUSTOMIZE_AFTER, true),
                             REQUEST_CODE_ADD_ACTION_TEMPLATE);
                 } else {
                     final ActionTemplate item = adapter.getItem(position);
 
-                    startActivityForResult(new Intent(this, CustomizeActionActivity.class)
-                                    .putExtra(CustomizeActionActivity.EXTRA_TEMPLATE_ID, item.getId()),
-                            REQUEST_CODE_CUSTOMIZE_SELECTION
-                    );
+                    if (adapter.isItemVisible(position)) {
+                        Vibration.buttonPress(this);
+
+                        startActivityForResult(new Intent(this, CustomizeActionActivity.class)
+                                        .putExtra(CustomizeActionActivity.EXTRA_TEMPLATE_ID, item.getId()),
+                                REQUEST_CODE_CUSTOMIZE_SELECTION
+                        );
+                    }
                 }
             });
 

@@ -97,12 +97,11 @@ public class AddReasonTemplateActivity extends BaseActivity {
 
                         ArrayList<ReasonTemplate> data = new ArrayList<>();
 
-                        reasonTemplate.setName(name.getString());
-                        reasonTemplate.setDescription(description.getString());
+                        reasonTemplate.setDeleted(true);
 
                         data.add(reasonTemplate);
 
-                        ReasonTemplateLoader.load(this, dao -> dao.delete(ReasonTemplate.class, data, () -> {
+                        ReasonTemplateLoader.load(this, dao -> dao.update(ReasonTemplate.class, data, () -> {
                             setResult(RESULT_OK);
 
                             finish();
@@ -168,7 +167,8 @@ public class AddReasonTemplateActivity extends BaseActivity {
                     id,
                     Calendar.getInstance().getTime().getTime(),
                     name.getString(),
-                    description.getString()
+                    description.getString(),
+                    false
             ));
 
             if (customizeAfter) {

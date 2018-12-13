@@ -22,12 +22,14 @@ public class ReasonTemplate {
     private String name;
     @NonNull
     private String description;
+    private boolean deleted;
 
-    public ReasonTemplate (@NonNull String id, @NonNull Long creationTimestamp, @NonNull String name, @NonNull String description) {
+    public ReasonTemplate(@NonNull String id, @NonNull Long creationTimestamp, @NonNull String name, @NonNull String description, boolean deleted) {
         this.id = id;
         this.creationTimestamp = creationTimestamp;
         this.name = name;
         this.description = description;
+        this.deleted = deleted;
     }
 
     @NonNull
@@ -64,5 +66,13 @@ public class ReasonTemplate {
 
     public void setDescription (@NonNull String description) {
         this.description = description;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 }

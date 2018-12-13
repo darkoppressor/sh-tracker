@@ -96,12 +96,11 @@ public class AddActionTemplateActivity extends BaseActivity {
 
                         ArrayList<ActionTemplate> data = new ArrayList<>();
 
-                        actionTemplate.setName(name.getString());
-                        actionTemplate.setDescription(description.getString());
+                        actionTemplate.setDeleted(true);
 
                         data.add(actionTemplate);
 
-                        ActionTemplateLoader.load(this, dao -> dao.delete(ActionTemplate.class, data, () -> {
+                        ActionTemplateLoader.load(this, dao -> dao.update(ActionTemplate.class, data, () -> {
                             setResult(RESULT_OK);
 
                             finish();
@@ -167,7 +166,8 @@ public class AddActionTemplateActivity extends BaseActivity {
                     id,
                     Calendar.getInstance().getTime().getTime(),
                     name.getString(),
-                    description.getString()
+                    description.getString(),
+                    false
             ));
 
             if (customizeAfter) {

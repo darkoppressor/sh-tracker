@@ -90,10 +90,14 @@ public class ActionTemplatesActivity extends BaseActivity {
             listView.setOnItemClickListener((parent, view, position, id) -> {
                 final ActionTemplate item = adapter.getItem(position);
 
-                startActivityForResult(new Intent(this, AddActionTemplateActivity.class)
-                                .putExtra(AddActionTemplateActivity.EXTRA_TEMPLATE_ID, item.getId()),
-                        REQUEST_CODE_EDIT_ACTION_TEMPLATE
-                );
+                if (adapter.isItemVisible(position)) {
+                    Vibration.buttonPress(this);
+
+                    startActivityForResult(new Intent(this, AddActionTemplateActivity.class)
+                                    .putExtra(AddActionTemplateActivity.EXTRA_TEMPLATE_ID, item.getId()),
+                            REQUEST_CODE_EDIT_ACTION_TEMPLATE
+                    );
+                }
             });
         }
     }

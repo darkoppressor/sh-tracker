@@ -122,16 +122,22 @@ public class SelectReasonActivity extends BaseActivity {
             listView.setAdapter(adapter);
             listView.setOnItemClickListener((parent, view, position, id) -> {
                 if (position == adapter.getCount()) {
+                    Vibration.buttonPress(this);
+
                     startActivityForResult(new Intent(this, AddReasonTemplateActivity.class)
                                     .putExtra(AddReasonTemplateActivity.EXTRA_CUSTOMIZE_AFTER, true),
                             REQUEST_CODE_ADD_REASON_TEMPLATE);
                 } else {
                     final ReasonTemplate item = adapter.getItem(position);
 
-                    startActivityForResult(new Intent(this, CustomizeReasonActivity.class)
-                                    .putExtra(CustomizeReasonActivity.EXTRA_TEMPLATE_ID, item.getId()),
-                            REQUEST_CODE_CUSTOMIZE_SELECTION
-                    );
+                    if (adapter.isItemVisible(position)) {
+                        Vibration.buttonPress(this);
+
+                        startActivityForResult(new Intent(this, CustomizeReasonActivity.class)
+                                        .putExtra(CustomizeReasonActivity.EXTRA_TEMPLATE_ID, item.getId()),
+                                REQUEST_CODE_CUSTOMIZE_SELECTION
+                        );
+                    }
                 }
             });
 

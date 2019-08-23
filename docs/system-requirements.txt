@@ -1,2 +1,2 @@
 Android
-OS: 6.0 Marshmallow (API level 23) or newer
+OS: 8.0 Oreo (API level 26) or newer

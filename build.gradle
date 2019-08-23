@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2019 Cheese and Bacon Games, LLC
+ * This file is licensed under the MIT License.
+ * See the file docs/LICENSE.txt for the full license text.
+ */
+
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
@@ -24,6 +30,6 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '4.10'
+wrapper {
+    gradleVersion = '5.6'
 }

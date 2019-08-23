@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Cheese and Bacon Games, LLC
+ * Copyright (c) 2019 Cheese and Bacon Games, LLC
  * This file is licensed under the MIT License.
  * See the file docs/LICENSE.txt for the full license text.
  */
@@ -17,7 +17,7 @@ android {
         versionCode deps.version_code
         versionName deps.version_name
 
-        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+        testInstrumentationRunner deps.test_runner
     }
 
     compileOptions {

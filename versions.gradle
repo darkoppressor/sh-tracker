@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Cheese and Bacon Games, LLC
+ * Copyright (c) 2019 Cheese and Bacon Games, LLC
  * This file is licensed under the MIT License.
  * See the file docs/LICENSE.txt for the full license text.
  */
@@ -10,9 +10,9 @@ ext.deps = [:]
 def deps = [:]
 
 def build_versions = [:]
-build_versions.target_sdk = 28
-build_versions.min_sdk = 23
-build_versions.build_tools = '28.0.3'
+build_versions.target_sdk = 29
+build_versions.min_sdk = 26
+build_versions.build_tools = '29.0.2'
 build_versions.java = JavaVersion.VERSION_1_8
 ext.build_versions = build_versions
 
@@ -26,7 +26,7 @@ versions.core = '1.1.1'
 versions.lifecycle = '1.1.1'
 versions.room = '1.1.1'
 versions.paging = '1.0.1'
-versions.android_gradle_plugin = '3.0.1'
+versions.android_gradle_plugin = '3.5.0'
 versions.gson = '2.8.5'
 versions.times_square = '1.7.10'
 
@@ -76,6 +76,7 @@ deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_g
 deps.junit = "junit:junit:$versions.junit"
 deps.gson = "com.google.code.gson:gson:$versions.gson"
 deps.times_square = "com.squareup:android-times-square:$versions.times_square@aar"
+deps.test_runner = 'android.support.test.runner.AndroidJUnitRunner'
 
 deps.test_exclude_group = 'com.android.support'
 deps.test_exclude_module = 'support-annotations'

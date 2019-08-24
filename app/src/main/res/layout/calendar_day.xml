@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019 Cheese and Bacon Games, LLC
+  ~ This file is licensed under the MIT License.
+  ~ See the file docs/LICENSE.txt for the full license text.
+  -->
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/month_cell_height"
+    android:padding="@dimen/base_padding">
+
+    <TextView
+        android:id="@+id/day"
+        style="@style/CalendarCell.CalendarDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
+
+    <LinearLayout
+        android:id="@+id/dots"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true">
+
+        <ImageView
+            tools:ignore="ContentDescription"
+            android:id="@+id/dot1"
+            android:layout_width="@dimen/month_dot_size"
+            android:layout_height="@dimen/month_dot_size"
+            android:src="@drawable/ic_baseline_fiber_manual_record_24px" />
+
+        <ImageView
+            tools:ignore="ContentDescription"
+            android:id="@+id/dot2"
+            android:layout_width="@dimen/month_dot_size"
+            android:layout_height="@dimen/month_dot_size"
+            android:src="@drawable/ic_baseline_fiber_manual_record_24px" />
+
+        <ImageView
+            tools:ignore="ContentDescription"
+            android:id="@+id/dot3"
+            android:layout_width="@dimen/month_dot_size"
+            android:layout_height="@dimen/month_dot_size"
+            android:src="@drawable/ic_baseline_fiber_manual_record_24px" />
+
+        <ImageView
+            tools:ignore="ContentDescription"
+            android:id="@+id/dot4"
+            android:layout_width="@dimen/month_dot_size"
+            android:layout_height="@dimen/month_dot_size"
+            android:src="@drawable/ic_baseline_add_24px" />
+
+    </LinearLayout>
+
+</RelativeLayout>

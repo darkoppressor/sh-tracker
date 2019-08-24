@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--
-  ~ Copyright (c) 2018 Cheese and Bacon Games, LLC
+  ~ Copyright (c) 2019 Cheese and Bacon Games, LLC
   ~ This file is licensed under the MIT License.
   ~ See the file docs/LICENSE.txt for the full license text.
   -->
@@ -19,6 +19,10 @@
     <dimen name="day_date_text_small">12sp</dimen>
     <dimen name="day_padding">8dp</dimen>
     <dimen name="day_nav_arrow">32dp</dimen>
+
+    <!-- Month -->
+    <dimen name="month_cell_height">60dp</dimen>
+    <dimen name="month_dot_size">12dp</dimen>
 
     <!-- Add Event -->
     <dimen name="add_event_padding">6dp</dimen>

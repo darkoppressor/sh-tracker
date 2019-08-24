@@ -26,3 +26,18 @@ User can add an event with a button
 
 There is a menu for editing, adding, and removing Reason Templates
 There is a menu for editing, adding, and removing Action Templates
+
+There is a screen that displays events in a list for a specific day (defaulting to the current day)
+This screen is the default screen for the app
+This screen has a menu button for jumping to the current day
+This screen can be scrolled forward and backward by a day at at a time
+
+There is a screen that displays events in a calendar view
+Clicking on a day goes to the day screen for that day
+For this screen, events derive a severity from reason severity and action severity (if either or both are present)
+QQQ Each day on the calendar can show a dot for each event in that day, up to some maximum
+QQQ If the maximum is exceeded, it should probably show some kind of icon to represent this instead
+QQQ Calendar can have colors for each time period
+QQQ Event severities should all be associated with a color spectrum
+QQQ A time period can show either a base color or the color of the event in it
+QQQ If a time period has multiple events in it, need to handle averaging the colors together

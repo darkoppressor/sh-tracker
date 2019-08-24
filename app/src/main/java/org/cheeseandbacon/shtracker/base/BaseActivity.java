@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Cheese and Bacon Games, LLC
+ * Copyright (c) 2019 Cheese and Bacon Games, LLC
  * This file is licensed under the MIT License.
  * See the file docs/LICENSE.txt for the full license text.
  */
@@ -28,6 +28,7 @@ import android.widget.FrameLayout;
 import org.cheeseandbacon.shtracker.R;
 import org.cheeseandbacon.shtracker.actionTemplates.ActionTemplatesActivity;
 import org.cheeseandbacon.shtracker.day.DayActivity;
+import org.cheeseandbacon.shtracker.month.MonthActivity;
 import org.cheeseandbacon.shtracker.reasonTemplates.ReasonTemplatesActivity;
 import org.cheeseandbacon.shtracker.util.Vibration;
 
@@ -107,6 +108,11 @@ public abstract class BaseActivity extends AppCompatActivity {
                         .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 )));
 
+        navigationItems.add(new NavigationItem(getString(R.string.navigation_menu_month), 0,
+                () -> startActivity(new Intent(this, MonthActivity.class)
+                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                )));
+
         navigationItems.add(new NavigationItem(getString(R.string.navigation_menu_reasons), 0,
                 () -> startActivity(new Intent(this, ReasonTemplatesActivity.class)
                         .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
@@ -129,7 +135,8 @@ public abstract class BaseActivity extends AppCompatActivity {
             NavigationItem item = navigationItems.get(i);
             item.setId(i);
 
-            MenuItem menuItem = navigationView.getMenu().add(Menu.NONE, i, Menu.NONE, item.getName());
+            MenuItem menuItem =
+                    navigationView.getMenu().add(Menu.NONE, i, Menu.NONE, item.getName());
             menuItem.setIcon(item.getDrawableId());
         }
     }
@@ -182,7 +189,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected (MenuItem item) {
+    public boolean onOptionsItemSelected (@NonNull MenuItem item) {
         if (!actionBarDrawerToggle.onOptionsItemSelected(item) && (menu == null ||
                 !menu.getOnMenuItemClickListener().onMenuItemClick(item))) {
             switch (item.getItemId()) {

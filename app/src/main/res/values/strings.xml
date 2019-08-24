@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2018 Cheese and Bacon Games, LLC
+  ~ Copyright (c) 2019 Cheese and Bacon Games, LLC
   ~ This file is licensed under the MIT License.
   ~ See the file docs/LICENSE.txt for the full license text.
   -->
@@ -14,6 +14,7 @@
 
     <!-- Navigation Menu -->
     <string name="navigation_menu_day">Browse Events by Day</string>
+    <string name="navigation_menu_month">Browse Events by Month</string>
     <string name="navigation_menu_reasons">Reasons</string>
     <string name="navigation_menu_actions">Actions</string>
 
@@ -24,6 +25,9 @@
     <string name="day_date_today">Today</string>
     <string name="day_date_tomorrow">Tomorrow</string>
     <string name="day_list_row_severity">Severity: %1$d</string>
+
+    <!-- Month -->
+    <string name="month_title">SH Tracker</string>
 
     <!-- Add Event -->
     <string name="add_event_title">Add Event</string>

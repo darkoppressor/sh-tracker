@@ -10,14 +10,7 @@ Setting for password / biometric lock
 
 Preset reason and action templates
 
-Data view:
 See event total for different time periods
-A calendar view showing the last <time period> of events
-Events derive a severity from urge severity and action severity (if present)
-Calendar can have colors for each time period
-Event severities should all be associated with a color spectrum
-A time period can show either a base color or the color of the event in it
-If a time period has multiple events in it, need to handle averaging the colors together
 
 Analysis:
 List of types of data views, e.g., 'Most events are on this day of the week', 'Most events are during this time of day'

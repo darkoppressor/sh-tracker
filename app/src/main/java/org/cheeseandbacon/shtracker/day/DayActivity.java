@@ -60,6 +60,7 @@ public class DayActivity extends BaseActivity {
                             loadDate(Calendar.getInstance());
 
                             return true;
+
                         default:
                             return false;
                     }

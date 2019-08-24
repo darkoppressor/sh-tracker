@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--
-  ~ Copyright (c) 2018 Cheese and Bacon Games, LLC
+  ~ Copyright (c) 2019 Cheese and Bacon Games, LLC
   ~ This file is licensed under the MIT License.
   ~ See the file docs/LICENSE.txt for the full license text.
   -->
@@ -13,5 +13,7 @@
     <color name="colorAccent">#D81B60</color>
 
     <color name="gray">#565656</color>
+
+    <color name="calendar_today_bg">#40778088</color>
 
 </resources>

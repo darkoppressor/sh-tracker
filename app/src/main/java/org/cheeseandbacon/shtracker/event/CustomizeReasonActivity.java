@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Cheese and Bacon Games, LLC
+ * Copyright (c) 2019 Cheese and Bacon Games, LLC
  * This file is licensed under the MIT License.
  * See the file docs/LICENSE.txt for the full license text.
  */
@@ -58,8 +58,10 @@ public class CustomizeReasonActivity extends BaseActivity {
 
                             Intent intent = new Intent();
                             intent.putExtra(EventActivity.EXTRA_REASON_TEMPLATE_ID, templateId);
-                            intent.putExtra(EventActivity.EXTRA_REASON_COMMENT, comment.getString());
-                            intent.putExtra(EventActivity.EXTRA_REASON_SEVERITY, severity.getValue());
+                            intent.putExtra(EventActivity.EXTRA_REASON_COMMENT,
+                                    comment.getString());
+                            intent.putExtra(EventActivity.EXTRA_REASON_SEVERITY,
+                                    severity.getValue());
 
                             setResult(RESULT_OK, intent);
 

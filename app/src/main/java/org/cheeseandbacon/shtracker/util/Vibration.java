@@ -21,7 +21,8 @@ public class Vibration {
         Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
 
         if (vibrator != null && vibrator.hasVibrator()) {
-            vibrator.vibrate(VibrationEffect.createOneShot(BUTTON_PRESS_LENGTH, BUTTON_PRESS_AMPLITUDE));
+            vibrator.vibrate(VibrationEffect.createOneShot(BUTTON_PRESS_LENGTH,
+                    BUTTON_PRESS_AMPLITUDE));
         }
     }
 }

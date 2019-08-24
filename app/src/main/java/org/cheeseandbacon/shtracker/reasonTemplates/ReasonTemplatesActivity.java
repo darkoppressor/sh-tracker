@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Cheese and Bacon Games, LLC
+ * Copyright (c) 2019 Cheese and Bacon Games, LLC
  * This file is licensed under the MIT License.
  * See the file docs/LICENSE.txt for the full license text.
  */
@@ -33,7 +33,8 @@ public class ReasonTemplatesActivity extends BaseActivity {
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        onCreate(R.layout.activity_reason_templates, getString(R.string.reason_templates_title), null);
+        onCreate(R.layout.activity_reason_templates, getString(R.string.reason_templates_title),
+                null);
 
         listView = findViewById(android.R.id.list);
 
@@ -94,8 +95,8 @@ public class ReasonTemplatesActivity extends BaseActivity {
                     Vibration.buttonPress(this);
 
                     startActivityForResult(new Intent(this, AddReasonTemplateActivity.class)
-                                    .putExtra(AddReasonTemplateActivity.EXTRA_TEMPLATE_ID, item.getId()),
-                            REQUEST_CODE_EDIT_REASON_TEMPLATE
+                                    .putExtra(AddReasonTemplateActivity.EXTRA_TEMPLATE_ID,
+                                            item.getId()), REQUEST_CODE_EDIT_REASON_TEMPLATE
                     );
                 }
             });

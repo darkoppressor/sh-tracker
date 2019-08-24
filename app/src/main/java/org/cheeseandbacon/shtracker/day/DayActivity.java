@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Cheese and Bacon Games, LLC
+ * Copyright (c) 2019 Cheese and Bacon Games, LLC
  * This file is licensed under the MIT License.
  * See the file docs/LICENSE.txt for the full license text.
  */
@@ -51,18 +51,19 @@ public class DayActivity extends BaseActivity {
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        onCreate(R.layout.activity_day, getString(R.string.day_title), new Menu(() -> R.menu.day, (item) -> {
-            switch (item.getItemId()) {
-                case R.id.actionJumpToToday:
-                    Vibration.buttonPress(this);
+        onCreate(R.layout.activity_day, getString(R.string.day_title),
+                new Menu(() -> R.menu.day, (item) -> {
+                    switch (item.getItemId()) {
+                        case R.id.actionJumpToToday:
+                            Vibration.buttonPress(this);
 
-                    loadDate(Calendar.getInstance());
+                            loadDate(Calendar.getInstance());
 
-                    return true;
-                default:
-                    return false;
-            }
-        }));
+                            return true;
+                        default:
+                            return false;
+                    }
+                }));
 
         textDateBefore = findViewById(R.id.mainDateBefore);
         textDayOfWeekBefore = findViewById(R.id.mainDayOfWeekBefore);
@@ -219,7 +220,8 @@ public class DayActivity extends BaseActivity {
         }
 
         startActivityForResult(new Intent(this, EventActivity.class)
-                .putExtra(EventActivity.EXTRA_DATE, DateAndTime.dateToDateString(dates.getCurrent()))
+                .putExtra(EventActivity.EXTRA_DATE,
+                        DateAndTime.dateToDateString(dates.getCurrent()))
                 .putExtra(EventActivity.EXTRA_TIME, time), REQUEST_CODE_EVENT_ADDITION
         );
     }

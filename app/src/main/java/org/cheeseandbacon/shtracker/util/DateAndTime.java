@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Cheese and Bacon Games, LLC
+ * Copyright (c) 2019 Cheese and Bacon Games, LLC
  * This file is licensed under the MIT License.
  * See the file docs/LICENSE.txt for the full license text.
  */
@@ -16,9 +16,12 @@ import java.util.Date;
 import java.util.Locale;
 
 public class DateAndTime {
-    private static final SimpleDateFormat dateFormatInputMdy = new SimpleDateFormat("M/d/yy", Locale.US);
-    private static final SimpleDateFormat dateFormatInputDayOfWeek = new SimpleDateFormat("EEEE", Locale.US);
-    private static final SimpleDateFormat timeFormatInputHm = new SimpleDateFormat("HH:mm", Locale.US);
+    private static final SimpleDateFormat dateFormatInputMdy =
+            new SimpleDateFormat("M/d/yy", Locale.US);
+    private static final SimpleDateFormat dateFormatInputDayOfWeek =
+            new SimpleDateFormat("EEEE", Locale.US);
+    private static final SimpleDateFormat timeFormatInputHm =
+            new SimpleDateFormat("HH:mm", Locale.US);
 
     public static final String LAST_MINUTE_OF_DAY = "23:59";
 

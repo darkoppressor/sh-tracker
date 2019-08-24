@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Cheese and Bacon Games, LLC
+ * Copyright (c) 2019 Cheese and Bacon Games, LLC
  * This file is licensed under the MIT License.
  * See the file docs/LICENSE.txt for the full license text.
  */
@@ -25,17 +25,20 @@ public abstract class BaseDao<T> {
     protected abstract void clearTable();
 
     @SuppressWarnings("unchecked")
-    public void insert (Class<T> tClass, ArrayList<T> ts, @Nullable InsertTask.OnTaskComplete onTaskComplete) {
+    public void insert (Class<T> tClass, ArrayList<T> ts,
+                        @Nullable InsertTask.OnTaskComplete onTaskComplete) {
         new InsertTask<T>(onTaskComplete).execute(new BaseAction<>(tClass, this, ts));
     }
 
     @SuppressWarnings("unchecked")
-    public void update (Class<T> tClass, ArrayList<T> ts, @Nullable UpdateTask.OnTaskComplete onTaskComplete) {
+    public void update (Class<T> tClass, ArrayList<T> ts,
+                        @Nullable UpdateTask.OnTaskComplete onTaskComplete) {
         new UpdateTask<T>(onTaskComplete).execute(new BaseAction<>(tClass, this, ts));
     }
 
     @SuppressWarnings("unchecked")
-    public void delete (Class<T> tClass, ArrayList<T> ts, @Nullable DeleteTask.OnTaskComplete onTaskComplete) {
+    public void delete (Class<T> tClass, ArrayList<T> ts,
+                        @Nullable DeleteTask.OnTaskComplete onTaskComplete) {
         new DeleteTask<T>(onTaskComplete).execute(new BaseAction<>(tClass, this, ts));
     }
 

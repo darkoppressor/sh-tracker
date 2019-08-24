@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Cheese and Bacon Games, LLC
+ * Copyright (c) 2019 Cheese and Bacon Games, LLC
  * This file is licensed under the MIT License.
  * See the file docs/LICENSE.txt for the full license text.
  */
@@ -25,8 +25,10 @@ import java.util.Calendar;
 import java.util.UUID;
 
 public class AddReasonTemplateActivity extends BaseActivity {
-    public static final String EXTRA_TEMPLATE_ID = "org.cheeseandbacon.shtracker.reasonTemplates.templateId";
-    public static final String EXTRA_CUSTOMIZE_AFTER = "org.cheeseandbacon.shtracker.reasonTemplates.customizeAfter";
+    public static final String EXTRA_TEMPLATE_ID =
+            "org.cheeseandbacon.shtracker.reasonTemplates.templateId";
+    public static final String EXTRA_CUSTOMIZE_AFTER =
+            "org.cheeseandbacon.shtracker.reasonTemplates.customizeAfter";
     public static final int REQUEST_CODE_CUSTOMIZE_SELECTION = 0;
 
     private BaseEditText name;
@@ -101,11 +103,12 @@ public class AddReasonTemplateActivity extends BaseActivity {
 
                         data.add(reasonTemplate);
 
-                        ReasonTemplateLoader.load(this, dao -> dao.update(ReasonTemplate.class, data, () -> {
-                            setResult(RESULT_OK);
+                        ReasonTemplateLoader.load(this, dao ->
+                                dao.update(ReasonTemplate.class, data, () -> {
+                                    setResult(RESULT_OK);
 
-                            finish();
-                        }));
+                                    finish();
+                                }));
 
                         return true;
                     default:
@@ -172,18 +175,20 @@ public class AddReasonTemplateActivity extends BaseActivity {
             ));
 
             if (customizeAfter) {
-                ReasonTemplateLoader.load(this, (dao) -> dao.insert(ReasonTemplate.class, data, () -> {
-                    startActivityForResult(new Intent(this, CustomizeReasonActivity.class)
-                                    .putExtra(CustomizeReasonActivity.EXTRA_TEMPLATE_ID, id),
-                            REQUEST_CODE_CUSTOMIZE_SELECTION
-                    );
-                }));
+                ReasonTemplateLoader.load(this, (dao) ->
+                        dao.insert(ReasonTemplate.class, data, () -> {
+                            startActivityForResult(new Intent(this, CustomizeReasonActivity.class)
+                                            .putExtra(CustomizeReasonActivity.EXTRA_TEMPLATE_ID,
+                                                    id), REQUEST_CODE_CUSTOMIZE_SELECTION
+                            );
+                        }));
             } else {
-                ReasonTemplateLoader.load(this, (dao) -> dao.insert(ReasonTemplate.class, data, () -> {
-                    setResult(RESULT_OK);
+                ReasonTemplateLoader.load(this, (dao) ->
+                        dao.insert(ReasonTemplate.class, data, () -> {
+                            setResult(RESULT_OK);
 
-                    finish();
-                }));
+                            finish();
+                        }));
             }
         } else {
             ArrayList<ReasonTemplate> data = new ArrayList<>();

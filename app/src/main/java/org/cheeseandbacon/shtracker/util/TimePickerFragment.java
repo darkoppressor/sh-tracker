@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Cheese and Bacon Games, LLC
+ * Copyright (c) 2019 Cheese and Bacon Games, LLC
  * This file is licensed under the MIT License.
  * See the file docs/LICENSE.txt for the full license text.
  */
@@ -25,7 +25,8 @@ public class TimePickerFragment extends DialogFragment {
     private final Date initialTime;
 
     public TimePickerFragment () {
-        initialTime = getArguments() != null ? (Date) getArguments().getSerializable(ARGUMENT_INITIAL_TIME) : null;
+        initialTime = getArguments() != null ?
+                (Date) getArguments().getSerializable(ARGUMENT_INITIAL_TIME) : null;
     }
 
     @NonNull
@@ -37,7 +38,8 @@ public class TimePickerFragment extends DialogFragment {
             calendar.setTime(initialTime);
         }
 
-        return new TimePickerDialog(getActivity(), (TimePickerDialog.OnTimeSetListener) getActivity(),
+        return new TimePickerDialog(getActivity(),
+                (TimePickerDialog.OnTimeSetListener) getActivity(),
                 calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true);
     }
 

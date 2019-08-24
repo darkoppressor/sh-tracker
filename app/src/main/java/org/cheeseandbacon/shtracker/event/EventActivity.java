@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Cheese and Bacon Games, LLC
+ * Copyright (c) 2019 Cheese and Bacon Games, LLC
  * This file is licensed under the MIT License.
  * See the file docs/LICENSE.txt for the full license text.
  */
@@ -36,12 +36,18 @@ public class EventActivity extends BaseActivity implements TimePickerDialog.OnTi
     public static final String EXTRA_DATE = "org.cheeseandbacon.shtracker.event.date";
     public static final String EXTRA_TIME = "org.cheeseandbacon.shtracker.event.time";
     public static final String EXTRA_EVENT_ID = "org.cheeseandbacon.shtracker.event.eventId";
-    public static final String EXTRA_REASON_TEMPLATE_ID = "org.cheeseandbacon.shtracker.event.reasonTemplateId";
-    public static final String EXTRA_REASON_COMMENT = "org.cheeseandbacon.shtracker.event.reasonComment";
-    public static final String EXTRA_REASON_SEVERITY = "org.cheeseandbacon.shtracker.event.reasonSeverity";
-    public static final String EXTRA_ACTION_TEMPLATE_ID = "org.cheeseandbacon.shtracker.event.actionTemplateId";
-    public static final String EXTRA_ACTION_COMMENT = "org.cheeseandbacon.shtracker.event.actionComment";
-    public static final String EXTRA_ACTION_SEVERITY = "org.cheeseandbacon.shtracker.event.actionSeverity";
+    public static final String EXTRA_REASON_TEMPLATE_ID =
+            "org.cheeseandbacon.shtracker.event.reasonTemplateId";
+    public static final String EXTRA_REASON_COMMENT =
+            "org.cheeseandbacon.shtracker.event.reasonComment";
+    public static final String EXTRA_REASON_SEVERITY =
+            "org.cheeseandbacon.shtracker.event.reasonSeverity";
+    public static final String EXTRA_ACTION_TEMPLATE_ID =
+            "org.cheeseandbacon.shtracker.event.actionTemplateId";
+    public static final String EXTRA_ACTION_COMMENT =
+            "org.cheeseandbacon.shtracker.event.actionComment";
+    public static final String EXTRA_ACTION_SEVERITY =
+            "org.cheeseandbacon.shtracker.event.actionSeverity";
     public static final int REQUEST_CODE_REASON_SELECTION = 0;
     public static final int REQUEST_CODE_ACTION_SELECTION = 1;
     public static final int REQUEST_CODE_EDIT_REASON = 2;
@@ -164,23 +170,31 @@ public class EventActivity extends BaseActivity implements TimePickerDialog.OnTi
                                         reasonTemplateDao.getById(reason.getTemplateId())
                                                 .observe(this, reasonTemplate -> {
                                                     if (reasonTemplate != null) {
-                                                        textReason.setText(reasonTemplate.getName());
-                                                        textReason.setTextColor(getColor(R.color.gray));
-                                                        imageReason.setImageResource(R.drawable.ic_baseline_close_24px);
+                                                        textReason
+                                                                .setText(reasonTemplate.getName());
+                                                        textReason
+                                                                .setTextColor(
+                                                                        getColor(R.color.gray));
+                                                        imageReason.setImageResource(
+                                                                R.drawable.ic_baseline_close_24px);
                                                     }
                                                 }));
                             }
 
                             if (action != null) {
-                                ActionTemplateLoader.load(this, actionTemplateDao -> actionTemplateDao
-                                        .getById(action.getTemplateId())
-                                        .observe(this, actionTemplate -> {
-                                            if (actionTemplate != null) {
-                                                textAction.setText(actionTemplate.getName());
-                                                textAction.setTextColor(getColor(R.color.gray));
-                                                imageAction.setImageResource(R.drawable.ic_baseline_close_24px);
-                                            }
-                                        }));
+                                ActionTemplateLoader.load(this, actionTemplateDao ->
+                                        actionTemplateDao
+                                                .getById(action.getTemplateId())
+                                                .observe(this, actionTemplate -> {
+                                                    if (actionTemplate != null) {
+                                                        textAction
+                                                                .setText(actionTemplate.getName());
+                                                        textAction.setTextColor(
+                                                                getColor(R.color.gray));
+                                                        imageAction.setImageResource(
+                                                                R.drawable.ic_baseline_close_24px);
+                                                    }
+                                                }));
                             }
                         }
                     }));
@@ -216,16 +230,19 @@ public class EventActivity extends BaseActivity implements TimePickerDialog.OnTi
                         int severity = data.getIntExtra(EXTRA_REASON_SEVERITY,
                                 CustomizeReasonActivity.DEFAULT_SEVERITY);
 
-                        reason = new Reason(templateId, comment, severity);
+                        if (templateId != null && comment != null) {
+                            reason = new Reason(templateId, comment, severity);
 
-                        ReasonTemplateLoader.load(this, dao -> dao.getById(templateId)
-                                .observe(this, reasonTemplate -> {
-                                    if (reasonTemplate != null) {
-                                        textReason.setText(reasonTemplate.getName());
-                                        textReason.setTextColor(getColor(R.color.gray));
-                                        imageReason.setImageResource(R.drawable.ic_baseline_close_24px);
-                                    }
-                                }));
+                            ReasonTemplateLoader.load(this, dao -> dao.getById(templateId)
+                                    .observe(this, reasonTemplate -> {
+                                        if (reasonTemplate != null) {
+                                            textReason.setText(reasonTemplate.getName());
+                                            textReason.setTextColor(getColor(R.color.gray));
+                                            imageReason.setImageResource(
+                                                    R.drawable.ic_baseline_close_24px);
+                                        }
+                                    }));
+                        }
                     }
                 }
                 break;
@@ -237,16 +254,19 @@ public class EventActivity extends BaseActivity implements TimePickerDialog.OnTi
                         int severity = data.getIntExtra(EXTRA_ACTION_SEVERITY,
                                 CustomizeActionActivity.DEFAULT_SEVERITY);
 
-                        action = new Action(templateId, comment, severity);
+                        if (templateId != null && comment != null) {
+                            action = new Action(templateId, comment, severity);
 
-                        ActionTemplateLoader.load(this, dao -> dao.getById(templateId)
-                                .observe(this, actionTemplate -> {
-                                    if (actionTemplate != null) {
-                                        textAction.setText(actionTemplate.getName());
-                                        textAction.setTextColor(getColor(R.color.gray));
-                                        imageAction.setImageResource(R.drawable.ic_baseline_close_24px);
-                                    }
-                                }));
+                            ActionTemplateLoader.load(this, dao -> dao.getById(templateId)
+                                    .observe(this, actionTemplate -> {
+                                        if (actionTemplate != null) {
+                                            textAction.setText(actionTemplate.getName());
+                                            textAction.setTextColor(getColor(R.color.gray));
+                                            imageAction.setImageResource(
+                                                    R.drawable.ic_baseline_close_24px);
+                                        }
+                                    }));
+                        }
                     }
                 }
                 break;
@@ -305,13 +325,15 @@ public class EventActivity extends BaseActivity implements TimePickerDialog.OnTi
         Vibration.buttonPress(this);
 
         if (reason == null) {
-            startActivityForResult(new Intent(this, SelectReasonActivity.class), REQUEST_CODE_REASON_SELECTION);
+            startActivityForResult(new Intent(this, SelectReasonActivity.class),
+                    REQUEST_CODE_REASON_SELECTION);
         } else {
             startActivityForResult(new Intent(this, CustomizeReasonActivity.class)
-                            .putExtra(CustomizeReasonActivity.EXTRA_TEMPLATE_ID, reason.getTemplateId())
+                            .putExtra(CustomizeReasonActivity.EXTRA_TEMPLATE_ID,
+                                    reason.getTemplateId())
                             .putExtra(CustomizeReasonActivity.EXTRA_SEVERITY, reason.getSeverity())
-                            .putExtra(CustomizeReasonActivity.EXTRA_COMMENT, reason.getComment())
-                    , REQUEST_CODE_EDIT_REASON);
+                            .putExtra(CustomizeReasonActivity.EXTRA_COMMENT, reason.getComment()),
+                    REQUEST_CODE_EDIT_REASON);
         }
     }
 
@@ -319,7 +341,8 @@ public class EventActivity extends BaseActivity implements TimePickerDialog.OnTi
         Vibration.buttonPress(this);
 
         if (reason == null) {
-            startActivityForResult(new Intent(this, SelectReasonActivity.class), REQUEST_CODE_REASON_SELECTION);
+            startActivityForResult(new Intent(this, SelectReasonActivity.class),
+                    REQUEST_CODE_REASON_SELECTION);
         } else {
             reason = null;
 
@@ -333,13 +356,15 @@ public class EventActivity extends BaseActivity implements TimePickerDialog.OnTi
         Vibration.buttonPress(this);
 
         if (action == null) {
-            startActivityForResult(new Intent(this, SelectActionActivity.class), REQUEST_CODE_ACTION_SELECTION);
+            startActivityForResult(new Intent(this, SelectActionActivity.class),
+                    REQUEST_CODE_ACTION_SELECTION);
         } else {
             startActivityForResult(new Intent(this, CustomizeActionActivity.class)
-                            .putExtra(CustomizeActionActivity.EXTRA_TEMPLATE_ID, action.getTemplateId())
+                            .putExtra(CustomizeActionActivity.EXTRA_TEMPLATE_ID,
+                                    action.getTemplateId())
                             .putExtra(CustomizeActionActivity.EXTRA_SEVERITY, action.getSeverity())
-                            .putExtra(CustomizeActionActivity.EXTRA_COMMENT, action.getComment())
-                    , REQUEST_CODE_EDIT_ACTION);
+                            .putExtra(CustomizeActionActivity.EXTRA_COMMENT, action.getComment()),
+                    REQUEST_CODE_EDIT_ACTION);
         }
     }
 
@@ -347,7 +372,8 @@ public class EventActivity extends BaseActivity implements TimePickerDialog.OnTi
         Vibration.buttonPress(this);
 
         if (action == null) {
-            startActivityForResult(new Intent(this, SelectActionActivity.class), REQUEST_CODE_ACTION_SELECTION);
+            startActivityForResult(new Intent(this, SelectActionActivity.class),
+                    REQUEST_CODE_ACTION_SELECTION);
         } else {
             action = null;
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Cheese and Bacon Games, LLC
+ * Copyright (c) 2019 Cheese and Bacon Games, LLC
  * This file is licensed under the MIT License.
  * See the file docs/LICENSE.txt for the full license text.
  */
@@ -25,8 +25,10 @@ import java.util.Calendar;
 import java.util.UUID;
 
 public class AddActionTemplateActivity extends BaseActivity {
-    public static final String EXTRA_TEMPLATE_ID = "org.cheeseandbacon.shtracker.actionTemplates.templateId";
-    public static final String EXTRA_CUSTOMIZE_AFTER = "org.cheeseandbacon.shtracker.actionTemplates.customizeAfter";
+    public static final String EXTRA_TEMPLATE_ID =
+            "org.cheeseandbacon.shtracker.actionTemplates.templateId";
+    public static final String EXTRA_CUSTOMIZE_AFTER =
+            "org.cheeseandbacon.shtracker.actionTemplates.customizeAfter";
     public static final int REQUEST_CODE_CUSTOMIZE_SELECTION = 0;
 
     private BaseEditText name;
@@ -40,7 +42,8 @@ public class AddActionTemplateActivity extends BaseActivity {
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        onCreate(R.layout.activity_add_action_template, getString(R.string.add_action_template_title),
+        onCreate(R.layout.activity_add_action_template,
+                getString(R.string.add_action_template_title),
                 new Menu(() -> R.menu.add_action_template, (item) -> {
                     switch (item.getItemId()) {
                         case R.id.actionCancel:
@@ -100,11 +103,12 @@ public class AddActionTemplateActivity extends BaseActivity {
 
                         data.add(actionTemplate);
 
-                        ActionTemplateLoader.load(this, dao -> dao.update(ActionTemplate.class, data, () -> {
-                            setResult(RESULT_OK);
+                        ActionTemplateLoader.load(this, dao ->
+                                dao.update(ActionTemplate.class, data, () -> {
+                                    setResult(RESULT_OK);
 
-                            finish();
-                        }));
+                                    finish();
+                                }));
 
                         return true;
                     default:
@@ -171,18 +175,20 @@ public class AddActionTemplateActivity extends BaseActivity {
             ));
 
             if (customizeAfter) {
-                ActionTemplateLoader.load(this, (dao) -> dao.insert(ActionTemplate.class, data, () -> {
-                    startActivityForResult(new Intent(this, CustomizeActionActivity.class)
-                                    .putExtra(CustomizeActionActivity.EXTRA_TEMPLATE_ID, id),
-                            REQUEST_CODE_CUSTOMIZE_SELECTION
-                    );
-                }));
+                ActionTemplateLoader.load(this, (dao) ->
+                        dao.insert(ActionTemplate.class, data, () -> {
+                            startActivityForResult(new Intent(this, CustomizeActionActivity.class)
+                                            .putExtra(CustomizeActionActivity.EXTRA_TEMPLATE_ID, id),
+                                    REQUEST_CODE_CUSTOMIZE_SELECTION
+                            );
+                        }));
             } else {
-                ActionTemplateLoader.load(this, (dao) -> dao.insert(ActionTemplate.class, data, () -> {
-                    setResult(RESULT_OK);
+                ActionTemplateLoader.load(this, (dao) ->
+                        dao.insert(ActionTemplate.class, data, () -> {
+                            setResult(RESULT_OK);
 
-                    finish();
-                }));
+                            finish();
+                        }));
             }
         } else {
             ArrayList<ActionTemplate> data = new ArrayList<>();

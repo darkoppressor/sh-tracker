@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Cheese and Bacon Games, LLC
+ * Copyright (c) 2019 Cheese and Bacon Games, LLC
  * This file is licensed under the MIT License.
  * See the file docs/LICENSE.txt for the full license text.
  */
@@ -17,7 +17,7 @@ class NavigationItem {
 	private final int drawableId;
 	private final OnClick onClick;
 
-    public NavigationItem (String name, int drawableId, OnClick onClick) {
+    NavigationItem(String name, int drawableId, OnClick onClick) {
         this.name = name;
         this.drawableId = drawableId;
         this.onClick = onClick;
@@ -35,11 +35,11 @@ class NavigationItem {
         return name;
     }
 
-    public int getDrawableId () {
+    int getDrawableId() {
         return drawableId;
     }
 
-    public OnClick getOnClick () {
+    OnClick getOnClick() {
         return onClick;
     }
 }

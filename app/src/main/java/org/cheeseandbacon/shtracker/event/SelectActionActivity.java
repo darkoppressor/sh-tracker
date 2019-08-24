@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Cheese and Bacon Games, LLC
+ * Copyright (c) 2019 Cheese and Bacon Games, LLC
  * This file is licensed under the MIT License.
  * See the file docs/LICENSE.txt for the full license text.
  */
@@ -125,8 +125,8 @@ public class SelectActionActivity extends BaseActivity {
                     Vibration.buttonPress(this);
 
                     startActivityForResult(new Intent(this, AddActionTemplateActivity.class)
-                                    .putExtra(AddActionTemplateActivity.EXTRA_CUSTOMIZE_AFTER, true),
-                            REQUEST_CODE_ADD_ACTION_TEMPLATE);
+                                    .putExtra(AddActionTemplateActivity.EXTRA_CUSTOMIZE_AFTER,
+                                            true), REQUEST_CODE_ADD_ACTION_TEMPLATE);
                 } else {
                     final ActionTemplate item = adapter.getItem(position);
 
@@ -134,8 +134,8 @@ public class SelectActionActivity extends BaseActivity {
                         Vibration.buttonPress(this);
 
                         startActivityForResult(new Intent(this, CustomizeActionActivity.class)
-                                        .putExtra(CustomizeActionActivity.EXTRA_TEMPLATE_ID, item.getId()),
-                                REQUEST_CODE_CUSTOMIZE_SELECTION
+                                        .putExtra(CustomizeActionActivity.EXTRA_TEMPLATE_ID,
+                                                item.getId()), REQUEST_CODE_CUSTOMIZE_SELECTION
                         );
                     }
                 }

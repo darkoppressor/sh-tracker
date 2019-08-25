@@ -6,7 +6,6 @@
 
 package org.cheeseandbacon.shtracker.util;
 
-import android.support.annotation.Nullable;
 import android.text.format.DateUtils;
 
 import java.text.ParseException;
@@ -14,6 +13,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+
+import androidx.annotation.Nullable;
 
 public class DateAndTime {
     private static final SimpleDateFormat dateFormatInputMdy = new SimpleDateFormat("M/d/yy", Locale.US);

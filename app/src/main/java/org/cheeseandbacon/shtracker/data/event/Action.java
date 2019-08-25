@@ -6,9 +6,9 @@
 
 package org.cheeseandbacon.shtracker.data.event;
 
-import android.support.annotation.NonNull;
-
 import java.io.Serializable;
+
+import androidx.annotation.NonNull;
 
 public class Action implements Serializable {
     @NonNull

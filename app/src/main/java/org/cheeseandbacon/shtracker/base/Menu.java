@@ -6,7 +6,7 @@
 
 package org.cheeseandbacon.shtracker.base;
 
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 
 public class Menu {
     public interface ResIdGetter {

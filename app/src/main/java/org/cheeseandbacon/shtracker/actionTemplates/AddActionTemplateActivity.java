@@ -8,7 +8,6 @@ package org.cheeseandbacon.shtracker.actionTemplates;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.widget.Toast;
 
 import org.cheeseandbacon.shtracker.R;
@@ -23,6 +22,8 @@ import org.cheeseandbacon.shtracker.util.Vibration;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.UUID;
+
+import androidx.annotation.Nullable;
 
 public class AddActionTemplateActivity extends BaseActivity {
     public static final String EXTRA_TEMPLATE_ID = "org.cheeseandbacon.shtracker.actionTemplates.templateId";

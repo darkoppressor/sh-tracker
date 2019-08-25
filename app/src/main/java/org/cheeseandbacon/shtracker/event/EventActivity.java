@@ -9,8 +9,6 @@ package org.cheeseandbacon.shtracker.event;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.AppCompatCheckBox;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
@@ -33,6 +31,9 @@ import org.cheeseandbacon.shtracker.util.Vibration;
 
 import java.util.ArrayList;
 import java.util.UUID;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatCheckBox;
 
 public class EventActivity extends BaseActivity implements TimePickerDialog.OnTimeSetListener {
     public static final String EXTRA_DATE = "org.cheeseandbacon.shtracker.event.date";

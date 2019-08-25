@@ -6,12 +6,7 @@
 
 package org.cheeseandbacon.shtracker.data;
 
-import android.arch.persistence.room.Database;
-import android.arch.persistence.room.Room;
-import android.arch.persistence.room.RoomDatabase;
-import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
-import android.support.annotation.NonNull;
 
 import org.cheeseandbacon.shtracker.data.actionTemplate.ActionTemplate;
 import org.cheeseandbacon.shtracker.data.actionTemplate.ActionTemplateDao;
@@ -19,6 +14,12 @@ import org.cheeseandbacon.shtracker.data.event.Event;
 import org.cheeseandbacon.shtracker.data.event.EventDao;
 import org.cheeseandbacon.shtracker.data.reasonTemplate.ReasonTemplate;
 import org.cheeseandbacon.shtracker.data.reasonTemplate.ReasonTemplateDao;
+
+import androidx.annotation.NonNull;
+import androidx.room.Database;
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 
 @Database(entities = {
         Event.class,

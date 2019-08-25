@@ -6,7 +6,6 @@
 
 package org.cheeseandbacon.shtracker.day;
 
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -19,6 +18,8 @@ import org.cheeseandbacon.shtracker.data.event.Event;
 import org.cheeseandbacon.shtracker.data.reasonTemplate.ReasonTemplateLoader;
 
 import java.util.ArrayList;
+
+import androidx.annotation.NonNull;
 
 public class DayAdapter extends BaseAdapter {
     @NonNull

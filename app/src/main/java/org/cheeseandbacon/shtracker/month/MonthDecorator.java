@@ -6,7 +6,6 @@
 
 package org.cheeseandbacon.shtracker.month;
 
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -21,6 +20,8 @@ import org.cheeseandbacon.shtracker.data.event.EventLoader;
 import org.cheeseandbacon.shtracker.util.DateAndTime;
 
 import java.util.Date;
+
+import androidx.annotation.NonNull;
 
 public class MonthDecorator implements CalendarCellDecorator {
     @NonNull

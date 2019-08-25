@@ -6,10 +6,10 @@
 
 package org.cheeseandbacon.shtracker.data;
 
-import android.arch.persistence.room.Dao;
-import android.support.annotation.Nullable;
-
 import java.util.ArrayList;
+
+import androidx.annotation.Nullable;
+import androidx.room.Dao;
 
 @Dao
 public abstract class BaseDao<T> {

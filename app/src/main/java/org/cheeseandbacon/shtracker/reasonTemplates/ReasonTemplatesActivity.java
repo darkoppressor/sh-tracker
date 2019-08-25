@@ -8,7 +8,6 @@ package org.cheeseandbacon.shtracker.reasonTemplates;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ListView;
 
@@ -20,6 +19,8 @@ import org.cheeseandbacon.shtracker.event.ReasonAdapter;
 import org.cheeseandbacon.shtracker.util.Vibration;
 
 import java.util.ArrayList;
+
+import androidx.annotation.Nullable;
 
 public class ReasonTemplatesActivity extends BaseActivity {
     public static final int REQUEST_CODE_ADD_REASON_TEMPLATE = 0;

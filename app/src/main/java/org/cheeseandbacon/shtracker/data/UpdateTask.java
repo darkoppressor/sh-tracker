@@ -7,10 +7,11 @@
 package org.cheeseandbacon.shtracker.data;
 
 import android.os.AsyncTask;
-import android.support.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import androidx.annotation.Nullable;
 
 public class UpdateTask<T> extends AsyncTask<BaseAction<T>, Void, ArrayList<BaseAction<T>>> {
     public interface OnTaskComplete {

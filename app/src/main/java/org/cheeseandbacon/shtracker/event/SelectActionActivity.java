@@ -8,7 +8,6 @@ package org.cheeseandbacon.shtracker.event;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -22,6 +21,8 @@ import org.cheeseandbacon.shtracker.data.actionTemplate.ActionTemplateLoader;
 import org.cheeseandbacon.shtracker.util.Vibration;
 
 import java.util.ArrayList;
+
+import androidx.annotation.Nullable;
 
 public class SelectActionActivity extends BaseActivity {
     public static final int REQUEST_CODE_CUSTOMIZE_SELECTION = 0;

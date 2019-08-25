@@ -31,31 +31,31 @@ android {
         implementation deps.gson
         implementation deps.times_square
 
-        // Support
-        implementation deps.support.support
-        implementation deps.support.compat
-        implementation deps.support.annotations
-        implementation deps.support.fragment
-        implementation deps.support.design
-        implementation deps.support.app_compat
+        // AndroidX
+        implementation deps.androidx.legacy_support
+        implementation deps.androidx.core
+        implementation deps.androidx.annotation
+        implementation deps.androidx.fragment
+        implementation deps.androidx.material
+        implementation deps.androidx.appcompat
 
         // Architecture Components
-        implementation deps.lifecycle.extensions
-        implementation deps.lifecycle.common_java8
-        implementation deps.room.runtime
-        annotationProcessor deps.room.compiler
-        implementation deps.paging.runtime
-        testImplementation deps.core.testing
-        testImplementation deps.room.testing
+        implementation deps.androidx_lifecycle.extensions
+        implementation deps.androidx_lifecycle.common_java8
+        implementation deps.androidx_room.runtime
+        annotationProcessor deps.androidx_room.compiler
+        implementation deps.androidx_paging.runtime
+        testImplementation deps.androidx_core.testing
+        testImplementation deps.androidx_room.testing
 
         // Unit tests
-        androidTestImplementation (deps.support_test.runner) {
+        androidTestImplementation (deps.androidx_test.runner) {
             exclude group: deps.test_exclude_group, module: deps.test_exclude_module
         }
-        androidTestImplementation (deps.support_test.rules) {
+        androidTestImplementation (deps.androidx_test.rules) {
             exclude group: deps.test_exclude_group, module: deps.test_exclude_module
         }
-        androidTestImplementation (deps.espresso.core) {
+        androidTestImplementation (deps.androidx_espresso.core) {
             exclude group: deps.test_exclude_group, module: deps.test_exclude_module
         }
         testImplementation deps.junit

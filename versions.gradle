@@ -17,69 +17,74 @@ build_versions.java = JavaVersion.VERSION_1_8
 ext.build_versions = build_versions
 
 def versions = [:]
-versions.support = '28.0.0'
-versions.support_test = '1.0.2'
-versions.espresso = '3.0.2'
-versions.junit = '4.12'
+versions.legacy_support = '1.0.0'
+versions.androidx_core = '1.0.2'
+versions.androidx_annotation = '1.1.0'
+versions.androidx_fragment = '1.0.0'
+versions.material = '1.0.0'
+versions.androidx_appcompat = '1.0.2'
+versions.androidx_test = '1.2.0'
+versions.espresso = '3.2.0'
 versions.mockito = '2.21.0'
-versions.core = '1.1.1'
-versions.lifecycle = '1.1.1'
-versions.room = '1.1.1'
-versions.paging = '1.0.1'
+versions.androidx_arch_core = '2.0.1'
+versions.lifecycle = '2.0.0'
+versions.room = '2.1.0'
+versions.paging = '2.1.0'
 versions.android_gradle_plugin = '3.5.0'
+versions.junit = '4.12'
 versions.gson = '2.8.5'
 versions.times_square = '1.7.10'
 
-def support = [:]
-support.support = "com.android.support:support-v4:$versions.support"
-support.compat = "com.android.support:support-compat:$versions.support"
-support.annotations = "com.android.support:support-annotations:$versions.support"
-support.fragment = "com.android.support:support-fragment:$versions.support"
-support.design = "com.android.support:design:$versions.support"
-support.app_compat = "com.android.support:appcompat-v7:$versions.support"
-deps.support = support
+def androidx = [:]
+androidx.legacy_support = "androidx.legacy:legacy-support-v4:$versions.legacy_support"
+androidx.core = "androidx.core:core:$versions.androidx_core"
+androidx.annotation = "androidx.annotation:annotation:$versions.androidx_annotation"
+androidx.fragment = "androidx.fragment:fragment:$versions.androidx_fragment"
+androidx.material = "com.google.android.material:material:$versions.material"
+androidx.appcompat = "androidx.appcompat:appcompat:$versions.androidx_appcompat"
+deps.androidx = androidx
 
-def support_test = [:]
-support_test.runner = "com.android.support.test:runner:$versions.support_test"
-support_test.rules = "com.android.support.test:rules:$versions.support_test"
-deps.support_test = support_test
+def androidx_test = [:]
+androidx_test.runner = "androidx.test:runner:$versions.androidx_test"
+androidx_test.rules = "androidx.test:rules:$versions.androidx_test"
+deps.androidx_test = androidx_test
 
-def espresso = [:]
-espresso.core = "com.android.support.test.espresso:espresso-core:$versions.espresso"
-deps.espresso = espresso
+def androidx_espresso = [:]
+androidx_espresso.core = "androidx.test.espresso:espresso-core:$versions.espresso"
+deps.androidx_espresso = androidx_espresso
 
 def mockito = [:]
 mockito.core = "org.mockito:mockito-core:$versions.mockito"
 mockito.android = "org.mockito:mockito-android:$versions.mockito"
 deps.mockito = mockito
 
-def core = [:]
-core.testing = "android.arch.core:core-testing:$versions.core"
-deps.core = core
+def androidx_core = [:]
+androidx_core.testing = "androidx.arch.core:core-testing:$versions.androidx_arch_core"
+deps.androidx_core = androidx_core
 
-def lifecycle = [:]
-lifecycle.extensions = "android.arch.lifecycle:extensions:$versions.lifecycle"
-lifecycle.common_java8 = "android.arch.lifecycle:common-java8:$versions.lifecycle"
-deps.lifecycle = lifecycle
+def androidx_lifecycle = [:]
+androidx_lifecycle.extensions = "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle"
+androidx_lifecycle.common_java8 = "androidx.lifecycle:lifecycle-common-java8:$versions.lifecycle"
+deps.androidx_lifecycle = androidx_lifecycle
 
-def room = [:]
-room.runtime = "android.arch.persistence.room:runtime:$versions.room"
-room.compiler = "android.arch.persistence.room:compiler:$versions.room"
-room.testing = "android.arch.persistence.room:testing:$versions.room"
-deps.room = room
+def androidx_room = [:]
+androidx_room.runtime = "androidx.room:room-runtime:$versions.room"
+androidx_room.compiler = "androidx.room:room-compiler:$versions.room"
+androidx_room.testing = "androidx.room:room-testing:$versions.room"
+deps.androidx_room = androidx_room
 
-def paging = [:]
-paging.runtime = "android.arch.paging:runtime:$versions.paging"
-deps.paging = paging
+def androidx_paging = [:]
+androidx_paging.runtime = "androidx.paging:paging-runtime:$versions.paging"
+deps.androidx_paging = androidx_paging
 
 deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"
 deps.junit = "junit:junit:$versions.junit"
 deps.gson = "com.google.code.gson:gson:$versions.gson"
 deps.times_square = "com.squareup:android-times-square:$versions.times_square@aar"
-deps.test_runner = 'android.support.test.runner.AndroidJUnitRunner'
+deps.test_runner = 'androidx.test.runner.AndroidJUnitRunner'
 
-deps.test_exclude_group = 'com.android.support'
-deps.test_exclude_module = 'support-annotations'
+deps.test_exclude_group = 'androidx.annotation'
+deps.test_exclude_module = 'annotation'
 
 deps.version_code = 1
 deps.version_name = '0.0.1'

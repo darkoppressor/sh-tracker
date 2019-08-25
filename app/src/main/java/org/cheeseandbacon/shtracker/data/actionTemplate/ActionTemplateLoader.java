@@ -7,9 +7,10 @@
 package org.cheeseandbacon.shtracker.data.actionTemplate;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 
 import org.cheeseandbacon.shtracker.data.AppDatabase;
+
+import androidx.annotation.NonNull;
 
 public class ActionTemplateLoader {
     public interface OnLoaded {

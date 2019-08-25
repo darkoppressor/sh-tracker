@@ -7,7 +7,6 @@
 package org.cheeseandbacon.shtracker.event;
 
 import android.app.Activity;
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -18,6 +17,8 @@ import org.cheeseandbacon.shtracker.R;
 import org.cheeseandbacon.shtracker.data.reasonTemplate.ReasonTemplate;
 
 import java.util.ArrayList;
+
+import androidx.annotation.NonNull;
 
 public class ReasonAdapter extends BaseAdapter {
     @NonNull

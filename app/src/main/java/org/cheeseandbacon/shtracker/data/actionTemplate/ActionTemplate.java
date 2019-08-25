@@ -6,10 +6,10 @@
 
 package org.cheeseandbacon.shtracker.data.actionTemplate;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.Index;
-import android.arch.persistence.room.PrimaryKey;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.Index;
+import androidx.room.PrimaryKey;
 
 @Entity(indices = {@Index(value = "id", unique = true)})
 public class ActionTemplate {

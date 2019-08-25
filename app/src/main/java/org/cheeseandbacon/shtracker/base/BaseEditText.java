@@ -7,12 +7,14 @@
 package org.cheeseandbacon.shtracker.base;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.design.widget.TextInputEditText;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 
+import com.google.android.material.textfield.TextInputEditText;
+
 import java.util.ArrayList;
+
+import androidx.annotation.NonNull;
 
 // This extended TextInputEditText adds the following functionality:
 // The ability to clear all associated TextWatchers

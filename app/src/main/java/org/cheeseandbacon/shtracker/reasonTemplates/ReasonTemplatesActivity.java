@@ -86,19 +86,25 @@ public class ReasonTemplatesActivity extends BaseActivity {
 
     private void buildUi () {
         if (reasonTemplates != null) {
-            adapter = new ReasonAdapter(this, reasonTemplates);
+            ArrayList<ReasonTemplate> reasonTemplatesClean = new ArrayList<>();
+
+            for (ReasonTemplate reasonTemplate : reasonTemplates) {
+                if (!reasonTemplate.isDeleted()) {
+                    reasonTemplatesClean.add(reasonTemplate);
+                }
+            }
+
+            adapter = new ReasonAdapter(this, reasonTemplatesClean);
             listView.setAdapter(adapter);
             listView.setOnItemClickListener((parent, view, position, id) -> {
                 final ReasonTemplate item = adapter.getItem(position);
 
-                if (adapter.isItemVisible(position)) {
-                    Vibration.buttonPress(this);
+                Vibration.buttonPress(this);
 
-                    startActivityForResult(new Intent(this, AddReasonTemplateActivity.class)
-                                    .putExtra(AddReasonTemplateActivity.EXTRA_TEMPLATE_ID,
-                                            item.getId()), REQUEST_CODE_EDIT_REASON_TEMPLATE
-                    );
-                }
+                startActivityForResult(new Intent(this, AddReasonTemplateActivity.class)
+                                .putExtra(AddReasonTemplateActivity.EXTRA_TEMPLATE_ID,
+                                        item.getId()), REQUEST_CODE_EDIT_REASON_TEMPLATE
+                );
             });
         }
     }

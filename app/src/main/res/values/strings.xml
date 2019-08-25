@@ -35,6 +35,7 @@
     <string name="add_event_time">Time</string>
     <string name="add_event_reason">Add Reason</string>
     <string name="add_event_action">Add Action</string>
+    <string name="add_event_urge">I overcame the urge!</string>
 
     <!-- Select Reason -->
     <string name="select_reason_title">Select Reason</string>

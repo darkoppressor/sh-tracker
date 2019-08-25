@@ -10,7 +10,9 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.AppCompatCheckBox;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -58,6 +60,9 @@ public class EventActivity extends BaseActivity implements TimePickerDialog.OnTi
     private ImageView imageReason;
     private TextView textAction;
     private ImageView imageAction;
+    private AppCompatCheckBox checkBoxUrge;
+
+    private CompoundButton.OnCheckedChangeListener onCheckedChangeListener;
 
     private String date;
     private String time;
@@ -67,6 +72,8 @@ public class EventActivity extends BaseActivity implements TimePickerDialog.OnTi
 
     private Reason reason;
     private Action action;
+
+    private boolean urge;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -100,13 +107,19 @@ public class EventActivity extends BaseActivity implements TimePickerDialog.OnTi
         imageReason = findViewById(R.id.reasonImage);
         textAction = findViewById(R.id.action);
         imageAction = findViewById(R.id.actionImage);
+        checkBoxUrge = findViewById(R.id.urge);
 
         reason = null;
         action = null;
+        urge = false;
 
         date = getIntent().getStringExtra(EXTRA_DATE);
         time = getIntent().getStringExtra(EXTRA_TIME);
         eventId = getIntent().getStringExtra(EXTRA_EVENT_ID);
+
+        onCheckedChangeListener = (compoundButton, b) -> urge = b;
+
+        checkBoxUrge.setOnCheckedChangeListener(onCheckedChangeListener);
 
         if (eventId != null) {
             setToolbarTitle(getString(R.string.add_event_edit_title));
@@ -135,6 +148,7 @@ public class EventActivity extends BaseActivity implements TimePickerDialog.OnTi
                         event.setTime(time);
                         event.setReason(reason);
                         event.setAction(action);
+                        event.setUrge(urge);
 
                         data.add(event);
 
@@ -162,21 +176,22 @@ public class EventActivity extends BaseActivity implements TimePickerDialog.OnTi
                             time = event.getTime();
                             reason = event.getReason();
                             action = event.getAction();
+                            urge = event.isUrge();
 
                             textTime.setText(time);
+
+                            checkBoxUrge.setOnCheckedChangeListener(null);
+                            checkBoxUrge.setChecked(urge);
+                            checkBoxUrge.setOnCheckedChangeListener(onCheckedChangeListener);
 
                             if (reason != null) {
                                 ReasonTemplateLoader.load(this, reasonTemplateDao ->
                                         reasonTemplateDao.getById(reason.getTemplateId())
                                                 .observe(this, reasonTemplate -> {
                                                     if (reasonTemplate != null) {
-                                                        textReason
-                                                                .setText(reasonTemplate.getName());
-                                                        textReason
-                                                                .setTextColor(
-                                                                        getColor(R.color.gray));
-                                                        imageReason.setImageResource(
-                                                                R.drawable.ic_baseline_close_24px);
+                                                        textReason.setText(reasonTemplate.getName());
+                                                        textReason.setTextColor(getColor(R.color.gray));
+                                                        imageReason.setImageResource(R.drawable.ic_baseline_close_24px);
                                                     }
                                                 }));
                             }
@@ -187,12 +202,9 @@ public class EventActivity extends BaseActivity implements TimePickerDialog.OnTi
                                                 .getById(action.getTemplateId())
                                                 .observe(this, actionTemplate -> {
                                                     if (actionTemplate != null) {
-                                                        textAction
-                                                                .setText(actionTemplate.getName());
-                                                        textAction.setTextColor(
-                                                                getColor(R.color.gray));
-                                                        imageAction.setImageResource(
-                                                                R.drawable.ic_baseline_close_24px);
+                                                        textAction.setText(actionTemplate.getName());
+                                                        textAction.setTextColor(getColor(R.color.gray));
+                                                        imageAction.setImageResource(R.drawable.ic_baseline_close_24px);
                                                     }
                                                 }));
                             }
@@ -201,6 +213,10 @@ public class EventActivity extends BaseActivity implements TimePickerDialog.OnTi
         }
 
         textTime.setText(time);
+
+        checkBoxUrge.setOnCheckedChangeListener(null);
+        checkBoxUrge.setChecked(urge);
+        checkBoxUrge.setOnCheckedChangeListener(onCheckedChangeListener);
     }
 
     @Override
@@ -275,7 +291,7 @@ public class EventActivity extends BaseActivity implements TimePickerDialog.OnTi
         }
     }
 
-    private void done() {
+    private void done () {
         if (eventId == null) {
             ArrayList<Event> data = new ArrayList<>();
 
@@ -284,7 +300,8 @@ public class EventActivity extends BaseActivity implements TimePickerDialog.OnTi
                     date,
                     time,
                     reason,
-                    action
+                    action,
+                    urge
             ));
 
             EventLoader.load(this, dao -> dao.insert(Event.class, data, () -> {
@@ -301,6 +318,7 @@ public class EventActivity extends BaseActivity implements TimePickerDialog.OnTi
             event.setTime(time);
             event.setReason(reason);
             event.setAction(action);
+            event.setUrge(urge);
 
             data.add(event);
 
@@ -381,5 +399,11 @@ public class EventActivity extends BaseActivity implements TimePickerDialog.OnTi
             textAction.setTextColor(getColor(android.R.color.darker_gray));
             imageAction.setImageResource(R.drawable.ic_baseline_add_24px);
         }
+    }
+
+    public void urge (View view) {
+        Vibration.buttonPress(this);
+
+        checkBoxUrge.toggle();
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Cheese and Bacon Games, LLC
+ * Copyright (c) 2019 Cheese and Bacon Games, LLC
  * This file is licensed under the MIT License.
  * See the file docs/LICENSE.txt for the full license text.
  */
@@ -25,13 +25,15 @@ public class Event {
     private Reason reason;
     @Nullable
     private Action action;
+    private boolean isUrge;
 
-    public Event (@NonNull String id, @NonNull String date, @NonNull String time, @Nullable Reason reason, @Nullable Action action) {
+    public Event(@NonNull String id, @NonNull String date, @NonNull String time, @Nullable Reason reason, @Nullable Action action, boolean isUrge) {
         this.id = id;
         this.date = date;
         this.time = time;
         this.reason = reason;
         this.action = action;
+        this.isUrge = isUrge;
     }
 
     @NonNull
@@ -77,5 +79,13 @@ public class Event {
 
     public void setAction (@Nullable Action action) {
         this.action = action;
+    }
+
+    public boolean isUrge() {
+        return isUrge;
+    }
+
+    public void setUrge(boolean urge) {
+        isUrge = urge;
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Cheese and Bacon Games, LLC
+ * Copyright (c) 2019 Cheese and Bacon Games, LLC
  * This file is licensed under the MIT License.
  * See the file docs/LICENSE.txt for the full license text.
  */
@@ -47,28 +47,16 @@ public class ActionAdapter extends BaseAdapter {
 
     @Override
     public View getView (int position, View convertView, ViewGroup parent) {
-        if (!isItemVisible(position)) {
-            if (!(convertView instanceof Space)) {
-                convertView = new Space(activity);
-            }
-        } else {
-            if (convertView == null || convertView instanceof Space) {
-                convertView = activity.getLayoutInflater().inflate(R.layout.action_row, null);
-            }
-
-            final ActionTemplate item = getItem(position);
-
-            TextView textAction = convertView.findViewById(R.id.action);
-
-            textAction.setText(item.getName());
+        if (convertView == null || convertView instanceof Space) {
+            convertView = activity.getLayoutInflater().inflate(R.layout.action_row, null);
         }
 
-        return convertView;
-    }
-
-    public boolean isItemVisible (int position) {
         final ActionTemplate item = getItem(position);
 
-        return !item.isDeleted();
+        TextView textAction = convertView.findViewById(R.id.action);
+
+        textAction.setText(item.getName());
+
+        return convertView;
     }
 }

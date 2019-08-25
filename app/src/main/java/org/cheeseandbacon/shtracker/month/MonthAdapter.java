@@ -17,8 +17,7 @@ import org.cheeseandbacon.shtracker.R;
 public class MonthAdapter implements DayViewAdapter {
     @Override
     public void makeCellView (CalendarCellView parent) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.calendar_day, parent,
-                false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.calendar_day, parent, false);
 
         parent.addView(view);
         parent.setDayOfMonthTextView(view.findViewById(R.id.day));

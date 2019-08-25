@@ -118,7 +118,15 @@ public class SelectActionActivity extends BaseActivity {
 
     private void buildUi () {
         if (actionTemplates != null) {
-            adapter = new ActionAdapter(this, actionTemplates);
+            ArrayList<ActionTemplate> actionTemplatesClean = new ArrayList<>();
+
+            for (ActionTemplate actionTemplate : actionTemplates) {
+                if (!actionTemplate.isDeleted()) {
+                    actionTemplatesClean.add(actionTemplate);
+                }
+            }
+
+            adapter = new ActionAdapter(this, actionTemplatesClean);
             listView.setAdapter(adapter);
             listView.setOnItemClickListener((parent, view, position, id) -> {
                 if (position == adapter.getCount()) {
@@ -130,14 +138,12 @@ public class SelectActionActivity extends BaseActivity {
                 } else {
                     final ActionTemplate item = adapter.getItem(position);
 
-                    if (adapter.isItemVisible(position)) {
-                        Vibration.buttonPress(this);
+                    Vibration.buttonPress(this);
 
-                        startActivityForResult(new Intent(this, CustomizeActionActivity.class)
-                                        .putExtra(CustomizeActionActivity.EXTRA_TEMPLATE_ID,
-                                                item.getId()), REQUEST_CODE_CUSTOMIZE_SELECTION
-                        );
-                    }
+                    startActivityForResult(new Intent(this, CustomizeActionActivity.class)
+                                    .putExtra(CustomizeActionActivity.EXTRA_TEMPLATE_ID,
+                                            item.getId()), REQUEST_CODE_CUSTOMIZE_SELECTION
+                    );
                 }
             });
 

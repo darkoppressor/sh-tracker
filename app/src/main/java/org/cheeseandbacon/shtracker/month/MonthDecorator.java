@@ -16,6 +16,7 @@ import com.squareup.timessquare.CalendarCellView;
 
 import org.cheeseandbacon.shtracker.R;
 import org.cheeseandbacon.shtracker.base.BaseActivity;
+import org.cheeseandbacon.shtracker.data.event.Event;
 import org.cheeseandbacon.shtracker.data.event.EventLoader;
 import org.cheeseandbacon.shtracker.util.DateAndTime;
 
@@ -36,9 +37,6 @@ public class MonthDecorator implements CalendarCellDecorator {
                     LinearLayout layoutDots = cellView.findViewById(R.id.dots);
 
                     if (events != null && events.size() > 0) {
-                        cellView.getDayOfMonthTextView()
-                                .setTextColor(cellView.getContext().getColor(R.color.colorAccent));
-
                         layoutDots.setVisibility(View.VISIBLE);
 
                         ImageView dot1 = cellView.findViewById(R.id.dot1);
@@ -51,21 +49,43 @@ public class MonthDecorator implements CalendarCellDecorator {
                         dot3.setVisibility(View.GONE);
                         dot4.setVisibility(View.GONE);
 
-                        if (events.size() > 3) {
+                        int nonUrgeEvents = 0;
+
+                        for (Event event : events) {
+                            if (!event.isUrge()) {
+                                nonUrgeEvents++;
+                            }
+                        }
+
+                        int color = R.color.dateEventYellow;
+
+                        if (nonUrgeEvents > 3) {
                             dot1.setVisibility(View.VISIBLE);
                             dot2.setVisibility(View.VISIBLE);
                             dot3.setVisibility(View.VISIBLE);
                             dot4.setVisibility(View.VISIBLE);
-                        } else if (events.size() > 2) {
+
+                            color = R.color.dateEventRed;
+                        } else if (nonUrgeEvents > 2) {
                             dot1.setVisibility(View.VISIBLE);
                             dot2.setVisibility(View.VISIBLE);
                             dot3.setVisibility(View.VISIBLE);
-                        } else if (events.size() > 1) {
+
+                            color = R.color.dateEventRed;
+                        } else if (nonUrgeEvents > 1) {
                             dot1.setVisibility(View.VISIBLE);
                             dot2.setVisibility(View.VISIBLE);
-                        } else if (events.size() > 0) {
+
+                            color = R.color.dateEventOrange;
+                        } else {
                             dot1.setVisibility(View.VISIBLE);
                         }
+
+                        if (nonUrgeEvents == 0) {
+                            color = R.color.dateUrge;
+                        }
+
+                        cellView.getDayOfMonthTextView().setTextColor(cellView.getContext().getColor(color));
                     } else {
                         cellView.getDayOfMonthTextView()
                                 .setTextColor(cellView.getContext().getColor(R.color.calendar_text_selector));

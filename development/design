@@ -2,11 +2,12 @@ Track self-harm events and view data
 
 User can enter Events using a simple interface
 
-An Event has date, time, reason, action
+An Event has date, time, reason, action, and urge (which represents whether the event was just an urge versus and actual instance of self harm)
 Event date is whatever day it is created from
 Event time is configurable but defaults to current time (or if on past date, 23:59)
 Event reason is optional
 Event action is optional
+Event urge defaults to false
 
 A Reason has severity, comment, and is linked to a Reason Template
 Reason comment is optional
@@ -35,9 +36,7 @@ This screen can be scrolled forward and backward by a day at at a time
 There is a screen that displays events in a calendar view
 Clicking on a day goes to the day screen for that day
 For this screen, events derive a severity from reason severity and action severity (if either or both are present)
-QQQ Each day on the calendar can show a dot for each event in that day, up to some maximum
-QQQ If the maximum is exceeded, it should probably show some kind of icon to represent this instead
-QQQ Calendar can have colors for each time period
-QQQ Event severities should all be associated with a color spectrum
-QQQ A time period can show either a base color or the color of the event in it
-QQQ If a time period has multiple events in it, need to handle averaging the colors together
+Each day on the calendar shows a dot for each event on that day, up to a maximum, and then displays a plus icon
+Each day on the calendar has a special color for the date if the day contained any events
+These color range from yellow to red, depending on the number of events that day
+There is a separate color for a day with only urge events

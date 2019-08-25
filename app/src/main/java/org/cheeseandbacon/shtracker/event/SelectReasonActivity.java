@@ -118,7 +118,15 @@ public class SelectReasonActivity extends BaseActivity {
 
     private void buildUi () {
         if (reasonTemplates != null) {
-            adapter = new ReasonAdapter(this, reasonTemplates);
+            ArrayList<ReasonTemplate> reasonTemplatesClean = new ArrayList<>();
+
+            for (ReasonTemplate reasonTemplate : reasonTemplates) {
+                if (!reasonTemplate.isDeleted()) {
+                    reasonTemplatesClean.add(reasonTemplate);
+                }
+            }
+
+            adapter = new ReasonAdapter(this, reasonTemplatesClean);
             listView.setAdapter(adapter);
             listView.setOnItemClickListener((parent, view, position, id) -> {
                 if (position == adapter.getCount()) {
@@ -130,14 +138,12 @@ public class SelectReasonActivity extends BaseActivity {
                 } else {
                     final ReasonTemplate item = adapter.getItem(position);
 
-                    if (adapter.isItemVisible(position)) {
-                        Vibration.buttonPress(this);
+                    Vibration.buttonPress(this);
 
-                        startActivityForResult(new Intent(this, CustomizeReasonActivity.class)
-                                        .putExtra(CustomizeReasonActivity.EXTRA_TEMPLATE_ID,
-                                                item.getId()), REQUEST_CODE_CUSTOMIZE_SELECTION
-                        );
-                    }
+                    startActivityForResult(new Intent(this, CustomizeReasonActivity.class)
+                                    .putExtra(CustomizeReasonActivity.EXTRA_TEMPLATE_ID,
+                                            item.getId()), REQUEST_CODE_CUSTOMIZE_SELECTION
+                    );
                 }
             });
 

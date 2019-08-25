@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright (c) 2018 Cheese and Bacon Games, LLC
+  ~ Copyright (c) 2019 Cheese and Bacon Games, LLC
   ~ This file is licensed under the MIT License.
   ~ See the file docs/LICENSE.txt for the full license text.
   -->
@@ -101,6 +101,29 @@
             android:src="@drawable/ic_baseline_access_time_24px"
             android:tint="@android:color/white"
             android:onClick="time" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/add_event_row_padding"
+        android:onClick="urge">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:textColor="@color/gray"
+            android:text="@string/add_event_urge" />
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/urge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true" />
 
     </RelativeLayout>
 

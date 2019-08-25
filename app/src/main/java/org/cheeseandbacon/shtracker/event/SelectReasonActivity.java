@@ -37,18 +37,17 @@ public class SelectReasonActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         onCreate(R.layout.activity_select_reason, getString(R.string.select_reason_title),
                 new Menu(() -> R.menu.select_reason, (item) -> {
-                    switch (item.getItemId()) {
-                        case R.id.actionCancel:
-                            Vibration.buttonPress(this);
+                    if (item.getItemId() == R.id.actionCancel) {
+                        Vibration.buttonPress(this);
 
-                            setResult(RESULT_CANCELED);
+                        setResult(RESULT_CANCELED);
 
-                            finish();
+                        finish();
 
-                            return true;
-                        default:
-                            return false;
+                        return true;
                     }
+
+                    return false;
                 }));
 
         hideNavigationMenu();
@@ -82,15 +81,6 @@ public class SelectReasonActivity extends BaseActivity {
 
         switch (requestCode) {
             case REQUEST_CODE_CUSTOMIZE_SELECTION:
-                if (resultCode == RESULT_OK) {
-                    if (data != null) {
-                        setResult(RESULT_OK, data);
-
-                        finish();
-                    }
-                }
-                break;
-
             case REQUEST_CODE_ADD_REASON_TEMPLATE:
                 if (resultCode == RESULT_OK) {
                     if (data != null) {
@@ -100,20 +90,20 @@ public class SelectReasonActivity extends BaseActivity {
                     }
                 }
                 break;
+
             default:
                 break;
         }
     }
 
     private void loadUi () {
-        ReasonTemplateLoader.load(this, dao -> dao.getAll()
-                .observe(this, reasonTemplates -> {
-                    if (reasonTemplates != null) {
-                        this.reasonTemplates = (ArrayList<ReasonTemplate>) reasonTemplates;
+        ReasonTemplateLoader.load(this, dao -> dao.getAll().observe(this, reasonTemplates -> {
+            if (reasonTemplates != null) {
+                this.reasonTemplates = (ArrayList<ReasonTemplate>) reasonTemplates;
 
-                        buildUi();
-                    }
-                }));
+                buildUi();
+            }
+        }));
     }
 
     private void buildUi () {
@@ -133,16 +123,16 @@ public class SelectReasonActivity extends BaseActivity {
                     Vibration.buttonPress(this);
 
                     startActivityForResult(new Intent(this, AddReasonTemplateActivity.class)
-                                    .putExtra(AddReasonTemplateActivity.EXTRA_CUSTOMIZE_AFTER,
-                                            true), REQUEST_CODE_ADD_REASON_TEMPLATE);
+                                    .putExtra(AddReasonTemplateActivity.EXTRA_CUSTOMIZE_AFTER, true),
+                            REQUEST_CODE_ADD_REASON_TEMPLATE);
                 } else {
                     final ReasonTemplate item = adapter.getItem(position);
 
                     Vibration.buttonPress(this);
 
                     startActivityForResult(new Intent(this, CustomizeReasonActivity.class)
-                                    .putExtra(CustomizeReasonActivity.EXTRA_TEMPLATE_ID,
-                                            item.getId()), REQUEST_CODE_CUSTOMIZE_SELECTION
+                                    .putExtra(CustomizeReasonActivity.EXTRA_TEMPLATE_ID, item.getId()),
+                            REQUEST_CODE_CUSTOMIZE_SELECTION
                     );
                 }
             });

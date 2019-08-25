@@ -135,8 +135,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             NavigationItem item = navigationItems.get(i);
             item.setId(i);
 
-            MenuItem menuItem =
-                    navigationView.getMenu().add(Menu.NONE, i, Menu.NONE, item.getName());
+            MenuItem menuItem = navigationView.getMenu().add(Menu.NONE, i, Menu.NONE, item.getName());
             menuItem.setIcon(item.getDrawableId());
         }
     }
@@ -192,14 +191,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected (@NonNull MenuItem item) {
         if (!actionBarDrawerToggle.onOptionsItemSelected(item) && (menu == null ||
                 !menu.getOnMenuItemClickListener().onMenuItemClick(item))) {
-            switch (item.getItemId()) {
-                case android.R.id.home:
-                    drawerLayout.openDrawer(GravityCompat.START);
-                    return true;
-
-                default:
-                    return super.onOptionsItemSelected(item);
+            if (item.getItemId() == android.R.id.home) {
+                drawerLayout.openDrawer(GravityCompat.START);
+                return true;
             }
+            return super.onOptionsItemSelected(item);
         } else {
             return true;
         }

@@ -16,12 +16,9 @@ import java.util.Date;
 import java.util.Locale;
 
 public class DateAndTime {
-    private static final SimpleDateFormat dateFormatInputMdy =
-            new SimpleDateFormat("M/d/yy", Locale.US);
-    private static final SimpleDateFormat dateFormatInputDayOfWeek =
-            new SimpleDateFormat("EEEE", Locale.US);
-    private static final SimpleDateFormat timeFormatInputHm =
-            new SimpleDateFormat("HH:mm", Locale.US);
+    private static final SimpleDateFormat dateFormatInputMdy = new SimpleDateFormat("M/d/yy", Locale.US);
+    private static final SimpleDateFormat dateFormatInputDayOfWeek = new SimpleDateFormat("EEEE", Locale.US);
+    private static final SimpleDateFormat timeFormatInputHm = new SimpleDateFormat("HH:mm", Locale.US);
 
     public static final String LAST_MINUTE_OF_DAY = "23:59";
 
@@ -77,7 +74,7 @@ public class DateAndTime {
     }
 
     @Nullable
-    public static Date timeStringToDate (String timeString) {
+    static Date timeStringToDate(String timeString) {
         try {
             return timeFormatInputHm.parse(timeString);
         } catch (ParseException e) {

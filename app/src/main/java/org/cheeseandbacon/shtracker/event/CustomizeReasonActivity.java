@@ -53,21 +53,21 @@ public class CustomizeReasonActivity extends BaseActivity {
                             finish();
 
                             return true;
+
                         case R.id.actionDone:
                             Vibration.buttonPress(this);
 
                             Intent intent = new Intent();
                             intent.putExtra(EventActivity.EXTRA_REASON_TEMPLATE_ID, templateId);
-                            intent.putExtra(EventActivity.EXTRA_REASON_COMMENT,
-                                    comment.getString());
-                            intent.putExtra(EventActivity.EXTRA_REASON_SEVERITY,
-                                    severity.getValue());
+                            intent.putExtra(EventActivity.EXTRA_REASON_COMMENT, comment.getString());
+                            intent.putExtra(EventActivity.EXTRA_REASON_SEVERITY, severity.getValue());
 
                             setResult(RESULT_OK, intent);
 
                             finish();
 
                             return true;
+
                         default:
                             return false;
                     }
@@ -106,14 +106,13 @@ public class CustomizeReasonActivity extends BaseActivity {
     }
 
     private void loadUi () {
-        ReasonTemplateLoader.load(this, dao -> dao.getById(templateId)
-                .observe(this, reasonTemplate -> {
-                    if (reasonTemplate != null) {
-                        this.reasonTemplate = reasonTemplate;
+        ReasonTemplateLoader.load(this, dao -> dao.getById(templateId).observe(this, reasonTemplate -> {
+            if (reasonTemplate != null) {
+                this.reasonTemplate = reasonTemplate;
 
-                        buildUi();
-                    }
-                }));
+                buildUi();
+            }
+        }));
     }
 
     private void buildUi () {

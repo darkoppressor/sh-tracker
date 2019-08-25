@@ -25,20 +25,17 @@ public abstract class BaseDao<T> {
     protected abstract void clearTable();
 
     @SuppressWarnings("unchecked")
-    public void insert (Class<T> tClass, ArrayList<T> ts,
-                        @Nullable InsertTask.OnTaskComplete onTaskComplete) {
+    public void insert (Class<T> tClass, ArrayList<T> ts, @Nullable InsertTask.OnTaskComplete onTaskComplete) {
         new InsertTask<T>(onTaskComplete).execute(new BaseAction<>(tClass, this, ts));
     }
 
     @SuppressWarnings("unchecked")
-    public void update (Class<T> tClass, ArrayList<T> ts,
-                        @Nullable UpdateTask.OnTaskComplete onTaskComplete) {
+    public void update (Class<T> tClass, ArrayList<T> ts, @Nullable UpdateTask.OnTaskComplete onTaskComplete) {
         new UpdateTask<T>(onTaskComplete).execute(new BaseAction<>(tClass, this, ts));
     }
 
     @SuppressWarnings("unchecked")
-    public void delete (Class<T> tClass, ArrayList<T> ts,
-                        @Nullable DeleteTask.OnTaskComplete onTaskComplete) {
+    public void delete (Class<T> tClass, ArrayList<T> ts, @Nullable DeleteTask.OnTaskComplete onTaskComplete) {
         new DeleteTask<T>(onTaskComplete).execute(new BaseAction<>(tClass, this, ts));
     }
 

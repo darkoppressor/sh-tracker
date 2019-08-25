@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright (c) 2018 Cheese and Bacon Games, LLC
+  ~ Copyright (c) 2019 Cheese and Bacon Games, LLC
   ~ This file is licensed under the MIT License.
   ~ See the file docs/LICENSE.txt for the full license text.
   -->
 
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item

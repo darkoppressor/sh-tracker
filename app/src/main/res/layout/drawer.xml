@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright (c) 2018 Cheese and Bacon Games, LLC
+  ~ Copyright (c) 2019 Cheese and Bacon Games, LLC
   ~ This file is licensed under the MIT License.
   ~ See the file docs/LICENSE.txt for the full license text.
   -->
@@ -37,7 +37,8 @@
 
     </android.support.design.widget.CoordinatorLayout>
 
-    <android.support.design.widget.NavigationView android:id="@+id/drawerNavigation"
+    <android.support.design.widget.NavigationView
+        android:id="@+id/drawerNavigation"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"

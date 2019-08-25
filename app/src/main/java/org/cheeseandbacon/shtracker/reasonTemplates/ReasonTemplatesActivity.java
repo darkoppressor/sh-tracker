@@ -33,8 +33,7 @@ public class ReasonTemplatesActivity extends BaseActivity {
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        onCreate(R.layout.activity_reason_templates, getString(R.string.reason_templates_title),
-                null);
+        onCreate(R.layout.activity_reason_templates, getString(R.string.reason_templates_title), null);
 
         listView = findViewById(android.R.id.list);
 
@@ -58,30 +57,25 @@ public class ReasonTemplatesActivity extends BaseActivity {
 
         switch (requestCode) {
             case REQUEST_CODE_ADD_REASON_TEMPLATE:
-                if (resultCode == RESULT_OK) {
-                    recreate();
-                }
-                break;
-
             case REQUEST_CODE_EDIT_REASON_TEMPLATE:
                 if (resultCode == RESULT_OK) {
                     recreate();
                 }
                 break;
+
             default:
                 break;
         }
     }
 
     private void loadUi () {
-        ReasonTemplateLoader.load(this, dao -> dao.getAll()
-                .observe(this, reasonTemplates -> {
-                    if (reasonTemplates != null) {
-                        this.reasonTemplates = (ArrayList<ReasonTemplate>) reasonTemplates;
+        ReasonTemplateLoader.load(this, dao -> dao.getAll().observe(this, reasonTemplates -> {
+            if (reasonTemplates != null) {
+                this.reasonTemplates = (ArrayList<ReasonTemplate>) reasonTemplates;
 
-                        buildUi();
-                    }
-                }));
+                buildUi();
+            }
+        }));
     }
 
     private void buildUi () {
@@ -102,8 +96,8 @@ public class ReasonTemplatesActivity extends BaseActivity {
                 Vibration.buttonPress(this);
 
                 startActivityForResult(new Intent(this, AddReasonTemplateActivity.class)
-                                .putExtra(AddReasonTemplateActivity.EXTRA_TEMPLATE_ID,
-                                        item.getId()), REQUEST_CODE_EDIT_REASON_TEMPLATE
+                                .putExtra(AddReasonTemplateActivity.EXTRA_TEMPLATE_ID, item.getId()),
+                        REQUEST_CODE_EDIT_REASON_TEMPLATE
                 );
             });
         }
@@ -112,7 +106,6 @@ public class ReasonTemplatesActivity extends BaseActivity {
     public void addReasonTemplate (View view) {
         Vibration.buttonPress(this);
 
-        startActivityForResult(new Intent(this, AddReasonTemplateActivity.class),
-                REQUEST_CODE_ADD_REASON_TEMPLATE);
+        startActivityForResult(new Intent(this, AddReasonTemplateActivity.class), REQUEST_CODE_ADD_REASON_TEMPLATE);
     }
 }

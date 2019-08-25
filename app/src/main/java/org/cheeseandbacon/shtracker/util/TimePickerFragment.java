@@ -25,8 +25,7 @@ public class TimePickerFragment extends DialogFragment {
     private final Date initialTime;
 
     public TimePickerFragment () {
-        initialTime = getArguments() != null ?
-                (Date) getArguments().getSerializable(ARGUMENT_INITIAL_TIME) : null;
+        initialTime = getArguments() != null ? (Date) getArguments().getSerializable(ARGUMENT_INITIAL_TIME) : null;
     }
 
     @NonNull
@@ -38,8 +37,7 @@ public class TimePickerFragment extends DialogFragment {
             calendar.setTime(initialTime);
         }
 
-        return new TimePickerDialog(getActivity(),
-                (TimePickerDialog.OnTimeSetListener) getActivity(),
+        return new TimePickerDialog(getActivity(), (TimePickerDialog.OnTimeSetListener) getActivity(),
                 calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true);
     }
 

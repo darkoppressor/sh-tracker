@@ -51,20 +51,17 @@ public class DayActivity extends BaseActivity {
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        onCreate(R.layout.activity_day, getString(R.string.day_title),
-                new Menu(() -> R.menu.day, (item) -> {
-                    switch (item.getItemId()) {
-                        case R.id.actionJumpToToday:
-                            Vibration.buttonPress(this);
+        onCreate(R.layout.activity_day, getString(R.string.day_title), new Menu(() -> R.menu.day, (item) -> {
+            if (item.getItemId() == R.id.actionJumpToToday) {
+                Vibration.buttonPress(this);
 
-                            loadDate(Calendar.getInstance());
+                loadDate(Calendar.getInstance());
 
-                            return true;
+                return true;
+            }
 
-                        default:
-                            return false;
-                    }
-                }));
+            return false;
+        }));
 
         textDateBefore = findViewById(R.id.mainDateBefore);
         textDayOfWeekBefore = findViewById(R.id.mainDayOfWeekBefore);
@@ -103,7 +100,8 @@ public class DayActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         switch (requestCode) {
-            case REQUEST_CODE_EVENT_ADDITION: case REQUEST_CODE_EDIT_EVENT:
+            case REQUEST_CODE_EVENT_ADDITION:
+            case REQUEST_CODE_EDIT_EVENT:
                 if (resultCode == RESULT_OK) {
                     if (data != null) {
                         String date = data.getStringExtra(EXTRA_INITIAL_DATE);
@@ -115,6 +113,7 @@ public class DayActivity extends BaseActivity {
                     recreate();
                 }
                 break;
+
             default:
                 break;
         }
@@ -221,8 +220,7 @@ public class DayActivity extends BaseActivity {
         }
 
         startActivityForResult(new Intent(this, EventActivity.class)
-                .putExtra(EventActivity.EXTRA_DATE,
-                        DateAndTime.dateToDateString(dates.getCurrent()))
+                .putExtra(EventActivity.EXTRA_DATE, DateAndTime.dateToDateString(dates.getCurrent()))
                 .putExtra(EventActivity.EXTRA_TIME, time), REQUEST_CODE_EVENT_ADDITION
         );
     }

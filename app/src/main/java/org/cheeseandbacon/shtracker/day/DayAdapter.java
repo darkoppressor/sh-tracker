@@ -60,12 +60,10 @@ public class DayAdapter extends BaseAdapter {
             textName.setVisibility(View.VISIBLE);
             textSeverity.setVisibility(View.VISIBLE);
 
-            textSeverity.setText(activity.getString(R.string.day_list_row_severity,
-                    item.getAction().getSeverity()));
+            textSeverity.setText(activity.getString(R.string.day_list_row_severity, item.getAction().getSeverity()));
 
             ActionTemplateLoader.load(activity, dao ->
-                    dao.getById(item.getAction().getTemplateId()).observe(activity,
-                            actionTemplate -> {
+                    dao.getById(item.getAction().getTemplateId()).observe(activity, actionTemplate -> {
                         if (actionTemplate != null) {
                             textName.setText(actionTemplate.getName());
                         }
@@ -74,12 +72,10 @@ public class DayAdapter extends BaseAdapter {
             textName.setVisibility(View.VISIBLE);
             textSeverity.setVisibility(View.VISIBLE);
 
-            textSeverity.setText(activity.getString(R.string.day_list_row_severity,
-                    item.getReason().getSeverity()));
+            textSeverity.setText(activity.getString(R.string.day_list_row_severity, item.getReason().getSeverity()));
 
             ReasonTemplateLoader.load(activity, dao ->
-                    dao.getById(item.getReason().getTemplateId()).observe(activity,
-                            reasonTemplate -> {
+                    dao.getById(item.getReason().getTemplateId()).observe(activity, reasonTemplate -> {
                         if (reasonTemplate != null) {
                             textName.setText(reasonTemplate.getName());
                         }

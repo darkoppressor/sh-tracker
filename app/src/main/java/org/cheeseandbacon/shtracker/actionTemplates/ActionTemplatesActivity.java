@@ -33,8 +33,7 @@ public class ActionTemplatesActivity extends BaseActivity {
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        onCreate(R.layout.activity_action_templates, getString(R.string.action_templates_title),
-                null);
+        onCreate(R.layout.activity_action_templates, getString(R.string.action_templates_title), null);
 
         listView = findViewById(android.R.id.list);
 
@@ -58,11 +57,6 @@ public class ActionTemplatesActivity extends BaseActivity {
 
         switch (requestCode) {
             case REQUEST_CODE_ADD_ACTION_TEMPLATE:
-                if (resultCode == RESULT_OK) {
-                    recreate();
-                }
-                break;
-
             case REQUEST_CODE_EDIT_ACTION_TEMPLATE:
                 if (resultCode == RESULT_OK) {
                     recreate();
@@ -102,8 +96,7 @@ public class ActionTemplatesActivity extends BaseActivity {
                 Vibration.buttonPress(this);
 
                 startActivityForResult(new Intent(this, AddActionTemplateActivity.class)
-                                .putExtra(AddActionTemplateActivity.EXTRA_TEMPLATE_ID,
-                                        item.getId()),
+                                .putExtra(AddActionTemplateActivity.EXTRA_TEMPLATE_ID, item.getId()),
                         REQUEST_CODE_EDIT_ACTION_TEMPLATE
                 );
             });
@@ -113,7 +106,6 @@ public class ActionTemplatesActivity extends BaseActivity {
     public void addActionTemplate (View view) {
         Vibration.buttonPress(this);
 
-        startActivityForResult(new Intent(this, AddActionTemplateActivity.class),
-                REQUEST_CODE_ADD_ACTION_TEMPLATE);
+        startActivityForResult(new Intent(this, AddActionTemplateActivity.class), REQUEST_CODE_ADD_ACTION_TEMPLATE);
     }
 }

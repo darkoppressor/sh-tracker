@@ -53,21 +53,21 @@ public class CustomizeActionActivity extends BaseActivity {
                             finish();
 
                             return true;
+
                         case R.id.actionDone:
                             Vibration.buttonPress(this);
 
                             Intent intent = new Intent();
                             intent.putExtra(EventActivity.EXTRA_ACTION_TEMPLATE_ID, templateId);
-                            intent.putExtra(EventActivity.EXTRA_ACTION_COMMENT,
-                                    comment.getString());
-                            intent.putExtra(EventActivity.EXTRA_ACTION_SEVERITY,
-                                    severity.getValue());
+                            intent.putExtra(EventActivity.EXTRA_ACTION_COMMENT, comment.getString());
+                            intent.putExtra(EventActivity.EXTRA_ACTION_SEVERITY, severity.getValue());
 
                             setResult(RESULT_OK, intent);
 
                             finish();
 
                             return true;
+
                         default:
                             return false;
                     }
@@ -106,14 +106,13 @@ public class CustomizeActionActivity extends BaseActivity {
     }
 
     private void loadUi () {
-        ActionTemplateLoader.load(this, dao -> dao.getById(templateId)
-                .observe(this, actionTemplate -> {
-                    if (actionTemplate != null) {
-                        this.actionTemplate = actionTemplate;
+        ActionTemplateLoader.load(this, dao -> dao.getById(templateId).observe(this, actionTemplate -> {
+            if (actionTemplate != null) {
+                this.actionTemplate = actionTemplate;
 
-                        buildUi();
-                    }
-                }));
+                buildUi();
+            }
+        }));
     }
 
     private void buildUi () {

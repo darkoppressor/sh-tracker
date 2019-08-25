@@ -37,18 +37,17 @@ public class SelectActionActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         onCreate(R.layout.activity_select_action, getString(R.string.select_action_title),
                 new Menu(() -> R.menu.select_action, (item) -> {
-                    switch (item.getItemId()) {
-                        case R.id.actionCancel:
-                            Vibration.buttonPress(this);
+                    if (item.getItemId() == R.id.actionCancel) {
+                        Vibration.buttonPress(this);
 
-                            setResult(RESULT_CANCELED);
+                        setResult(RESULT_CANCELED);
 
-                            finish();
+                        finish();
 
-                            return true;
-                        default:
-                            return false;
+                        return true;
                     }
+
+                    return false;
                 }));
 
         hideNavigationMenu();
@@ -82,15 +81,6 @@ public class SelectActionActivity extends BaseActivity {
 
         switch (requestCode) {
             case REQUEST_CODE_CUSTOMIZE_SELECTION:
-                if (resultCode == RESULT_OK) {
-                    if (data != null) {
-                        setResult(RESULT_OK, data);
-
-                        finish();
-                    }
-                }
-                break;
-
             case REQUEST_CODE_ADD_ACTION_TEMPLATE:
                 if (resultCode == RESULT_OK) {
                     if (data != null) {
@@ -100,20 +90,20 @@ public class SelectActionActivity extends BaseActivity {
                     }
                 }
                 break;
+
             default:
                 break;
         }
     }
 
     private void loadUi () {
-        ActionTemplateLoader.load(this, dao -> dao.getAll()
-                .observe(this, actionTemplates -> {
-                    if (actionTemplates != null) {
-                        this.actionTemplates = (ArrayList<ActionTemplate>) actionTemplates;
+        ActionTemplateLoader.load(this, dao -> dao.getAll().observe(this, actionTemplates -> {
+            if (actionTemplates != null) {
+                this.actionTemplates = (ArrayList<ActionTemplate>) actionTemplates;
 
-                        buildUi();
-                    }
-                }));
+                buildUi();
+            }
+        }));
     }
 
     private void buildUi () {
@@ -133,16 +123,16 @@ public class SelectActionActivity extends BaseActivity {
                     Vibration.buttonPress(this);
 
                     startActivityForResult(new Intent(this, AddActionTemplateActivity.class)
-                                    .putExtra(AddActionTemplateActivity.EXTRA_CUSTOMIZE_AFTER,
-                                            true), REQUEST_CODE_ADD_ACTION_TEMPLATE);
+                                    .putExtra(AddActionTemplateActivity.EXTRA_CUSTOMIZE_AFTER, true),
+                            REQUEST_CODE_ADD_ACTION_TEMPLATE);
                 } else {
                     final ActionTemplate item = adapter.getItem(position);
 
                     Vibration.buttonPress(this);
 
                     startActivityForResult(new Intent(this, CustomizeActionActivity.class)
-                                    .putExtra(CustomizeActionActivity.EXTRA_TEMPLATE_ID,
-                                            item.getId()), REQUEST_CODE_CUSTOMIZE_SELECTION
+                                    .putExtra(CustomizeActionActivity.EXTRA_TEMPLATE_ID, item.getId()),
+                            REQUEST_CODE_CUSTOMIZE_SELECTION
                     );
                 }
             });

@@ -25,10 +25,8 @@ import java.util.Calendar;
 import java.util.UUID;
 
 public class AddActionTemplateActivity extends BaseActivity {
-    public static final String EXTRA_TEMPLATE_ID =
-            "org.cheeseandbacon.shtracker.actionTemplates.templateId";
-    public static final String EXTRA_CUSTOMIZE_AFTER =
-            "org.cheeseandbacon.shtracker.actionTemplates.customizeAfter";
+    public static final String EXTRA_TEMPLATE_ID = "org.cheeseandbacon.shtracker.actionTemplates.templateId";
+    public static final String EXTRA_CUSTOMIZE_AFTER = "org.cheeseandbacon.shtracker.actionTemplates.customizeAfter";
     public static final int REQUEST_CODE_CUSTOMIZE_SELECTION = 0;
 
     private BaseEditText name;
@@ -42,8 +40,7 @@ public class AddActionTemplateActivity extends BaseActivity {
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        onCreate(R.layout.activity_add_action_template,
-                getString(R.string.add_action_template_title),
+        onCreate(R.layout.activity_add_action_template, getString(R.string.add_action_template_title),
                 new Menu(() -> R.menu.add_action_template, (item) -> {
                     switch (item.getItemId()) {
                         case R.id.actionCancel:
@@ -54,12 +51,14 @@ public class AddActionTemplateActivity extends BaseActivity {
                             finish();
 
                             return true;
+
                         case R.id.actionDone:
                             Vibration.buttonPress(this);
 
                             done();
 
                             return true;
+
                         default:
                             return false;
                     }
@@ -88,12 +87,14 @@ public class AddActionTemplateActivity extends BaseActivity {
                         finish();
 
                         return true;
+
                     case R.id.actionDone:
                         Vibration.buttonPress(this);
 
                         done();
 
                         return true;
+
                     case R.id.actionDelete:
                         Vibration.buttonPress(this);
 
@@ -103,28 +104,27 @@ public class AddActionTemplateActivity extends BaseActivity {
 
                         data.add(actionTemplate);
 
-                        ActionTemplateLoader.load(this, dao ->
-                                dao.update(ActionTemplate.class, data, () -> {
-                                    setResult(RESULT_OK);
+                        ActionTemplateLoader.load(this, dao -> dao.update(ActionTemplate.class, data, () -> {
+                            setResult(RESULT_OK);
 
-                                    finish();
-                                }));
+                            finish();
+                        }));
 
                         return true;
+
                     default:
                         return false;
                 }
             }));
 
-            ActionTemplateLoader.load(this, dao -> dao.getById(templateId)
-                    .observe(this, actionTemplate -> {
-                        if (actionTemplate != null) {
-                            this.actionTemplate = actionTemplate;
+            ActionTemplateLoader.load(this, dao -> dao.getById(templateId).observe(this, actionTemplate -> {
+                if (actionTemplate != null) {
+                    this.actionTemplate = actionTemplate;
 
-                            name.setText(actionTemplate.getName());
-                            description.setText(actionTemplate.getDescription());
-                        }
-                    }));
+                    name.setText(actionTemplate.getName());
+                    description.setText(actionTemplate.getDescription());
+                }
+            }));
         }
     }
 
@@ -139,25 +139,20 @@ public class AddActionTemplateActivity extends BaseActivity {
     protected void onActivityResult (int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        switch (requestCode) {
-            case REQUEST_CODE_CUSTOMIZE_SELECTION:
-                if (resultCode == RESULT_OK) {
-                    if (data != null) {
-                        setResult(RESULT_OK, data);
+        if (requestCode == REQUEST_CODE_CUSTOMIZE_SELECTION) {
+            if (resultCode == RESULT_OK) {
+                if (data != null) {
+                    setResult(RESULT_OK, data);
 
-                        finish();
-                    }
+                    finish();
                 }
-                break;
-            default:
-                break;
+            }
         }
     }
 
     private void done () {
         if (name.getString().length() == 0) {
-            Toast.makeText(this, getString(R.string.add_action_template_name_needed),
-                    Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.add_action_template_name_needed), Toast.LENGTH_LONG).show();
 
             return;
         }
@@ -175,20 +170,18 @@ public class AddActionTemplateActivity extends BaseActivity {
             ));
 
             if (customizeAfter) {
-                ActionTemplateLoader.load(this, (dao) ->
-                        dao.insert(ActionTemplate.class, data, () -> {
-                            startActivityForResult(new Intent(this, CustomizeActionActivity.class)
-                                            .putExtra(CustomizeActionActivity.EXTRA_TEMPLATE_ID, id),
-                                    REQUEST_CODE_CUSTOMIZE_SELECTION
-                            );
-                        }));
+                ActionTemplateLoader.load(this, (dao) -> dao.insert(ActionTemplate.class, data, () -> {
+                    startActivityForResult(new Intent(this, CustomizeActionActivity.class)
+                                    .putExtra(CustomizeActionActivity.EXTRA_TEMPLATE_ID, id),
+                            REQUEST_CODE_CUSTOMIZE_SELECTION
+                    );
+                }));
             } else {
-                ActionTemplateLoader.load(this, (dao) ->
-                        dao.insert(ActionTemplate.class, data, () -> {
-                            setResult(RESULT_OK);
+                ActionTemplateLoader.load(this, (dao) -> dao.insert(ActionTemplate.class, data, () -> {
+                    setResult(RESULT_OK);
 
-                            finish();
-                        }));
+                    finish();
+                }));
             }
         } else {
             ArrayList<ActionTemplate> data = new ArrayList<>();

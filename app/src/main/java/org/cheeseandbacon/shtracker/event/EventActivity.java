@@ -189,7 +189,7 @@ public class EventActivity extends BaseActivity implements TimePickerDialog.OnTi
                                     if (reasonTemplate != null) {
                                         textReason.setText(reasonTemplate.getName());
                                         textReason.setTextColor(getColor(R.color.gray));
-                                        imageReason.setImageResource(R.drawable.ic_baseline_close_24px);
+                                        imageReason.setImageResource(R.drawable.ic_close_24px);
                                     }
                                 }));
                     }
@@ -200,7 +200,7 @@ public class EventActivity extends BaseActivity implements TimePickerDialog.OnTi
                                     if (actionTemplate != null) {
                                         textAction.setText(actionTemplate.getName());
                                         textAction.setTextColor(getColor(R.color.gray));
-                                        imageAction.setImageResource(R.drawable.ic_baseline_close_24px);
+                                        imageAction.setImageResource(R.drawable.ic_close_24px);
                                     }
                                 }));
                     }
@@ -251,7 +251,7 @@ public class EventActivity extends BaseActivity implements TimePickerDialog.OnTi
                                         if (reasonTemplate != null) {
                                             textReason.setText(reasonTemplate.getName());
                                             textReason.setTextColor(getColor(R.color.gray));
-                                            imageReason.setImageResource(R.drawable.ic_baseline_close_24px);
+                                            imageReason.setImageResource(R.drawable.ic_close_24px);
                                         }
                                     }));
                         }
@@ -276,7 +276,7 @@ public class EventActivity extends BaseActivity implements TimePickerDialog.OnTi
                                         if (actionTemplate != null) {
                                             textAction.setText(actionTemplate.getName());
                                             textAction.setTextColor(getColor(R.color.gray));
-                                            imageAction.setImageResource(R.drawable.ic_baseline_close_24px);
+                                            imageAction.setImageResource(R.drawable.ic_close_24px);
                                         }
                                     }));
                         }
@@ -361,7 +361,7 @@ public class EventActivity extends BaseActivity implements TimePickerDialog.OnTi
 
             textReason.setText(R.string.add_event_reason);
             textReason.setTextColor(getColor(android.R.color.darker_gray));
-            imageReason.setImageResource(R.drawable.ic_baseline_add_24px);
+            imageReason.setImageResource(R.drawable.ic_add_24px);
         }
     }
 
@@ -389,7 +389,7 @@ public class EventActivity extends BaseActivity implements TimePickerDialog.OnTi
 
             textAction.setText(R.string.add_event_action);
             textAction.setTextColor(getColor(android.R.color.darker_gray));
-            imageAction.setImageResource(R.drawable.ic_baseline_add_24px);
+            imageAction.setImageResource(R.drawable.ic_add_24px);
         }
     }
 

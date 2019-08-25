@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_baseline_add_24px"
+            android:src="@drawable/ic_add_24px"
             android:tint="@android:color/white"
             android:onClick="reasonButton" />
 
@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_baseline_add_24px"
+            android:src="@drawable/ic_add_24px"
             android:tint="@android:color/white"
             android:onClick="actionButton" />
 
@@ -99,7 +99,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_baseline_access_time_24px"
+            android:src="@drawable/ic_access_time_24px"
             android:tint="@android:color/white"
             android:onClick="time" />
 

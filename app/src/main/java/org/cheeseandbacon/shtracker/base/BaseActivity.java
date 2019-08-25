@@ -105,22 +105,22 @@ public abstract class BaseActivity extends AppCompatActivity {
     private void buildNavigationMenu () {
         navigationItems = new ArrayList<>();
 
-        navigationItems.add(new NavigationItem(getString(R.string.navigation_menu_day), 0,
+        navigationItems.add(new NavigationItem(getString(R.string.navigation_menu_day), R.drawable.ic_wb_sunny_24px,
                 () -> startActivity(new Intent(this, DayActivity.class)
                         .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 )));
 
-        navigationItems.add(new NavigationItem(getString(R.string.navigation_menu_month), 0,
+        navigationItems.add(new NavigationItem(getString(R.string.navigation_menu_month), R.drawable.ic_calendar_today_24px,
                 () -> startActivity(new Intent(this, MonthActivity.class)
                         .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 )));
 
-        navigationItems.add(new NavigationItem(getString(R.string.navigation_menu_reasons), 0,
+        navigationItems.add(new NavigationItem(getString(R.string.navigation_menu_reasons), R.drawable.ic_favorite_24px,
                 () -> startActivity(new Intent(this, ReasonTemplatesActivity.class)
                         .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 )));
 
-        navigationItems.add(new NavigationItem(getString(R.string.navigation_menu_actions), 0,
+        navigationItems.add(new NavigationItem(getString(R.string.navigation_menu_actions), R.drawable.ic_accessibility_24px,
                 () -> startActivity(new Intent(this, ActionTemplatesActivity.class)
                         .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 )));

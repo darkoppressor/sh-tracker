@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_baseline_help_24px"
+            android:src="@drawable/ic_help_24px"
             android:tint="@color/colorPrimary"
             android:onClick="helpSeverity" />
 

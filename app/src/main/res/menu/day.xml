@@ -11,7 +11,7 @@
 
     <item
         android:id="@+id/actionJumpToToday"
-        android:icon="@drawable/ic_baseline_calendar_today_24px"
+        android:icon="@drawable/ic_today_24px"
         android:title="@string/day_menu_today"
         app:showAsAction="ifRoom" />
 

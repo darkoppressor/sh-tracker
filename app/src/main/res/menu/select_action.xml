@@ -13,7 +13,7 @@
     <item
         tools:ignore="AlwaysShowAction"
         android:id="@+id/actionCancel"
-        android:icon="@drawable/ic_baseline_close_24px"
+        android:icon="@drawable/ic_close_24px"
         android:title="@string/cancel"
         app:showAsAction="always|withText" />
 

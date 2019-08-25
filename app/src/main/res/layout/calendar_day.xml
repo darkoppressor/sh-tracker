@@ -33,28 +33,28 @@
             android:id="@+id/dot1"
             android:layout_width="@dimen/month_dot_size"
             android:layout_height="@dimen/month_dot_size"
-            android:src="@drawable/ic_baseline_fiber_manual_record_24px" />
+            android:src="@drawable/ic_fiber_manual_record_24px" />
 
         <ImageView
             tools:ignore="ContentDescription"
             android:id="@+id/dot2"
             android:layout_width="@dimen/month_dot_size"
             android:layout_height="@dimen/month_dot_size"
-            android:src="@drawable/ic_baseline_fiber_manual_record_24px" />
+            android:src="@drawable/ic_fiber_manual_record_24px" />
 
         <ImageView
             tools:ignore="ContentDescription"
             android:id="@+id/dot3"
             android:layout_width="@dimen/month_dot_size"
             android:layout_height="@dimen/month_dot_size"
-            android:src="@drawable/ic_baseline_fiber_manual_record_24px" />
+            android:src="@drawable/ic_fiber_manual_record_24px" />
 
         <ImageView
             tools:ignore="ContentDescription"
             android:id="@+id/dot4"
             android:layout_width="@dimen/month_dot_size"
             android:layout_height="@dimen/month_dot_size"
-            android:src="@drawable/ic_baseline_add_24px" />
+            android:src="@drawable/ic_add_24px" />
 
     </LinearLayout>
 

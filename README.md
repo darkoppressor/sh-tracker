@@ -1,11 +1,10 @@
-# SH Tracker
+# Self-Harm Tracker
 
 An app in development by Cheese and Bacon Games
 http://cheeseandbacon.org/
 
-SH Tracker is an app for tracking instances of self-harm. It is designed to be used to quickly input information when
+Self-Harm Tracker is an app for tracking instances of self-harm. It is designed to be used to quickly input information when
 an instance of self-harm occurs, giving the user an easy way to track their emotional well-being.
-
 
 The app can be used to track instances of actual self-harm, but it also tracks instances of the user feeling the urge to self-harm but ultimately resisting that urge.
 

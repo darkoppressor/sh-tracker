@@ -1,7 +1,7 @@
 # Self-Harm Tracker
 
 An app in development by Cheese and Bacon Games
-http://cheeseandbacon.org/
+https://cheeseandbacon.org/
 
 Self-Harm Tracker is an app for tracking instances of self-harm. It is designed to be used to quickly input information when
 an instance of self-harm occurs, giving the user an easy way to track their emotional well-being.

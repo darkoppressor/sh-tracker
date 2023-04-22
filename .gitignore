@@ -1,15 +1,23 @@
-/build
-/captures
-/local.properties
-/gradle.properties
-
-/.idea/caches/build_file_checksums.ser
+/.gradle
+/.idea/caches
+/.idea/dictionaries
 /.idea/libraries
+/.idea/shelf
+/.idea/assetWizardSettings.xml
+/.idea/deploymentTargetDropDown.xml
+/.idea/gradle.xml
+/.idea/jarRepositories.xml
+/.idea/markdown-navigator.xml
+/.idea/markdown-navigator-enh.xml
+/.idea/misc.xml
 /.idea/modules.xml
+/.idea/navEditor.xml
+/.idea/tasks.xml
 /.idea/workspace.xml
-.gradle
-.externalNativeBuild
+/build
+/local.properties
 
+/app/.externalNativeBuild
 /app/build
 
 *Thumbs.db
